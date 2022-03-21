@@ -47,13 +47,15 @@ module au_top_0 (
   
   wire [16-1:0] M_alu_machine_out;
   wire [1-1:0] M_alu_machine_game_over;
+  wire [48-1:0] M_alu_machine_led_display;
   reg [16-1:0] M_alu_machine_state;
   reg [16-1:0] M_alu_machine_button_pressed;
   alu_4 alu_machine (
     .state(M_alu_machine_state),
     .button_pressed(M_alu_machine_button_pressed),
     .out(M_alu_machine_out),
-    .game_over(M_alu_machine_game_over)
+    .game_over(M_alu_machine_game_over),
+    .led_display(M_alu_machine_led_display)
   );
   
   wire [16-1:0] M_initial_states_out;
@@ -118,18 +120,18 @@ module au_top_0 (
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_board_state_q <= 16'h37ff;
+      M_game_state_q <= 1'h0;
     end else begin
-      M_board_state_q <= M_board_state_d;
+      M_game_state_q <= M_game_state_d;
     end
   end
   
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_game_state_q <= 1'h0;
+      M_board_state_q <= 16'h37ff;
     end else begin
-      M_game_state_q <= M_game_state_d;
+      M_board_state_q <= M_board_state_d;
     end
   end
   

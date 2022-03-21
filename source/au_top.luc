@@ -73,6 +73,7 @@ module au_top (
     }
     
     // Display current board state
+    // Convert to external LED strip output
     io_led[0][7:0] = board_state.q[7:0];
     io_led[1][7:0] = board_state.q[15:8];
   }

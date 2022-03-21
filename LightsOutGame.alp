@@ -3,6 +3,7 @@
   <files>
     <component>edge_detector.luc</component>
     <src>alu.luc</src>
+    <src>display_encoder.luc</src>
     <component>counter.luc</component>
     <component>encoder.luc</component>
     <component>reset_conditioner.luc</component>

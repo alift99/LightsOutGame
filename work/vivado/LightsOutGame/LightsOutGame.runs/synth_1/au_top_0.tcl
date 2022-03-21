@@ -86,6 +86,7 @@ OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_4.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/button_conditioner_3.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_9.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/edge_detector_2.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/initial_board_states_5.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_6.v}
