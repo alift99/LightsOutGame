@@ -45,13 +45,15 @@ module au_top_0 (
     .out(M_button_cond_out)
   );
   
-  wire [16-1:0] M_s_inv_mod_out;
-  reg [16-1:0] M_s_inv_mod_state;
-  reg [16-1:0] M_s_inv_mod_button_pressed;
-  state_inverter_4 s_inv_mod (
-    .state(M_s_inv_mod_state),
-    .button_pressed(M_s_inv_mod_button_pressed),
-    .out(M_s_inv_mod_out)
+  wire [16-1:0] M_alu_machine_out;
+  wire [1-1:0] M_alu_machine_game_over;
+  reg [16-1:0] M_alu_machine_state;
+  reg [16-1:0] M_alu_machine_button_pressed;
+  alu_4 alu_machine (
+    .state(M_alu_machine_state),
+    .button_pressed(M_alu_machine_button_pressed),
+    .out(M_alu_machine_out),
+    .game_over(M_alu_machine_game_over)
   );
   
   wire [16-1:0] M_initial_states_out;
@@ -84,25 +86,25 @@ module au_top_0 (
     M_button_cond_in = io_button[1+0-:1];
     M_button_detector_in = M_button_cond_out;
     M_initial_states_update_state = 1'h0;
-    if ((&M_board_state_q)) begin
-      M_game_state_d = GAME_OVER_game_state;
-    end
     
     case (M_game_state_q)
       IN_GAME_game_state: begin
-        io_led[16+7+0-:1] = 1'h1;
+        io_led[16+7+0-:1] = 1'h0;
         if (M_button_detector_out) begin
-          M_s_inv_mod_button_pressed[0+7-:8] = io_dip[0+0+7-:8];
-          M_s_inv_mod_button_pressed[8+7-:8] = io_dip[8+0+7-:8];
-          M_s_inv_mod_state = M_board_state_q;
-          M_board_state_d = M_s_inv_mod_out;
+          M_alu_machine_button_pressed[0+7-:8] = io_dip[0+0+7-:8];
+          M_alu_machine_button_pressed[8+7-:8] = io_dip[8+0+7-:8];
+          M_alu_machine_state = M_board_state_q;
+          M_board_state_d = M_alu_machine_out;
+          if (M_alu_machine_game_over) begin
+            M_game_state_d = GAME_OVER_game_state;
+          end
         end else begin
-          M_s_inv_mod_button_pressed = 16'h0000;
-          M_s_inv_mod_state = M_board_state_q;
+          M_alu_machine_button_pressed = 16'h0000;
+          M_alu_machine_state = M_board_state_q;
         end
       end
       GAME_OVER_game_state: begin
-        io_led[16+7+0-:1] = 1'h0;
+        io_led[16+7+0-:1] = 1'h1;
         if (M_button_detector_out) begin
           M_initial_states_update_state = 1'h1;
           M_board_state_d = M_initial_states_out;

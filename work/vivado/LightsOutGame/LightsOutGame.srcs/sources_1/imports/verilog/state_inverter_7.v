@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module state_inverter_4 (
+module state_inverter_7 (
     input [15:0] state,
     input [15:0] button_pressed,
     output reg [15:0] out

@@ -1,0 +1,23 @@
+module alu (
+  input state[16],
+  input button_pressed[16],
+  output out[16],
+  output game_over
+)
+{
+
+  state_inverter inverter_module;
+  win_checker win_checker_module;  
+  
+  sig new_state[16];
+
+  always 
+  {
+    inverter_module.state = state;
+    inverter_module.button_pressed = button_pressed;
+    new_state = inverter_module.out;
+    win_checker_module.state =  new_state;
+    out = new_state;_
+    game_over = win_checker_module.out;     
+	  }
+}
