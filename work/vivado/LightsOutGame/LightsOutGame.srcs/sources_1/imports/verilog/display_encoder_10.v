@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module display_encoder_9 (
+module display_encoder_10 (
     input [15:0] state,
     output reg [47:0] out
   );

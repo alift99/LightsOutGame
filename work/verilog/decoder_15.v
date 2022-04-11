@@ -4,14 +4,20 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module win_checker_8 (
-    input [15:0] state,
-    output reg out
+/*
+   Parameters:
+     WIDTH = DIGIT_BITS
+*/
+module decoder_15 (
+    input [1:0] in,
+    output reg [3:0] out
   );
   
+  localparam WIDTH = 2'h2;
   
   
   always @* begin
-    out = (&state);
+    out = 1'h0;
+    out[(in)*1+0-:1] = 1'h1;
   end
 endmodule

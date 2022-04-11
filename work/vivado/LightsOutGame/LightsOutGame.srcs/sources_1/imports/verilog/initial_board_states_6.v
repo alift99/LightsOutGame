@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module initial_board_states_5 (
+module initial_board_states_6 (
     input clk,
     input rst,
     input update_state,

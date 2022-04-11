@@ -4,12 +4,12 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module alu_4 (
+module alu_5 (
     input [15:0] state,
     input [15:0] button_pressed,
     output reg [15:0] out,
     output reg game_over,
-    output reg [47:0] led_display
+    output reg [47:0] led_data
   );
   
   
@@ -17,22 +17,15 @@ module alu_4 (
   wire [16-1:0] M_inverter_module_out;
   reg [16-1:0] M_inverter_module_state;
   reg [16-1:0] M_inverter_module_button_pressed;
-  state_inverter_7 inverter_module (
+  state_inverter_9 inverter_module (
     .state(M_inverter_module_state),
     .button_pressed(M_inverter_module_button_pressed),
     .out(M_inverter_module_out)
   );
   
-  wire [1-1:0] M_win_checker_module_out;
-  reg [16-1:0] M_win_checker_module_state;
-  win_checker_8 win_checker_module (
-    .state(M_win_checker_module_state),
-    .out(M_win_checker_module_out)
-  );
-  
   wire [48-1:0] M_d_encoder_module_out;
   reg [16-1:0] M_d_encoder_module_state;
-  display_encoder_9 d_encoder_module (
+  display_encoder_10 d_encoder_module (
     .state(M_d_encoder_module_state),
     .out(M_d_encoder_module_out)
   );
@@ -43,10 +36,9 @@ module alu_4 (
     M_inverter_module_state = state;
     M_inverter_module_button_pressed = button_pressed;
     new_state = M_inverter_module_out;
-    M_win_checker_module_state = new_state;
-    game_over = M_win_checker_module_out;
+    game_over = (&state);
     out = new_state;
     M_d_encoder_module_state = new_state;
-    led_display = M_d_encoder_module_out;
+    led_data = M_d_encoder_module_out;
   end
 endmodule

@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Mon Mar 21 15:46:45 2022
+| Date         : Mon Apr 11 15:23:08 2022
 | Host         : LAPTOP-MQNOE1QL running 64-bit major release  (build 9200)
 | Command      : report_utilization -file au_top_0_utilization_synth.rpt -pb au_top_0_utilization_synth.pb
 | Design       : au_top_0
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |   91 |     0 |     20800 |  0.44 |
-|   LUT as Logic          |   91 |     0 |     20800 |  0.44 |
+| Slice LUTs*             |  158 |     0 |     20800 |  0.76 |
+|   LUT as Logic          |  158 |     0 |     20800 |  0.76 |
 |   LUT as Memory         |    0 |     0 |      9600 |  0.00 |
-| Slice Registers         |   78 |     0 |     41600 |  0.19 |
-|   Register as Flip Flop |   46 |     0 |     41600 |  0.11 |
+| Slice Registers         |  155 |     0 |     41600 |  0.37 |
+|   Register as Flip Flop |  123 |     0 |     41600 |  0.30 |
 |   Register as Latch     |   32 |     0 |     41600 |  0.08 |
 | F7 Muxes                |    0 |     0 |     16300 |  0.00 |
 | F8 Muxes                |    0 |     0 |      8150 |  0.00 |
@@ -57,7 +57,7 @@ Table of Contents
 | 0     |          Yes |           - |          Set |
 | 32    |          Yes |           - |        Reset |
 | 17    |          Yes |         Set |            - |
-| 29    |          Yes |       Reset |            - |
+| 106   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -90,7 +90,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   65 |     0 |       170 | 38.24 |
+| Bonded IOB                  |   67 |     0 |       170 | 39.41 |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         5 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         5 |  0.00 |
@@ -112,7 +112,7 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    1 |     0 |        32 |  3.13 |
+| BUFGCTRL   |    2 |     0 |        32 |  6.25 |
 | BUFIO      |    0 |     0 |        20 |  0.00 |
 | MMCME2_ADV |    0 |     0 |         5 |  0.00 |
 | PLLE2_ADV  |    0 |     0 |         5 |  0.00 |
@@ -146,20 +146,19 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT6     |   40 |                 LUT |
-| OBUF     |   38 |                  IO |
+| FDRE     |  106 |        Flop & Latch |
+| LUT6     |   69 |                 LUT |
+| LUT2     |   51 |                 LUT |
+| OBUF     |   45 |                  IO |
+| LUT4     |   42 |                 LUT |
 | LDCE     |   32 |        Flop & Latch |
-| FDRE     |   29 |        Flop & Latch |
-| LUT3     |   26 |                 LUT |
-| LUT4     |   21 |                 LUT |
-| IBUF     |   20 |                  IO |
+| IBUF     |   22 |                  IO |
+| CARRY4   |   20 |          CarryLogic |
+| LUT5     |   18 |                 LUT |
 | FDSE     |   17 |        Flop & Latch |
-| LUT5     |   16 |                 LUT |
-| LUT2     |    9 |                 LUT |
-| OBUFT    |    7 |                  IO |
-| CARRY4   |    5 |          CarryLogic |
-| LUT1     |    4 |                 LUT |
-| BUFG     |    1 |               Clock |
+| LUT3     |   16 |                 LUT |
+| LUT1     |    9 |                 LUT |
+| BUFG     |    2 |               Clock |
 +----------+------+---------------------+
 
 
