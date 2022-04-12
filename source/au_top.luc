@@ -119,18 +119,18 @@ module au_top (
         
         if (reset_btn_detector.out)
         {
+          game_state.d = game_state.IN_GAME;
           initial_states.update_state = 1;
           board_state.d = initial_states.out;
           // Reset move counter
           move_counter_module.reset_counter = 1;
         }
     }
-    
-    led_out.board_state = board_state.q;
-    
+      
     // Debugging board state on io led strip
     if (diff_control.hidden_turns == 0)
     {
+      led_out.board_state = board_state.q;
       led_strip[0] = led_out.out0;
       led_strip[1] = led_out.out1;
       led_strip[2] = led_out.out2;
@@ -140,10 +140,11 @@ module au_top (
     }
     else
     {
-      led_strip[0] = 0;
-      led_strip[1] = 0;
-      led_strip[2] = 0;
-      led_strip[3] = 0;
+      led_out.board_state = 16b0;
+      led_strip[0] = led_out.out0;
+      led_strip[1] = led_out.out1;
+      led_strip[2] = led_out.out2;
+      led_strip[3] = led_out.out3;
       // io_led[0][7:0] = 8b0;
       // io_led[1][7:0] = 8b0;  
       // io_led[2][7:0] = 8b0;  

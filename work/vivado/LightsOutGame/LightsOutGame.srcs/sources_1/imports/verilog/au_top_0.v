@@ -208,23 +208,25 @@ module au_top_0 (
       end
       GAME_OVER_game_state: begin
         if (M_reset_btn_detector_out) begin
+          M_game_state_d = IN_GAME_game_state;
           M_initial_states_update_state = 1'h1;
           M_board_state_d = M_initial_states_out;
           M_move_counter_module_reset_counter = 1'h1;
         end
       end
     endcase
-    M_led_out_board_state = M_board_state_q;
     if (M_diff_control_hidden_turns == 1'h0) begin
+      M_led_out_board_state = M_board_state_q;
       led_strip[0+0-:1] = M_led_out_out0;
       led_strip[1+0-:1] = M_led_out_out1;
       led_strip[2+0-:1] = M_led_out_out2;
       led_strip[3+0-:1] = M_led_out_out3;
     end else begin
-      led_strip[0+0-:1] = 1'h0;
-      led_strip[1+0-:1] = 1'h0;
-      led_strip[2+0-:1] = 1'h0;
-      led_strip[3+0-:1] = 1'h0;
+      M_led_out_board_state = 16'h0000;
+      led_strip[0+0-:1] = M_led_out_out0;
+      led_strip[1+0-:1] = M_led_out_out1;
+      led_strip[2+0-:1] = M_led_out_out2;
+      led_strip[3+0-:1] = M_led_out_out3;
     end
     io_seg = M_move_counter_module_seg_out;
     io_sel = M_move_counter_module_sel_out;
