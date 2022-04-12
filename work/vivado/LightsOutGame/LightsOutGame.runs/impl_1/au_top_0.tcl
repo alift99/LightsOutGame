@@ -137,9 +137,9 @@ OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet {{D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.runs/synth_1/au_top_0.dcp}}
 OPTRACE "read constraints: implementation" START { }
-  read_xdc {{D:/Alchitry Projects/LightsOutGame/work/constraint/alchitry.xdc}}
   read_xdc {{D:/Alchitry Projects/LightsOutGame/work/constraint/io.xdc}}
   read_xdc D:/Alchitry/library/components/au.xdc
+  read_xdc {{D:/Alchitry Projects/LightsOutGame/work/constraint/alchitry.xdc}}
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

@@ -27,7 +27,7 @@ module multi_dec_ctr_12 (
   genvar GEN_dctr0;
   generate
   for (GEN_dctr0=0;GEN_dctr0<2'h2;GEN_dctr0=GEN_dctr0+1) begin: dctr_gen_0
-    decimal_counter_16 dctr (
+    decimal_counter_19 dctr (
       .clk(clk),
       .rst(rst),
       .inc(M_dctr_inc[GEN_dctr0*(1)+(1)-1-:(1)]),

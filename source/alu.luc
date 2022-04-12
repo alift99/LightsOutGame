@@ -2,13 +2,13 @@ module alu (
   input state[16],
   input button_pressed[16],
   output out[16],
-  output game_over,
-  output led_data[4][12] 
+  output game_over
+  // output led_data[4][12] 
 )
 {
 
   state_inverter inverter_module;
-  display_encoder d_encoder_module;  
+  // display_encoder d_encoder_module;  
   
   sig new_state[16];
 
@@ -23,7 +23,10 @@ module alu (
     // Output new_state to au_top
     out = new_state;
     // Output encoded representation of state to au_top
-    d_encoder_module.state = new_state; 
-    led_data = d_encoder_module.out;     
+    // d_encoder_module.state = new_state; 
+    // led_data[0] = d_encoder_module.strip0;
+    // led_data[1] = d_encoder_module.strip1;   
+    // led_data[2] = d_encoder_module.strip2;
+    // led_data[3] = d_encoder_module.strip3;s  
 	  }
 }

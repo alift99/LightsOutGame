@@ -7,14 +7,14 @@
 module au_top_0 (
     input clk,
     input rst_n,
-    output reg [7:0] led,
     input usb_rx,
     output reg usb_tx,
-    output reg [23:0] io_led,
+    output reg [3:0] led_strip,
     output reg [7:0] io_seg,
     output reg [3:0] io_sel,
-    input [4:0] io_button,
-    input [23:0] io_dip
+    input [15:0] button,
+    input reset_button,
+    input difficulty_button
   );
   
   
@@ -29,21 +29,33 @@ module au_top_0 (
     .out(M_reset_cond_out)
   );
   
-  wire [1-1:0] M_button_detector_out;
-  reg [1-1:0] M_button_detector_in;
-  edge_detector_2 button_detector (
-    .clk(clk),
-    .in(M_button_detector_in),
-    .out(M_button_detector_out)
-  );
+  wire [(5'h10+0)-1:0] M_button_detector_out;
+  reg [(5'h10+0)-1:0] M_button_detector_in;
   
-  wire [1-1:0] M_button_cond_out;
-  reg [1-1:0] M_button_cond_in;
-  button_conditioner_3 button_cond (
-    .clk(clk),
-    .in(M_button_cond_in),
-    .out(M_button_cond_out)
-  );
+  genvar GEN_button_detector0;
+  generate
+  for (GEN_button_detector0=0;GEN_button_detector0<5'h10;GEN_button_detector0=GEN_button_detector0+1) begin: button_detector_gen_0
+    edge_detector_2 button_detector (
+      .clk(clk),
+      .in(M_button_detector_in[GEN_button_detector0*(1)+(1)-1-:(1)]),
+      .out(M_button_detector_out[GEN_button_detector0*(1)+(1)-1-:(1)])
+    );
+  end
+  endgenerate
+  
+  wire [(5'h10+0)-1:0] M_button_cond_out;
+  reg [(5'h10+0)-1:0] M_button_cond_in;
+  
+  genvar GEN_button_cond0;
+  generate
+  for (GEN_button_cond0=0;GEN_button_cond0<5'h10;GEN_button_cond0=GEN_button_cond0+1) begin: button_cond_gen_0
+    button_conditioner_3 button_cond (
+      .clk(clk),
+      .in(M_button_cond_in[GEN_button_cond0*(1)+(1)-1-:(1)]),
+      .out(M_button_cond_out[GEN_button_cond0*(1)+(1)-1-:(1)])
+    );
+  end
+  endgenerate
   
   wire [1-1:0] M_reset_btn_detector_out;
   reg [1-1:0] M_reset_btn_detector_in;
@@ -92,15 +104,13 @@ module au_top_0 (
   
   wire [16-1:0] M_alu_machine_out;
   wire [1-1:0] M_alu_machine_game_over;
-  wire [48-1:0] M_alu_machine_led_data;
   reg [16-1:0] M_alu_machine_state;
   reg [16-1:0] M_alu_machine_button_pressed;
   alu_5 alu_machine (
     .state(M_alu_machine_state),
     .button_pressed(M_alu_machine_button_pressed),
     .out(M_alu_machine_out),
-    .game_over(M_alu_machine_game_over),
-    .led_data(M_alu_machine_led_data)
+    .game_over(M_alu_machine_game_over)
   );
   
   wire [16-1:0] M_initial_states_out;
@@ -127,6 +137,21 @@ module au_top_0 (
     .sel_out(M_move_counter_module_sel_out)
   );
   
+  wire [1-1:0] M_led_out_out0;
+  wire [1-1:0] M_led_out_out1;
+  wire [1-1:0] M_led_out_out2;
+  wire [1-1:0] M_led_out_out3;
+  reg [16-1:0] M_led_out_board_state;
+  led_out_8 led_out (
+    .clk(clk),
+    .rst(rst),
+    .board_state(M_led_out_board_state),
+    .out0(M_led_out_out0),
+    .out1(M_led_out_out1),
+    .out2(M_led_out_out2),
+    .out3(M_led_out_out3)
+  );
+  
   reg [15:0] M_board_state_d, M_board_state_q = 16'h37ff;
   
   
@@ -142,14 +167,13 @@ module au_top_0 (
     M_reset_cond_in = ~rst_n;
     rst = M_reset_cond_out;
     usb_tx = usb_rx;
-    led = 8'h00;
     io_seg = 8'hff;
     io_sel = 4'hf;
-    M_button_cond_in = io_button[1+0-:1];
+    M_button_cond_in = button;
     M_button_detector_in = M_button_cond_out;
-    M_reset_btn_cond_in = io_button[0+0-:1];
+    M_reset_btn_cond_in = reset_button;
     M_reset_btn_detector_in = M_reset_btn_cond_out;
-    M_diff_btn_cond_in = io_button[2+0-:1];
+    M_diff_btn_cond_in = difficulty_button;
     M_diff_btn_detector_in = M_diff_btn_cond_out;
     M_initial_states_update_state = 1'h0;
     M_move_counter_module_inc = 1'h0;
@@ -160,12 +184,10 @@ module au_top_0 (
     
     case (M_game_state_q)
       IN_GAME_game_state: begin
-        io_led[16+7+0-:1] = 1'h0;
-        if (M_button_detector_out) begin
+        if (M_button_detector_out != 16'h0000) begin
           M_move_counter_module_inc = 1'h1;
           M_diff_control_update_move = 1'h1;
-          M_alu_machine_button_pressed[0+7-:8] = io_dip[0+0+7-:8];
-          M_alu_machine_button_pressed[8+7-:8] = io_dip[8+0+7-:8];
+          M_alu_machine_button_pressed = M_button_detector_out;
           M_alu_machine_state = M_board_state_q;
           M_board_state_d = M_alu_machine_out;
           if (M_alu_machine_game_over) begin
@@ -185,7 +207,6 @@ module au_top_0 (
         end
       end
       GAME_OVER_game_state: begin
-        io_led[16+7+0-:1] = 1'h1;
         if (M_reset_btn_detector_out) begin
           M_initial_states_update_state = 1'h1;
           M_board_state_d = M_initial_states_out;
@@ -193,13 +214,17 @@ module au_top_0 (
         end
       end
     endcase
+    M_led_out_board_state = M_board_state_q;
     if (M_diff_control_hidden_turns == 1'h0) begin
-      io_led[0+0+7-:8] = M_board_state_q[0+7-:8];
-      io_led[8+0+7-:8] = M_board_state_q[8+7-:8];
+      led_strip[0+0-:1] = M_led_out_out0;
+      led_strip[1+0-:1] = M_led_out_out1;
+      led_strip[2+0-:1] = M_led_out_out2;
+      led_strip[3+0-:1] = M_led_out_out3;
     end else begin
-      io_led[0+0+7-:8] = 8'h00;
-      io_led[8+0+7-:8] = 8'h00;
-      io_led[16+0+7-:8] = 8'h00;
+      led_strip[0+0-:1] = 1'h0;
+      led_strip[1+0-:1] = 1'h0;
+      led_strip[2+0-:1] = 1'h0;
+      led_strip[3+0-:1] = 1'h0;
     end
     io_seg = M_move_counter_module_seg_out;
     io_sel = M_move_counter_module_sel_out;
@@ -207,18 +232,18 @@ module au_top_0 (
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_game_state_q <= 1'h0;
+      M_board_state_q <= 16'h37ff;
     end else begin
-      M_game_state_q <= M_game_state_d;
+      M_board_state_q <= M_board_state_d;
     end
   end
   
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_board_state_q <= 16'h37ff;
+      M_game_state_q <= 1'h0;
     end else begin
-      M_board_state_q <= M_board_state_d;
+      M_game_state_q <= M_game_state_d;
     end
   end
   

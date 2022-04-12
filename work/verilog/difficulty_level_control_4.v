@@ -44,18 +44,18 @@ module difficulty_level_control_4 (
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_difficulty_level_q <= 1'h0;
+      M_turns_hidden_left_q <= 1'h0;
     end else begin
-      M_difficulty_level_q <= M_difficulty_level_d;
+      M_turns_hidden_left_q <= M_turns_hidden_left_d;
     end
   end
   
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_turns_hidden_left_q <= 1'h0;
+      M_difficulty_level_q <= 1'h0;
     end else begin
-      M_turns_hidden_left_q <= M_turns_hidden_left_d;
+      M_difficulty_level_q <= M_difficulty_level_d;
     end
   end
   

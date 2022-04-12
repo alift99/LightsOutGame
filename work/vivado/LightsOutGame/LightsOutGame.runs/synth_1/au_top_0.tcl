@@ -86,20 +86,23 @@ OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_5.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/button_conditioner_3.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_13.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decimal_counter_16.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decoder_15.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/color_adapter_14.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_16.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decimal_counter_19.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decoder_18.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/difficulty_level_control_4.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_10.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_15.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_13.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/edge_detector_2.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/initial_board_states_6.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/led_out_8.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/move_counter_7.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_dec_ctr_12.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_seven_seg_11.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_8.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_9.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/reset_conditioner_1.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/seven_seg_14.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/state_inverter_9.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/seven_seg_17.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/state_inverter_10.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/au_top_0.v}
 }
 OPTRACE "Adding files" END { }
@@ -111,14 +114,14 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{D:/Alchitry Projects/LightsOutGame/work/constraint/alchitry.xdc}}
-set_property used_in_implementation false [get_files {{D:/Alchitry Projects/LightsOutGame/work/constraint/alchitry.xdc}}]
-
 read_xdc {{D:/Alchitry Projects/LightsOutGame/work/constraint/io.xdc}}
 set_property used_in_implementation false [get_files {{D:/Alchitry Projects/LightsOutGame/work/constraint/io.xdc}}]
 
 read_xdc D:/Alchitry/library/components/au.xdc
 set_property used_in_implementation false [get_files D:/Alchitry/library/components/au.xdc]
+
+read_xdc {{D:/Alchitry Projects/LightsOutGame/work/constraint/alchitry.xdc}}
+set_property used_in_implementation false [get_files {{D:/Alchitry Projects/LightsOutGame/work/constraint/alchitry.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
