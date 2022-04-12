@@ -13,23 +13,17 @@ module difficulty_level_control (
   
   always 
   {
-    difficulty = 2b0;
-    hidden_turns = 2b0;
-
     if(update_difficulty)
     {
       if(difficulty_level.q == b10)
       {
-        difficulty = difficulty_level.q; // inclusive of b10 state
         difficulty_level.d = b00;
+        turns_hidden_left.d = 0;
       }
       else
       {
         difficulty_level.d = difficulty_level.q + 1; // default value is b00, first button press will increment by 1
-        difficulty = difficulty_level.q;
       }    
-      turns_hidden_left.d = difficulty_level.q;
-      hidden_turns = turns_hidden_left.q;
     }
 
     if(update_move)
@@ -37,13 +31,14 @@ module difficulty_level_control (
       if(turns_hidden_left.q == b00)
       {
         turns_hidden_left.d = difficulty_level.q;
-        hidden_turns = turns_hidden_left.q;
       }
       else
       {
         turns_hidden_left.d = turns_hidden_left.q - 1;
-        hidden_turns = turns_hidden_left.q;
       }
     }
+    
+    difficulty = difficulty_level.q;
+    hidden_turns = turns_hidden_left.q;
   }
 }

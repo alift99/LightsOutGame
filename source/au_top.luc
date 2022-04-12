@@ -133,7 +133,7 @@ module au_top (
     }
     
     // Debugging board state on io led strip
-    if (!diff_control.hidden_turns)
+    if (diff_control.hidden_turns == 0)
     {
       io_led[0][7:0] = board_state.q[7:0];
       io_led[1][7:0] = board_state.q[15:8];

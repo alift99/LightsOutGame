@@ -193,7 +193,7 @@ module au_top_0 (
         end
       end
     endcase
-    if (!M_diff_control_hidden_turns) begin
+    if (M_diff_control_hidden_turns == 1'h0) begin
       io_led[0+0+7-:8] = M_board_state_q[0+7-:8];
       io_led[8+0+7-:8] = M_board_state_q[8+7-:8];
     end else begin

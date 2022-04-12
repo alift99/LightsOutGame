@@ -23,28 +23,23 @@ module difficulty_level_control_4 (
     M_difficulty_level_d = M_difficulty_level_q;
     M_turns_hidden_left_d = M_turns_hidden_left_q;
     
-    difficulty = 2'h0;
-    hidden_turns = 2'h0;
     if (update_difficulty) begin
       if (M_difficulty_level_q == 2'h2) begin
-        difficulty = M_difficulty_level_q;
         M_difficulty_level_d = 2'h0;
+        M_turns_hidden_left_d = 1'h0;
       end else begin
         M_difficulty_level_d = M_difficulty_level_q + 1'h1;
-        difficulty = M_difficulty_level_q;
       end
-      M_turns_hidden_left_d = M_difficulty_level_q;
-      hidden_turns = M_turns_hidden_left_q;
     end
     if (update_move) begin
       if (M_turns_hidden_left_q == 2'h0) begin
         M_turns_hidden_left_d = M_difficulty_level_q;
-        hidden_turns = M_turns_hidden_left_q;
       end else begin
         M_turns_hidden_left_d = M_turns_hidden_left_q - 1'h1;
-        hidden_turns = M_turns_hidden_left_q;
       end
     end
+    difficulty = M_difficulty_level_q;
+    hidden_turns = M_turns_hidden_left_q;
   end
   
   always @(posedge clk) begin
