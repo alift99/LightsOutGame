@@ -93,11 +93,13 @@ module au_top_0 (
   wire [2-1:0] M_diff_control_difficulty;
   reg [1-1:0] M_diff_control_update_difficulty;
   reg [1-1:0] M_diff_control_update_move;
+  reg [1-1:0] M_diff_control_reset_counter;
   difficulty_level_control_4 diff_control (
     .clk(clk),
     .rst(rst),
     .update_difficulty(M_diff_control_update_difficulty),
     .update_move(M_diff_control_update_move),
+    .reset_counter(M_diff_control_reset_counter),
     .hidden_turns(M_diff_control_hidden_turns),
     .difficulty(M_diff_control_difficulty)
   );
@@ -142,10 +144,12 @@ module au_top_0 (
   wire [1-1:0] M_led_out_out2;
   wire [1-1:0] M_led_out_out3;
   reg [16-1:0] M_led_out_board_state;
+  reg [1-1:0] M_led_out_power_on;
   led_out_8 led_out (
     .clk(clk),
     .rst(rst),
     .board_state(M_led_out_board_state),
+    .power_on(M_led_out_power_on),
     .out0(M_led_out_out0),
     .out1(M_led_out_out1),
     .out2(M_led_out_out2),
@@ -180,6 +184,7 @@ module au_top_0 (
     M_move_counter_module_reset_counter = 1'h0;
     M_diff_control_update_difficulty = 1'h0;
     M_diff_control_update_move = 1'h0;
+    M_diff_control_reset_counter = 1'h0;
     M_move_counter_module_difficulty = M_diff_control_difficulty;
     
     case (M_game_state_q)
@@ -201,6 +206,7 @@ module au_top_0 (
           M_initial_states_update_state = 1'h1;
           M_board_state_d = M_initial_states_out;
           M_move_counter_module_reset_counter = 1'h1;
+          M_diff_control_reset_counter = 1'h1;
         end
         if (M_diff_btn_detector_out) begin
           M_diff_control_update_difficulty = 1'h1;
@@ -212,40 +218,38 @@ module au_top_0 (
           M_initial_states_update_state = 1'h1;
           M_board_state_d = M_initial_states_out;
           M_move_counter_module_reset_counter = 1'h1;
+          M_diff_control_reset_counter = 1'h1;
         end
       end
     endcase
-    if (M_diff_control_hidden_turns == 1'h0) begin
-      M_led_out_board_state = M_board_state_q;
-      led_strip[0+0-:1] = M_led_out_out0;
-      led_strip[1+0-:1] = M_led_out_out1;
-      led_strip[2+0-:1] = M_led_out_out2;
-      led_strip[3+0-:1] = M_led_out_out3;
+    if (M_diff_control_hidden_turns == 1'h0 | M_game_state_q == GAME_OVER_game_state) begin
+      M_led_out_power_on = 1'h1;
     end else begin
-      M_led_out_board_state = 16'h0000;
-      led_strip[0+0-:1] = M_led_out_out0;
-      led_strip[1+0-:1] = M_led_out_out1;
-      led_strip[2+0-:1] = M_led_out_out2;
-      led_strip[3+0-:1] = M_led_out_out3;
+      M_led_out_power_on = 1'h0;
     end
+    M_led_out_board_state = M_board_state_q;
+    led_strip[0+0-:1] = M_led_out_out0;
+    led_strip[1+0-:1] = M_led_out_out1;
+    led_strip[2+0-:1] = M_led_out_out2;
+    led_strip[3+0-:1] = M_led_out_out3;
     io_seg = M_move_counter_module_seg_out;
     io_sel = M_move_counter_module_sel_out;
   end
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_board_state_q <= 16'h37ff;
+      M_game_state_q <= 1'h0;
     end else begin
-      M_board_state_q <= M_board_state_d;
+      M_game_state_q <= M_game_state_d;
     end
   end
   
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_game_state_q <= 1'h0;
+      M_board_state_q <= 16'h37ff;
     end else begin
-      M_game_state_q <= M_game_state_d;
+      M_board_state_q <= M_board_state_d;
     end
   end
   

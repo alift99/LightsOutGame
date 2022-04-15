@@ -131,7 +131,7 @@ module au_top (
     }
       
     // Debugging board state on io led strip
-    if (diff_control.hidden_turns == 0 | game_state.GAME_OVER)
+    if (diff_control.hidden_turns == 0 | game_state.q == game_state.GAME_OVER)
     {
       led_out.power_on = 1;
       // io_led[0][7:0] = board_state.q[7:0];

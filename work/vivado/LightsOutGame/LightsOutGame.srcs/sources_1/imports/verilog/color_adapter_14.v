@@ -8,6 +8,7 @@ module color_adapter_14 (
     input clk,
     input rst,
     input [11:0] state,
+    input power_on,
     output reg [287:0] out
   );
   
@@ -23,10 +24,14 @@ module color_adapter_14 (
     M_led_out_d = M_led_out_q;
     
     for (i = 1'h0; i < 4'hc; i = i + 1) begin
-      if (state[(i)*1+0-:1] == 2'h0) begin
-        M_led_out_d[(i)*24+23-:24] = 24'hff0000;
+      if (power_on) begin
+        if (state[(i)*1+0-:1] == 2'h0) begin
+          M_led_out_d[(i)*24+23-:24] = 24'hff0000;
+        end else begin
+          M_led_out_d[(i)*24+23-:24] = 24'h00ff00;
+        end
       end else begin
-        M_led_out_d[(i)*24+23-:24] = 24'h00ff00;
+        M_led_out_d[(i)*24+23-:24] = 24'h000000;
       end
       out[(i)*24+23-:24] = M_led_out_q[(i)*24+23-:24];
     end

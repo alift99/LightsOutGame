@@ -9,6 +9,7 @@ module difficulty_level_control_4 (
     input rst,
     input update_difficulty,
     input update_move,
+    input reset_counter,
     output reg [1:0] hidden_turns,
     output reg [1:0] difficulty
   );
@@ -38,24 +39,27 @@ module difficulty_level_control_4 (
         M_turns_hidden_left_d = M_turns_hidden_left_q - 1'h1;
       end
     end
-    difficulty = M_difficulty_level_q;
+    if (reset_counter) begin
+      M_turns_hidden_left_d = 2'h0;
+    end
+    difficulty = M_difficulty_level_q + 1'h1;
     hidden_turns = M_turns_hidden_left_q;
   end
-  
-  always @(posedge clk) begin
-    if (rst == 1'b1) begin
-      M_turns_hidden_left_q <= 1'h0;
-    end else begin
-      M_turns_hidden_left_q <= M_turns_hidden_left_d;
-    end
-  end
-  
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
       M_difficulty_level_q <= 1'h0;
     end else begin
       M_difficulty_level_q <= M_difficulty_level_d;
+    end
+  end
+  
+  
+  always @(posedge clk) begin
+    if (rst == 1'b1) begin
+      M_turns_hidden_left_q <= 1'h0;
+    end else begin
+      M_turns_hidden_left_q <= M_turns_hidden_left_d;
     end
   end
   

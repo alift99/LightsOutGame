@@ -8,6 +8,7 @@ module led_out_8 (
     input clk,
     input rst,
     input [15:0] board_state,
+    input power_on,
     output reg out0,
     output reg out1,
     output reg out2,
@@ -31,37 +32,45 @@ module led_out_8 (
   
   wire [288-1:0] M_color_adapter0_out;
   reg [12-1:0] M_color_adapter0_state;
+  reg [1-1:0] M_color_adapter0_power_on;
   color_adapter_14 color_adapter0 (
     .clk(clk),
     .rst(rst),
     .state(M_color_adapter0_state),
+    .power_on(M_color_adapter0_power_on),
     .out(M_color_adapter0_out)
   );
   
   wire [288-1:0] M_color_adapter1_out;
   reg [12-1:0] M_color_adapter1_state;
+  reg [1-1:0] M_color_adapter1_power_on;
   color_adapter_14 color_adapter1 (
     .clk(clk),
     .rst(rst),
     .state(M_color_adapter1_state),
+    .power_on(M_color_adapter1_power_on),
     .out(M_color_adapter1_out)
   );
   
   wire [288-1:0] M_color_adapter2_out;
   reg [12-1:0] M_color_adapter2_state;
+  reg [1-1:0] M_color_adapter2_power_on;
   color_adapter_14 color_adapter2 (
     .clk(clk),
     .rst(rst),
     .state(M_color_adapter2_state),
+    .power_on(M_color_adapter2_power_on),
     .out(M_color_adapter2_out)
   );
   
   wire [288-1:0] M_color_adapter3_out;
   reg [12-1:0] M_color_adapter3_state;
+  reg [1-1:0] M_color_adapter3_power_on;
   color_adapter_14 color_adapter3 (
     .clk(clk),
     .rst(rst),
     .state(M_color_adapter3_state),
+    .power_on(M_color_adapter3_power_on),
     .out(M_color_adapter3_out)
   );
   
@@ -126,15 +135,19 @@ module led_out_8 (
   );
   
   always @* begin
-    ledcolor0 = M_color_adapter0_out;
-    ledcolor1 = M_color_adapter1_out;
-    ledcolor2 = M_color_adapter2_out;
-    ledcolor3 = M_color_adapter3_out;
+    M_display_encoder_state = board_state;
     M_color_adapter0_state = M_display_encoder_strip0;
     M_color_adapter1_state = M_display_encoder_strip1;
     M_color_adapter2_state = M_display_encoder_strip2;
     M_color_adapter3_state = M_display_encoder_strip3;
-    M_display_encoder_state = board_state;
+    M_color_adapter0_power_on = power_on;
+    M_color_adapter1_power_on = power_on;
+    M_color_adapter2_power_on = power_on;
+    M_color_adapter3_power_on = power_on;
+    ledcolor0 = M_color_adapter0_out;
+    ledcolor1 = M_color_adapter1_out;
+    ledcolor2 = M_color_adapter2_out;
+    ledcolor3 = M_color_adapter3_out;
     M_display0_update = 1'h1;
     M_display0_color = ledcolor0[(M_display0_pixel)*24+23-:24];
     M_display1_update = 1'h1;

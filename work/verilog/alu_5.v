@@ -28,7 +28,7 @@ module alu_5 (
     M_inverter_module_state = state;
     M_inverter_module_button_pressed = button_pressed;
     new_state = M_inverter_module_out;
-    game_over = (&state);
+    game_over = (&new_state);
     out = new_state;
   end
 endmodule
