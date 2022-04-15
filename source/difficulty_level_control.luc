@@ -3,7 +3,7 @@ module difficulty_level_control (
     input rst,
     input update_difficulty,
     input update_move,
-    // reset button
+    input reset_counter,
     output hidden_turns[2],
     output difficulty[2]
 ) 
@@ -36,6 +36,11 @@ module difficulty_level_control (
       {
         turns_hidden_left.d = turns_hidden_left.q - 1;
       }
+    }
+    
+    if(reset_counter)
+    {
+      turns_hidden_left.d = b00;
     }
     
     difficulty = difficulty_level.q + 1;
