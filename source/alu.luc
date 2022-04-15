@@ -19,7 +19,7 @@ module alu (
     inverter_module.button_pressed = button_pressed;
     new_state = inverter_module.out;
     // Check for victory
-    game_over = &state;
+    game_over = &new_state;
     // Output new_state to au_top
     out = new_state;
     // Output encoded representation of state to au_top

@@ -2,6 +2,7 @@ module color_adapter (
     input clk,              // 100MHz clock
     input rst,            // reset button (active low)
     input state[12],
+    input power_on,
     output out[12][24]
   ) {
  
@@ -12,8 +13,7 @@ module color_adapter (
   //dff state_file[12](.clk(clk), .rst(rst));
   dff led_out[12][24](.clk(clk), .rst(rst), #INIT(EMPTY));
   
-  always {
-    
+  always {   
     
     //out = board;
     
@@ -21,10 +21,13 @@ module color_adapter (
     for (i=0; i<12; i++) {
 
     //if (state_file.q[i] == 2d0)
-    if (state[i] == 2d0)
-        led_out.d[i] = hFF0000;
+    if (power_on)  
+      if (state[i] == 2d0)
+          led_out.d[i] = hFF0000;
+      else
+          led_out.d[i] = h00FF00;
     else
-        led_out.d[i] = h00FF00;
+      led_out.d[i] = h000000;       
     
     out[i] = led_out.q[i];
     }

@@ -2,6 +2,7 @@ module led_out (
     input clk,  // clock
     input rst,  // reset
     input board_state[16],
+    input power_on,
     output out0,
     output out1,
     output out2,
@@ -29,17 +30,22 @@ module led_out (
   display display3(#PIXEL_COUNT(12), .clk(clk), .rst(rst)); //set for 12 pixels
   
   always {    
-    ledcolor0 = color_adapter0.out;
-    ledcolor1 = color_adapter1.out;
-    ledcolor2 = color_adapter2.out;
-    ledcolor3 = color_adapter3.out;
+    display_encoder.state = board_state;
 
     color_adapter0.state = display_encoder.strip0;
     color_adapter1.state = display_encoder.strip1;
     color_adapter2.state = display_encoder.strip2;
     color_adapter3.state = display_encoder.strip3;
     
-    display_encoder.state = board_state;
+    color_adapter0.power_on = power_on;
+    color_adapter1.power_on = power_on;
+    color_adapter2.power_on = power_on;
+    color_adapter3.power_on = power_on;
+    
+    ledcolor0 = color_adapter0.out;
+    ledcolor1 = color_adapter1.out;
+    ledcolor2 = color_adapter2.out;
+    ledcolor3 = color_adapter3.out;
     
     display0.update = 1; //sample write 
     display0.color = ledcolor0[display0.pixel];

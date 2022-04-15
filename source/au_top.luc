@@ -128,27 +128,25 @@ module au_top (
     }
       
     // Debugging board state on io led strip
-    if (diff_control.hidden_turns == 0)
+    if (diff_control.hidden_turns == 0 | game_state.GAME_OVER)
     {
-      led_out.board_state = board_state.q;
-      led_strip[0] = led_out.out0;
-      led_strip[1] = led_out.out1;
-      led_strip[2] = led_out.out2;
-      led_strip[3] = led_out.out3;
+      led_out.power_on = 1;
       // io_led[0][7:0] = board_state.q[7:0];
       // io_led[1][7:0] = board_state.q[15:8];
     }
     else
     {
-      led_out.board_state = 16b0;
-      led_strip[0] = led_out.out0;
-      led_strip[1] = led_out.out1;
-      led_strip[2] = led_out.out2;
-      led_strip[3] = led_out.out3;
+      led_out.power_on = 0;
       // io_led[0][7:0] = 8b0;
       // io_led[1][7:0] = 8b0;  
       // io_led[2][7:0] = 8b0;  
     }
+    
+      led_out.board_state = board_state.q;
+      led_strip[0] = led_out.out0;
+      led_strip[1] = led_out.out1;
+      led_strip[2] = led_out.out2;
+      led_strip[3] = led_out.out3;
     
     io_seg = move_counter_module.seg_out;
     io_sel = move_counter_module.sel_out;      

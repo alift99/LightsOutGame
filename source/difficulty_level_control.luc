@@ -38,7 +38,7 @@ module difficulty_level_control (
       }
     }
     
-    difficulty = difficulty_level.q;
+    difficulty = difficulty_level.q + 1;
     hidden_turns = turns_hidden_left.q;
   }
 }
