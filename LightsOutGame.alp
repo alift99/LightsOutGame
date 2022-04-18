@@ -7,7 +7,6 @@
     <src>display_encoder.luc</src>
     <src>regfile.luc</src>
     <component>encoder.luc</component>
-    <src>difficulty_level_control.luc</src>
     <component>reset_conditioner.luc</component>
     <src>decimal_counter.luc</src>
     <src>game_fsm.luc</src>
@@ -27,6 +26,7 @@
     <src top="true">au_top.luc</src>
     <component>pipeline.luc</component>
     <src>led_out.luc</src>
+    <src>alternator.luc</src>
     <constraint>io.acf</constraint>
     <constraint lib="true">au.xdc</constraint>
     <constraint>alchitry.acf</constraint>

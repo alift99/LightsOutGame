@@ -84,28 +84,30 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/adder_12.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_6.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/boolean_13.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/button_conditioner_3.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/color_adapter_18.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/compare_14.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_20.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decoder_22.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_19.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_17.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/edge_detector_2.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/game_fsm_4.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/initial_board_states_7.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/led_out_9.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/move_counter_8.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_seven_seg_16.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/mux2_10.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_11.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/regfile_5.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/adder_14.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alternator_3.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_8.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/boolean_15.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/button_conditioner_5.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/color_adapter_20.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/compare_16.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_2.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_22.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decoder_24.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_21.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_19.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/edge_detector_4.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/game_fsm_6.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/initial_board_states_9.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/led_out_11.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/move_counter_10.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_seven_seg_18.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/mux2_12.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_13.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/regfile_7.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/reset_conditioner_1.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/seven_seg_21.v}
-  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/state_inverter_15.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/seven_seg_23.v}
+  {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/state_inverter_17.v}
   {D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/au_top_0.v}
 }
 OPTRACE "Adding files" END { }

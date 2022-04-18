@@ -29,13 +29,26 @@ module au_top_0 (
     .out(M_reset_cond_out)
   );
   
+  wire [1-1:0] M_slowclock_value;
+  counter_2 slowclock (
+    .clk(clk),
+    .rst(rst),
+    .value(M_slowclock_value)
+  );
+  
+  wire [1-1:0] M_alt_bit_out;
+  alternator_3 alt_bit (
+    .clk(M_slowclock_value),
+    .out(M_alt_bit_out)
+  );
+  
   wire [(5'h10+0)-1:0] M_button_detector_out;
   reg [(5'h10+0)-1:0] M_button_detector_in;
   
   genvar GEN_button_detector0;
   generate
   for (GEN_button_detector0=0;GEN_button_detector0<5'h10;GEN_button_detector0=GEN_button_detector0+1) begin: button_detector_gen_0
-    edge_detector_2 button_detector (
+    edge_detector_4 button_detector (
       .clk(clk),
       .in(M_button_detector_in[GEN_button_detector0*(1)+(1)-1-:(1)]),
       .out(M_button_detector_out[GEN_button_detector0*(1)+(1)-1-:(1)])
@@ -49,7 +62,7 @@ module au_top_0 (
   genvar GEN_button_cond0;
   generate
   for (GEN_button_cond0=0;GEN_button_cond0<5'h10;GEN_button_cond0=GEN_button_cond0+1) begin: button_cond_gen_0
-    button_conditioner_3 button_cond (
+    button_conditioner_5 button_cond (
       .clk(clk),
       .in(M_button_cond_in[GEN_button_cond0*(1)+(1)-1-:(1)]),
       .out(M_button_cond_out[GEN_button_cond0*(1)+(1)-1-:(1)])
@@ -59,7 +72,7 @@ module au_top_0 (
   
   wire [1-1:0] M_reset_btn_detector_out;
   reg [1-1:0] M_reset_btn_detector_in;
-  edge_detector_2 reset_btn_detector (
+  edge_detector_4 reset_btn_detector (
     .clk(clk),
     .in(M_reset_btn_detector_in),
     .out(M_reset_btn_detector_out)
@@ -67,7 +80,7 @@ module au_top_0 (
   
   wire [1-1:0] M_reset_btn_cond_out;
   reg [1-1:0] M_reset_btn_cond_in;
-  button_conditioner_3 reset_btn_cond (
+  button_conditioner_5 reset_btn_cond (
     .clk(clk),
     .in(M_reset_btn_cond_in),
     .out(M_reset_btn_cond_out)
@@ -75,7 +88,7 @@ module au_top_0 (
   
   wire [1-1:0] M_diff_btn_detector_out;
   reg [1-1:0] M_diff_btn_detector_in;
-  edge_detector_2 diff_btn_detector (
+  edge_detector_4 diff_btn_detector (
     .clk(clk),
     .in(M_diff_btn_detector_in),
     .out(M_diff_btn_detector_out)
@@ -83,7 +96,7 @@ module au_top_0 (
   
   wire [1-1:0] M_diff_btn_cond_out;
   reg [1-1:0] M_diff_btn_cond_in;
-  button_conditioner_3 diff_btn_cond (
+  button_conditioner_5 diff_btn_cond (
     .clk(clk),
     .in(M_diff_btn_cond_in),
     .out(M_diff_btn_cond_out)
@@ -104,7 +117,7 @@ module au_top_0 (
   reg [16-1:0] M_game_sm_difficulty_level;
   reg [16-1:0] M_game_sm_hidden_turns_left;
   reg [16-1:0] M_game_sm_game_over;
-  game_fsm_4 game_sm (
+  game_fsm_6 game_sm (
     .clk(clk),
     .rst(rst),
     .button_pressed(M_game_sm_button_pressed),
@@ -138,7 +151,7 @@ module au_top_0 (
   reg [4-1:0] M_regfile_machine_write_address;
   reg [16-1:0] M_regfile_machine_write_data;
   reg [1-1:0] M_regfile_machine_write_enable;
-  regfile_5 regfile_machine (
+  regfile_7 regfile_machine (
     .clk(clk),
     .read_address_1(M_regfile_machine_read_address_1),
     .read_address_2(M_regfile_machine_read_address_2),
@@ -161,7 +174,7 @@ module au_top_0 (
   reg [16-1:0] M_alu_machine_a;
   reg [16-1:0] M_alu_machine_b;
   reg [6-1:0] M_alu_machine_alufn;
-  alu_6 alu_machine (
+  alu_8 alu_machine (
     .a(M_alu_machine_a),
     .b(M_alu_machine_b),
     .alufn(M_alu_machine_alufn),
@@ -171,7 +184,7 @@ module au_top_0 (
   
   wire [16-1:0] M_initial_states_out;
   reg [16-1:0] M_initial_states_state_index;
-  initial_board_states_7 initial_states (
+  initial_board_states_9 initial_states (
     .state_index(M_initial_states_state_index),
     .out(M_initial_states_out)
   );
@@ -181,7 +194,7 @@ module au_top_0 (
   reg [16-1:0] M_move_counter_module_move_counter_1;
   reg [16-1:0] M_move_counter_module_move_counter_2;
   reg [16-1:0] M_move_counter_module_difficulty;
-  move_counter_8 move_counter_module (
+  move_counter_10 move_counter_module (
     .clk(clk),
     .rst(rst),
     .move_counter_1(M_move_counter_module_move_counter_1),
@@ -197,7 +210,7 @@ module au_top_0 (
   wire [1-1:0] M_led_out_out3;
   reg [16-1:0] M_led_out_board_state;
   reg [1-1:0] M_led_out_power_on;
-  led_out_9 led_out (
+  led_out_11 led_out (
     .clk(clk),
     .rst(rst),
     .board_state(M_led_out_board_state),
@@ -212,7 +225,7 @@ module au_top_0 (
   reg [16-1:0] M_asel_mux_a;
   reg [16-1:0] M_asel_mux_b;
   reg [1-1:0] M_asel_mux_sel;
-  mux2_10 asel_mux (
+  mux2_12 asel_mux (
     .a(M_asel_mux_a),
     .b(M_asel_mux_b),
     .sel(M_asel_mux_sel),
@@ -223,7 +236,7 @@ module au_top_0 (
   reg [16-1:0] M_bsel_mux_a;
   reg [16-1:0] M_bsel_mux_b;
   reg [1-1:0] M_bsel_mux_sel;
-  mux2_10 bsel_mux (
+  mux2_12 bsel_mux (
     .a(M_bsel_mux_a),
     .b(M_bsel_mux_b),
     .sel(M_bsel_mux_sel),
@@ -269,6 +282,9 @@ module au_top_0 (
       M_led_out_power_on = 1'h1;
     end else begin
       M_led_out_power_on = 1'h0;
+    end
+    if (M_regfile_machine_game_over) begin
+      M_led_out_power_on = M_alt_bit_out;
     end
     M_led_out_board_state = M_regfile_machine_board_state;
     led_strip[0+0-:1] = M_led_out_out0;

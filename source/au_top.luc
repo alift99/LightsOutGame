@@ -3,18 +3,14 @@ module au_top (
     input rst_n,            // reset button (active low)
     // output led [8],         // 8 user controllable LEDs
     input usb_rx,           // USB->Serial input
-    output usb_tx,          // USB->Serial output
-    
-    output led_strip[4],
-    
+    output usb_tx,          // USB->Serial output    
+    output led_strip[4],    
     // output io_led [3][8],   // LEDs on IO Shield
     output io_seg [8],      // 7-segment LEDs on IO Shield
-    output io_sel [4],      // Digit select on IO Shield
-    
+    output io_sel [4],      // Digit select on IO Shield    
     input button[16],
     input reset_button,
-    input difficulty_button
-    
+    input difficulty_button    
     //input io_button [5],    // 5 buttons on IO Shield
     //input io_dip [3][8]     // DIP switches on IO Shield
   ) {
@@ -25,8 +21,11 @@ module au_top (
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
-  }
+  } 
   
+  counter slowclock(#SIZE(1),#DIV(25),.clk(clk),.rst(rst));
+  alternator alt_bit(.clk(slowclock.value));
+ 
   edge_detector button_detector[16](#RISE(1), #FALL(0),.clk(clk)); //detect on rising edge only 
   button_conditioner button_cond[16](.clk(clk));
   
@@ -57,108 +56,30 @@ module au_top (
     io_sel = 4hf;           // select no digits
     
     button_cond.in = button[15:0];
-    button_detector.in = button_cond.out; 
+    button_detector.in = button_cond.out; // Read board button presses
     
     reset_btn_cond.in = reset_button;
-    reset_btn_detector.in = reset_btn_cond.out;
+    reset_btn_detector.in = reset_btn_cond.out; // Read reset button press
     
     diff_btn_cond.in = difficulty_button;
-    diff_btn_detector.in = diff_btn_cond.out;
+    diff_btn_detector.in = diff_btn_cond.out; // Read difficulty button press
     
-    initial_states.state_index = regfile_machine.initial_board_state_index;
-    
-    //regfile_machine.write_enable = 0;
-    //regfile_machine.read_address_1 = 0;
-    //regfile_machine.read_address_2 = 0;
-    //regfile_machine.write_address = 0;
-    //regfile_machine.write_data = 0;
-    
-    //alu_machine.a = 16b0;
-    //alu_machine.b = 16b0;
-    //alu_machine.alufn = 6b0;    
+    // For accessing next board_state from initial_board_state ROM 
+    initial_states.state_index = regfile_machine.initial_board_state_index;    
    
-    //asel_mux.a = 16b0;
-    //asel_mux.b = 16b0;
-    //asel_mux.sel = 0;
-    
-    //bsel_mux.a = 16b0;
-    //bsel_mux.b = 16b0;
-    //bsel_mux.sel = 0;
-        
-    //if (button_detector.out != 16b0)
-    //{
-    //  regfile_machine.write_enable = 1;
-    //  regfile_machine.read_address_1 = 0;
-    // regfile_machine.read_address_2 = 0;
-    //  regfile_machine.write_address = 0;
-      
-    //  asel_mux.a = regfile_machine.read_data_1;
-    //  asel_mux.b = initial_states.out;
-    //  asel_mux.sel = 0;
-      
-    //  bsel_mux.a = regfile_machine.read_data_2;
-    //  bsel_mux.b = button_detector.out;
-    //  bsel_mux.sel = 1;
-      
-    //  alu_machine.a = asel_mux.out;
-    //  alu_machine.b = bsel_mux.out;
-    //  alu_machine.alufn = b100000;
-    //  regfile_machine.write_data = alu_machine.out;
-    //}
-    
-    //if (reset_btn_detector.out)
-    //{
-    //  regfile_machine.write_enable = 1;
-    //  regfile_machine.read_address_1 = 0;
-    //  regfile_machine.read_address_2 = 7;
-    //  regfile_machine.write_address = 0;
-      
-    //  asel_mux.a = regfile_machine.read_data_1;
-    //  asel_mux.b = initial_states.out;
-    //  asel_mux.sel = 1;
-      
-    //  bsel_mux.a = regfile_machine.read_data_2;
-    //  bsel_mux.b = button_detector.out;
-    //  bsel_mux.sel = 0;
-      
-    //  alu_machine.a = asel_mux.out;
-    //  alu_machine.b = bsel_mux.out;
-    //  alu_machine.alufn = 6b0;
-    //  regfile_machine.write_data = alu_machine.out;
-    //}
-    
-    //if (diff_btn_detector.out)
-    //{
-    //  regfile_machine.write_enable = 1;
-    //  regfile_machine.read_address_1 = 4;
-    //  regfile_machine.read_address_2 = 8;
-    //  regfile_machine.write_address = 4;
-      
-    //  asel_mux.a = regfile_machine.read_data_1;
-    //  asel_mux.b = initial_states.out;
-    //  asel_mux.sel = 0;
-      
-    //  bsel_mux.a = regfile_machine.read_data_2;
-    //  bsel_mux.b = button_detector.out;
-    //  bsel_mux.sel = 0;
-      
-    //  alu_machine.a = asel_mux.out;
-    //  alu_machine.b = bsel_mux.out;
-    //  alu_machine.alufn = 6b0;
-    //  regfile_machine.write_data = alu_machine.out;
-    //} 
-          
     // Pass input into fsm
     game_sm.button_pressed = button_detector.out;
     game_sm.reset_btn_pressed = reset_btn_detector.out;
     game_sm.difficulty_btn_pressed = diff_btn_detector.out;
     
+    // Variables used in FSM logic flow
     game_sm.initial_board_index = regfile_machine.initial_board_state_index;
     game_sm.move_count_1 = regfile_machine.move_count_1;
     game_sm.difficulty_level = regfile_machine.difficulty_level;
     game_sm.hidden_turns_left = regfile_machine.hidden_turns_left;
     game_sm.game_over = regfile_machine.game_over;
     
+    // Datapath (Run control signals from FSM)
     regfile_machine.write_enable = game_sm.we;
     regfile_machine.read_address_1 = game_sm.ra;
     regfile_machine.read_address_2 = game_sm.rb;
@@ -178,6 +99,8 @@ module au_top (
     
     regfile_machine.write_data = alu_machine.out;
     
+    // ---------- USER INTERFACE ----------
+    
     // Decide whether board state should be displayed or not
     if (regfile_machine.hidden_turns_left == 0 | regfile_machine.game_over)
     {
@@ -188,16 +111,23 @@ module au_top (
       led_out.power_on = 0;
     }
     
+    // Flashing lights after game_over
+    if (regfile_machine.game_over)
+    {
+      led_out.power_on = alt_bit.out;
+    }
+    
+    // Get LED strips to reflect board_state
     led_out.board_state = regfile_machine.board_state;
     led_strip[0] = led_out.out0;
     led_strip[1] = led_out.out1;
     led_strip[2] = led_out.out2;
     led_strip[3] = led_out.out3;
     
+    // Display move counter and difficulty level in 7-segment display
     move_counter_module.move_counter_1 = regfile_machine.move_count_1;
     move_counter_module.move_counter_2 = regfile_machine.move_count_2;
-    move_counter_module.difficulty = regfile_machine.difficulty_level + 1;
-    
+    move_counter_module.difficulty = regfile_machine.difficulty_level + 1;    
     io_seg = move_counter_module.seg_out;
     io_sel = move_counter_module.sel_out;      
   }

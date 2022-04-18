@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Mon Apr 18 13:02:19 2022
+| Date         : Mon Apr 18 15:00:37 2022
 | Host         : LAPTOP-MQNOE1QL running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file au_top_0_timing_summary_routed.rpt -pb au_top_0_timing_summary_routed.pb -rpx au_top_0_timing_summary_routed.rpx -warn_on_violation
 | Design       : au_top_0
@@ -39,10 +39,10 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (0)
+1. checking no_clock (1)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (0)
+4. checking unconstrained_internal_endpoints (1)
 5. checking no_input_delay (19)
 6. checking no_output_delay (15)
 7. checking multiple_clock (0)
@@ -52,9 +52,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (0)
+1. checking no_clock (1)
 ------------------------
- There are 0 register/latch pins with no clock.
+ There is 1 register/latch pin with no clock driven by root clock pin: slowclock/M_ctr_q_reg[25]/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -67,9 +67,9 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (0)
+4. checking unconstrained_internal_endpoints (1)
 ------------------------------------------------
- There are 0 pins that are not constrained for maximum delay.
+ There is 1 pin that is not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -128,7 +128,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-     -0.387       -8.713                     52                 1852        0.150        0.000                      0                 1852        4.500        0.000                       0                   719  
+     -0.317       -5.568                     35                 1904        0.159        0.000                      0                 1904        4.500        0.000                       0                   745  
 
 
 Timing constraints are not met.
@@ -151,7 +151,7 @@ clk_0  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-clk_0              -0.387       -8.713                     52                 1852        0.150        0.000                      0                 1852        4.500        0.000                       0                   719  
+clk_0              -0.317       -5.568                     35                 1904        0.159        0.000                      0                 1904        4.500        0.000                       0                   745  
 
 
 ------------------------------------------------------------------------------------------------
@@ -182,27 +182,27 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  clk_0
   To Clock:  clk_0
 
-Setup :           52  Failing Endpoints,  Worst Slack       -0.387ns,  Total Violation       -8.713ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.150ns,  Total Violation        0.000ns
+Setup :           35  Failing Endpoints,  Worst Slack       -0.317ns,  Total Violation       -5.568ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.159ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (VIOLATED) :        -0.387ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
+Slack (VIOLATED) :        -0.317ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[108]/D
+  Destination:            regfile_machine/M_registers_q_reg[70]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.211ns  (logic 1.696ns (16.609%)  route 8.515ns (83.391%))
-  Logic Levels:           10  (LUT3=1 LUT4=2 LUT5=1 LUT6=6)
-  Clock Path Skew:        -0.100ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.842ns = ( 14.842 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
+  Data Path Delay:        10.107ns  (logic 1.820ns (18.008%)  route 8.287ns (81.992%))
+  Logic Levels:           11  (LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.108ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.835ns = ( 14.835 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
     Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -218,105 +218,34 @@ Slack (VIOLATED) :        -0.387ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 f  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.531    13.034    regfile_machine/M_registers_q_reg[56]_1
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124    13.158 f  regfile_machine/M_registers_q[60]_i_5/O
-                         net (fo=2, routed)           0.818    13.976    regfile_machine/M_registers_q[60]_i_5_n_0
-    SLICE_X51Y21         LUT6 (Prop_lut6_I3_O)        0.124    14.100 r  regfile_machine/M_registers_q[60]_i_1/O
-                         net (fo=4, routed)           0.835    14.935    game_sm/M_regfile_machine_write_data[5]
-    SLICE_X50Y27         LUT3 (Prop_lut3_I2_O)        0.124    15.059 r  game_sm/M_registers_q[108]_i_1/O
-                         net (fo=2, routed)           0.354    15.413    regfile_machine/M_registers_q_reg[108]_1
-    SLICE_X49Y27         FDRE                                         r  regfile_machine/M_registers_q_reg[108]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.437    14.842    regfile_machine/clk_IBUF_BUFG
-    SLICE_X49Y27         FDRE                                         r  regfile_machine/M_registers_q_reg[108]/C
-                         clock pessimism              0.259    15.101    
-                         clock uncertainty           -0.035    15.066    
-    SLICE_X49Y27         FDRE (Setup_fdre_C_D)       -0.040    15.026    regfile_machine/M_registers_q_reg[108]
-  -------------------------------------------------------------------
-                         required time                         15.026    
-                         arrival time                         -15.413    
-  -------------------------------------------------------------------
-                         slack                                 -0.387    
-
-Slack (VIOLATED) :        -0.378ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[44]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.201ns  (logic 1.696ns (16.626%)  route 8.505ns (83.374%))
-  Logic Levels:           10  (LUT3=1 LUT4=2 LUT5=1 LUT6=6)
-  Clock Path Skew:        -0.102ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.840ns = ( 14.840 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 f  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.531    13.034    regfile_machine/M_registers_q_reg[56]_1
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124    13.158 f  regfile_machine/M_registers_q[60]_i_5/O
-                         net (fo=2, routed)           0.818    13.976    regfile_machine/M_registers_q[60]_i_5_n_0
-    SLICE_X51Y21         LUT6 (Prop_lut6_I3_O)        0.124    14.100 r  regfile_machine/M_registers_q[60]_i_1/O
-                         net (fo=4, routed)           0.835    14.935    game_sm/M_regfile_machine_write_data[5]
-    SLICE_X50Y27         LUT3 (Prop_lut3_I2_O)        0.124    15.059 r  game_sm/M_registers_q[108]_i_1/O
-                         net (fo=2, routed)           0.343    15.402    regfile_machine/M_registers_q_reg[108]_1
-    SLICE_X51Y25         FDRE                                         r  regfile_machine/M_registers_q_reg[44]/D
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.883    10.241    button_cond_gen_0[0].button_cond/M_game_sm_bsel
+    SLICE_X42Y22         LUT3 (Prop_lut3_I1_O)        0.124    10.365 r  button_cond_gen_0[0].button_cond/out_i_1/O
+                         net (fo=13, routed)          0.863    11.228    alu_machine/inverterModule/M_alu_machine_b[0]
+    SLICE_X43Y21         LUT5 (Prop_lut5_I0_O)        0.124    11.352 r  alu_machine/inverterModule/out/O
+                         net (fo=1, routed)           0.797    12.149    alu_machine/inverterModule/out_n_0
+    SLICE_X43Y22         LUT6 (Prop_lut6_I0_O)        0.124    12.273 r  alu_machine/inverterModule/out__5/O
+                         net (fo=11, routed)          0.213    12.486    game_sm/M_registers_q[96]_i_4_1
+    SLICE_X43Y22         LUT2 (Prop_lut2_I1_O)        0.124    12.610 f  game_sm/M_registers_q[111]_i_20/O
+                         net (fo=16, routed)          0.373    12.983    regfile_machine/M_registers_q_reg[54]_1
+    SLICE_X42Y21         LUT5 (Prop_lut5_I3_O)        0.124    13.107 r  regfile_machine/M_registers_q[54]_i_6/O
+                         net (fo=1, routed)           0.610    13.717    regfile_machine/M_registers_q[54]_i_6_n_0
+    SLICE_X46Y21         LUT6 (Prop_lut6_I5_O)        0.124    13.841 r  regfile_machine/M_registers_q[54]_i_1/O
+                         net (fo=4, routed)           0.826    14.667    game_sm/M_regfile_machine_write_data[1]
+    SLICE_X40Y24         LUT3 (Prop_lut3_I1_O)        0.124    14.791 r  game_sm/M_registers_q[70]_i_1/O
+                         net (fo=2, routed)           0.518    15.309    regfile_machine/M_registers_q_reg[6]_0
+    SLICE_X41Y24         FDRE                                         r  regfile_machine/M_registers_q_reg[70]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -325,405 +254,105 @@ Slack (VIOLATED) :        -0.378ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.435    14.840    regfile_machine/clk_IBUF_BUFG
-    SLICE_X51Y25         FDRE                                         r  regfile_machine/M_registers_q_reg[44]/C
-                         clock pessimism              0.259    15.099    
-                         clock uncertainty           -0.035    15.064    
-    SLICE_X51Y25         FDRE (Setup_fdre_C_D)       -0.040    15.024    regfile_machine/M_registers_q_reg[44]
+                         net (fo=744, routed)         1.430    14.835    regfile_machine/clk_IBUF_BUFG
+    SLICE_X41Y24         FDRE                                         r  regfile_machine/M_registers_q_reg[70]/C
+                         clock pessimism              0.259    15.094    
+                         clock uncertainty           -0.035    15.059    
+    SLICE_X41Y24         FDRE (Setup_fdre_C_D)       -0.067    14.992    regfile_machine/M_registers_q_reg[70]
   -------------------------------------------------------------------
-                         required time                         15.024    
-                         arrival time                         -15.402    
-  -------------------------------------------------------------------
-                         slack                                 -0.378    
-
-Slack (VIOLATED) :        -0.362ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[30]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.216ns  (logic 1.820ns (17.815%)  route 8.396ns (82.185%))
-  Logic Levels:           11  (LUT3=1 LUT4=2 LUT5=1 LUT6=7)
-  Clock Path Skew:        -0.097ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 f  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.353    12.856    regfile_machine/M_registers_q_reg[56]_1
-    SLICE_X51Y22         LUT6 (Prop_lut6_I2_O)        0.124    12.980 r  regfile_machine/M_registers_q[62]_i_10/O
-                         net (fo=2, routed)           0.543    13.523    regfile_machine/M_registers_q[62]_i_10_n_0
-    SLICE_X51Y27         LUT6 (Prop_lut6_I3_O)        0.124    13.647 r  regfile_machine/M_registers_q[62]_i_4/O
-                         net (fo=1, routed)           0.575    14.222    regfile_machine/M_registers_q[62]_i_4_n_0
-    SLICE_X51Y29         LUT6 (Prop_lut6_I2_O)        0.124    14.346 r  regfile_machine/M_registers_q[62]_i_1/O
-                         net (fo=4, routed)           0.596    14.942    game_sm/M_regfile_machine_write_data[7]
-    SLICE_X53Y29         LUT3 (Prop_lut3_I0_O)        0.124    15.066 r  game_sm/M_registers_q[94]_i_1/O
-                         net (fo=2, routed)           0.352    15.418    regfile_machine/M_registers_q_reg[30]_0
-    SLICE_X52Y28         FDRE                                         r  regfile_machine/M_registers_q_reg[30]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.440    14.845    regfile_machine/clk_IBUF_BUFG
-    SLICE_X52Y28         FDRE                                         r  regfile_machine/M_registers_q_reg[30]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X52Y28         FDRE (Setup_fdre_C_D)       -0.013    15.056    regfile_machine/M_registers_q_reg[30]
-  -------------------------------------------------------------------
-                         required time                         15.056    
-                         arrival time                         -15.418    
-  -------------------------------------------------------------------
-                         slack                                 -0.362    
-
-Slack (VIOLATED) :        -0.347ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[94]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.199ns  (logic 1.820ns (17.845%)  route 8.379ns (82.155%))
-  Logic Levels:           11  (LUT3=1 LUT4=2 LUT5=1 LUT6=7)
-  Clock Path Skew:        -0.096ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.846ns = ( 14.846 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 f  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.353    12.856    regfile_machine/M_registers_q_reg[56]_1
-    SLICE_X51Y22         LUT6 (Prop_lut6_I2_O)        0.124    12.980 r  regfile_machine/M_registers_q[62]_i_10/O
-                         net (fo=2, routed)           0.543    13.523    regfile_machine/M_registers_q[62]_i_10_n_0
-    SLICE_X51Y27         LUT6 (Prop_lut6_I3_O)        0.124    13.647 r  regfile_machine/M_registers_q[62]_i_4/O
-                         net (fo=1, routed)           0.575    14.222    regfile_machine/M_registers_q[62]_i_4_n_0
-    SLICE_X51Y29         LUT6 (Prop_lut6_I2_O)        0.124    14.346 r  regfile_machine/M_registers_q[62]_i_1/O
-                         net (fo=4, routed)           0.596    14.942    game_sm/M_regfile_machine_write_data[7]
-    SLICE_X53Y29         LUT3 (Prop_lut3_I0_O)        0.124    15.066 r  game_sm/M_registers_q[94]_i_1/O
-                         net (fo=2, routed)           0.335    15.401    regfile_machine/M_registers_q_reg[30]_0
-    SLICE_X50Y29         FDRE                                         r  regfile_machine/M_registers_q_reg[94]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.441    14.846    regfile_machine/clk_IBUF_BUFG
-    SLICE_X50Y29         FDRE                                         r  regfile_machine/M_registers_q_reg[94]/C
-                         clock pessimism              0.259    15.105    
-                         clock uncertainty           -0.035    15.070    
-    SLICE_X50Y29         FDRE (Setup_fdre_C_D)       -0.016    15.054    regfile_machine/M_registers_q_reg[94]
-  -------------------------------------------------------------------
-                         required time                         15.054    
-                         arrival time                         -15.401    
-  -------------------------------------------------------------------
-                         slack                                 -0.347    
-
-Slack (VIOLATED) :        -0.307ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[64]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.156ns  (logic 1.820ns (17.920%)  route 8.336ns (82.080%))
-  Logic Levels:           11  (LUT2=1 LUT4=2 LUT5=2 LUT6=6)
-  Clock Path Skew:        -0.102ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.840ns = ( 14.840 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 r  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.210    12.712    game_sm/M_registers_q[96]_i_4_1
-    SLICE_X51Y24         LUT2 (Prop_lut2_I1_O)        0.124    12.836 f  game_sm/M_registers_q[111]_i_20/O
-                         net (fo=16, routed)          0.619    13.456    game_sm/FSM_onehot_M_game_state_q_reg[1]_3
-    SLICE_X52Y23         LUT6 (Prop_lut6_I2_O)        0.124    13.580 r  game_sm/M_registers_q[96]_i_9/O
-                         net (fo=1, routed)           0.682    14.262    game_sm/M_registers_q[96]_i_9_n_0
-    SLICE_X52Y27         LUT6 (Prop_lut6_I2_O)        0.124    14.386 r  game_sm/M_registers_q[96]_i_4/O
-                         net (fo=4, routed)           0.505    14.891    game_sm/FSM_onehot_M_game_state_q_reg[9]_1
-    SLICE_X52Y26         LUT5 (Prop_lut5_I3_O)        0.124    15.015 r  game_sm/M_registers_q[64]_i_1/O
-                         net (fo=2, routed)           0.343    15.358    regfile_machine/M_registers_q_reg[0]_0
-    SLICE_X52Y25         FDRE                                         r  regfile_machine/M_registers_q_reg[64]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.435    14.840    regfile_machine/clk_IBUF_BUFG
-    SLICE_X52Y25         FDRE                                         r  regfile_machine/M_registers_q_reg[64]/C
-                         clock pessimism              0.259    15.099    
-                         clock uncertainty           -0.035    15.064    
-    SLICE_X52Y25         FDRE (Setup_fdre_C_D)       -0.013    15.051    regfile_machine/M_registers_q_reg[64]
-  -------------------------------------------------------------------
-                         required time                         15.051    
-                         arrival time                         -15.358    
-  -------------------------------------------------------------------
-                         slack                                 -0.307    
-
-Slack (VIOLATED) :        -0.297ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[0]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.148ns  (logic 1.820ns (17.934%)  route 8.328ns (82.066%))
-  Logic Levels:           11  (LUT2=1 LUT4=2 LUT5=2 LUT6=6)
-  Clock Path Skew:        -0.100ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.842ns = ( 14.842 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 r  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.210    12.712    game_sm/M_registers_q[96]_i_4_1
-    SLICE_X51Y24         LUT2 (Prop_lut2_I1_O)        0.124    12.836 f  game_sm/M_registers_q[111]_i_20/O
-                         net (fo=16, routed)          0.619    13.456    game_sm/FSM_onehot_M_game_state_q_reg[1]_3
-    SLICE_X52Y23         LUT6 (Prop_lut6_I2_O)        0.124    13.580 r  game_sm/M_registers_q[96]_i_9/O
-                         net (fo=1, routed)           0.682    14.262    game_sm/M_registers_q[96]_i_9_n_0
-    SLICE_X52Y27         LUT6 (Prop_lut6_I2_O)        0.124    14.386 r  game_sm/M_registers_q[96]_i_4/O
-                         net (fo=4, routed)           0.505    14.891    game_sm/FSM_onehot_M_game_state_q_reg[9]_1
-    SLICE_X52Y26         LUT5 (Prop_lut5_I3_O)        0.124    15.015 r  game_sm/M_registers_q[64]_i_1/O
-                         net (fo=2, routed)           0.335    15.350    regfile_machine/M_registers_q_reg[0]_0
-    SLICE_X50Y26         FDRE                                         r  regfile_machine/M_registers_q_reg[0]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.437    14.842    regfile_machine/clk_IBUF_BUFG
-    SLICE_X50Y26         FDRE                                         r  regfile_machine/M_registers_q_reg[0]/C
-                         clock pessimism              0.259    15.101    
-                         clock uncertainty           -0.035    15.066    
-    SLICE_X50Y26         FDRE (Setup_fdre_C_D)       -0.013    15.053    regfile_machine/M_registers_q_reg[0]
-  -------------------------------------------------------------------
-                         required time                         15.053    
-                         arrival time                         -15.350    
-  -------------------------------------------------------------------
-                         slack                                 -0.297    
-
-Slack (VIOLATED) :        -0.296ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[107]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.108ns  (logic 1.820ns (18.006%)  route 8.288ns (81.994%))
-  Logic Levels:           11  (LUT2=1 LUT3=1 LUT4=2 LUT5=1 LUT6=6)
-  Clock Path Skew:        -0.095ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.847ns = ( 14.847 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 r  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.210    12.712    game_sm/M_registers_q[96]_i_4_1
-    SLICE_X51Y24         LUT2 (Prop_lut2_I1_O)        0.124    12.836 f  game_sm/M_registers_q[111]_i_20/O
-                         net (fo=16, routed)          0.805    13.642    game_sm/FSM_onehot_M_game_state_q_reg[1]_3
-    SLICE_X51Y28         LUT6 (Prop_lut6_I3_O)        0.124    13.766 r  game_sm/M_registers_q[59]_i_6/O
-                         net (fo=1, routed)           0.403    14.168    game_sm/M_registers_q[59]_i_6_n_0
-    SLICE_X51Y30         LUT6 (Prop_lut6_I5_O)        0.124    14.292 r  game_sm/M_registers_q[59]_i_1/O
-                         net (fo=4, routed)           0.287    14.579    game_sm/M_registers_q_reg[16][1]
-    SLICE_X51Y30         LUT3 (Prop_lut3_I2_O)        0.124    14.703 r  game_sm/M_registers_q[107]_i_1/O
-                         net (fo=2, routed)           0.606    15.309    regfile_machine/M_registers_q_reg[107]_1
-    SLICE_X50Y31         FDRE                                         r  regfile_machine/M_registers_q_reg[107]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.442    14.847    regfile_machine/clk_IBUF_BUFG
-    SLICE_X50Y31         FDRE                                         r  regfile_machine/M_registers_q_reg[107]/C
-                         clock pessimism              0.259    15.106    
-                         clock uncertainty           -0.035    15.071    
-    SLICE_X50Y31         FDRE (Setup_fdre_C_D)       -0.058    15.013    regfile_machine/M_registers_q_reg[107]
-  -------------------------------------------------------------------
-                         required time                         15.013    
+                         required time                         14.992    
                          arrival time                         -15.309    
   -------------------------------------------------------------------
-                         slack                                 -0.296    
+                         slack                                 -0.317    
 
-Slack (VIOLATED) :        -0.281ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
+Slack (VIOLATED) :        -0.309ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            regfile_machine/M_registers_q_reg[8]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        10.103ns  (logic 1.820ns (18.015%)  route 8.283ns (81.985%))
+  Logic Levels:           11  (LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.104ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.839ns = ( 14.839 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.883    10.241    button_cond_gen_0[0].button_cond/M_game_sm_bsel
+    SLICE_X42Y22         LUT3 (Prop_lut3_I1_O)        0.124    10.365 r  button_cond_gen_0[0].button_cond/out_i_1/O
+                         net (fo=13, routed)          0.863    11.228    alu_machine/inverterModule/M_alu_machine_b[0]
+    SLICE_X43Y21         LUT5 (Prop_lut5_I0_O)        0.124    11.352 r  alu_machine/inverterModule/out/O
+                         net (fo=1, routed)           0.797    12.149    alu_machine/inverterModule/out_n_0
+    SLICE_X43Y22         LUT6 (Prop_lut6_I0_O)        0.124    12.273 r  alu_machine/inverterModule/out__5/O
+                         net (fo=11, routed)          0.213    12.486    game_sm/M_registers_q[96]_i_4_1
+    SLICE_X43Y22         LUT2 (Prop_lut2_I1_O)        0.124    12.610 f  game_sm/M_registers_q[111]_i_20/O
+                         net (fo=16, routed)          0.751    13.361    regfile_machine/M_registers_q_reg[54]_1
+    SLICE_X44Y25         LUT5 (Prop_lut5_I1_O)        0.124    13.485 f  regfile_machine/M_registers_q[56]_i_4/O
+                         net (fo=1, routed)           0.484    13.969    regfile_machine/M_registers_q[56]_i_4_n_0
+    SLICE_X44Y25         LUT6 (Prop_lut6_I2_O)        0.124    14.093 r  regfile_machine/M_registers_q[56]_i_1/O
+                         net (fo=4, routed)           0.460    14.552    game_sm/M_regfile_machine_write_data[3]
+    SLICE_X47Y25         LUT3 (Prop_lut3_I1_O)        0.124    14.676 r  game_sm/M_registers_q[72]_i_1/O
+                         net (fo=2, routed)           0.629    15.305    regfile_machine/M_registers_q_reg[8]_0
+    SLICE_X48Y25         FDRE                                         r  regfile_machine/M_registers_q_reg[8]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.434    14.839    regfile_machine/clk_IBUF_BUFG
+    SLICE_X48Y25         FDRE                                         r  regfile_machine/M_registers_q_reg[8]/C
+                         clock pessimism              0.259    15.098    
+                         clock uncertainty           -0.035    15.063    
+    SLICE_X48Y25         FDRE (Setup_fdre_C_D)       -0.067    14.996    regfile_machine/M_registers_q_reg[8]
+  -------------------------------------------------------------------
+                         required time                         14.996    
+                         arrival time                         -15.305    
+  -------------------------------------------------------------------
+                         slack                                 -0.309    
+
+Slack (VIOLATED) :        -0.288ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            regfile_machine/M_registers_q_reg[6]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.082ns  (logic 1.820ns (18.052%)  route 8.262ns (81.948%))
-  Logic Levels:           11  (LUT2=1 LUT3=1 LUT4=2 LUT5=2 LUT6=5)
-  Clock Path Skew:        -0.097ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
+  Data Path Delay:        10.080ns  (logic 1.820ns (18.056%)  route 8.260ns (81.944%))
+  Logic Levels:           11  (LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.106ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.837ns = ( 14.837 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
     Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -739,109 +368,34 @@ Slack (VIOLATED) :        -0.281ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 r  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.210    12.712    game_sm/M_registers_q[96]_i_4_1
-    SLICE_X51Y24         LUT2 (Prop_lut2_I1_O)        0.124    12.836 f  game_sm/M_registers_q[111]_i_20/O
-                         net (fo=16, routed)          0.406    13.242    regfile_machine/M_registers_q_reg[54]_1
-    SLICE_X50Y25         LUT5 (Prop_lut5_I3_O)        0.124    13.366 r  regfile_machine/M_registers_q[54]_i_6/O
-                         net (fo=1, routed)           0.608    13.975    regfile_machine/M_registers_q[54]_i_6_n_0
-    SLICE_X49Y24         LUT6 (Prop_lut6_I5_O)        0.124    14.099 r  regfile_machine/M_registers_q[54]_i_1/O
-                         net (fo=4, routed)           0.663    14.762    game_sm/M_regfile_machine_write_data[1]
-    SLICE_X49Y20         LUT3 (Prop_lut3_I1_O)        0.124    14.886 r  game_sm/M_registers_q[70]_i_1/O
-                         net (fo=2, routed)           0.398    15.283    regfile_machine/M_registers_q_reg[6]_0
-    SLICE_X48Y20         FDRE                                         r  regfile_machine/M_registers_q_reg[6]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.440    14.845    regfile_machine/clk_IBUF_BUFG
-    SLICE_X48Y20         FDRE                                         r  regfile_machine/M_registers_q_reg[6]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X48Y20         FDRE (Setup_fdre_C_D)       -0.067    15.002    regfile_machine/M_registers_q_reg[6]
-  -------------------------------------------------------------------
-                         required time                         15.002    
-                         arrival time                         -15.283    
-  -------------------------------------------------------------------
-                         slack                                 -0.281    
-
-Slack (VIOLATED) :        -0.280ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[78]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.101ns  (logic 1.820ns (18.018%)  route 8.281ns (81.982%))
-  Logic Levels:           11  (LUT3=1 LUT4=2 LUT5=1 LUT6=7)
-  Clock Path Skew:        -0.097ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 f  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.353    12.856    regfile_machine/M_registers_q_reg[56]_1
-    SLICE_X51Y22         LUT6 (Prop_lut6_I2_O)        0.124    12.980 r  regfile_machine/M_registers_q[62]_i_10/O
-                         net (fo=2, routed)           0.543    13.523    regfile_machine/M_registers_q[62]_i_10_n_0
-    SLICE_X51Y27         LUT6 (Prop_lut6_I3_O)        0.124    13.647 r  regfile_machine/M_registers_q[62]_i_4/O
-                         net (fo=1, routed)           0.575    14.222    regfile_machine/M_registers_q[62]_i_4_n_0
-    SLICE_X51Y29         LUT6 (Prop_lut6_I2_O)        0.124    14.346 r  regfile_machine/M_registers_q[62]_i_1/O
-                         net (fo=4, routed)           0.435    14.782    game_sm/M_regfile_machine_write_data[7]
-    SLICE_X49Y28         LUT3 (Prop_lut3_I1_O)        0.124    14.906 r  game_sm/M_registers_q[78]_i_1/O
-                         net (fo=2, routed)           0.397    15.302    regfile_machine/M_registers_q_reg[14]_0
-    SLICE_X48Y29         FDRE                                         r  regfile_machine/M_registers_q_reg[78]/D
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.883    10.241    button_cond_gen_0[0].button_cond/M_game_sm_bsel
+    SLICE_X42Y22         LUT3 (Prop_lut3_I1_O)        0.124    10.365 r  button_cond_gen_0[0].button_cond/out_i_1/O
+                         net (fo=13, routed)          0.863    11.228    alu_machine/inverterModule/M_alu_machine_b[0]
+    SLICE_X43Y21         LUT5 (Prop_lut5_I0_O)        0.124    11.352 r  alu_machine/inverterModule/out/O
+                         net (fo=1, routed)           0.797    12.149    alu_machine/inverterModule/out_n_0
+    SLICE_X43Y22         LUT6 (Prop_lut6_I0_O)        0.124    12.273 r  alu_machine/inverterModule/out__5/O
+                         net (fo=11, routed)          0.213    12.486    game_sm/M_registers_q[96]_i_4_1
+    SLICE_X43Y22         LUT2 (Prop_lut2_I1_O)        0.124    12.610 f  game_sm/M_registers_q[111]_i_20/O
+                         net (fo=16, routed)          0.373    12.983    regfile_machine/M_registers_q_reg[54]_1
+    SLICE_X42Y21         LUT5 (Prop_lut5_I3_O)        0.124    13.107 r  regfile_machine/M_registers_q[54]_i_6/O
+                         net (fo=1, routed)           0.610    13.717    regfile_machine/M_registers_q[54]_i_6_n_0
+    SLICE_X46Y21         LUT6 (Prop_lut6_I5_O)        0.124    13.841 r  regfile_machine/M_registers_q[54]_i_1/O
+                         net (fo=4, routed)           0.826    14.667    game_sm/M_regfile_machine_write_data[1]
+    SLICE_X40Y24         LUT3 (Prop_lut3_I1_O)        0.124    14.791 r  game_sm/M_registers_q[70]_i_1/O
+                         net (fo=2, routed)           0.491    15.282    regfile_machine/M_registers_q_reg[6]_0
+    SLICE_X40Y23         FDRE                                         r  regfile_machine/M_registers_q_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -850,30 +404,30 @@ Slack (VIOLATED) :        -0.280ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.440    14.845    regfile_machine/clk_IBUF_BUFG
-    SLICE_X48Y29         FDRE                                         r  regfile_machine/M_registers_q_reg[78]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X48Y29         FDRE (Setup_fdre_C_D)       -0.047    15.022    regfile_machine/M_registers_q_reg[78]
+                         net (fo=744, routed)         1.432    14.837    regfile_machine/clk_IBUF_BUFG
+    SLICE_X40Y23         FDRE                                         r  regfile_machine/M_registers_q_reg[6]/C
+                         clock pessimism              0.259    15.096    
+                         clock uncertainty           -0.035    15.061    
+    SLICE_X40Y23         FDRE (Setup_fdre_C_D)       -0.067    14.994    regfile_machine/M_registers_q_reg[6]
   -------------------------------------------------------------------
-                         required time                         15.022    
-                         arrival time                         -15.302    
+                         required time                         14.994    
+                         arrival time                         -15.282    
   -------------------------------------------------------------------
-                         slack                                 -0.280    
+                         slack                                 -0.288    
 
-Slack (VIOLATED) :        -0.251ns  (required time - arrival time)
-  Source:                 button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
+Slack (VIOLATED) :        -0.269ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            regfile_machine/M_registers_q_reg[86]/D
+  Destination:            regfile_machine/M_registers_q_reg[72]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        10.067ns  (logic 1.820ns (18.078%)  route 8.247ns (81.922%))
-  Logic Levels:           11  (LUT2=1 LUT3=1 LUT4=2 LUT5=2 LUT6=5)
-  Clock Path Skew:        -0.103ns (DCD - SCD + CPR)
+  Data Path Delay:        10.063ns  (logic 1.820ns (18.087%)  route 8.243ns (81.913%))
+  Logic Levels:           11  (LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.104ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    4.839ns = ( 14.839 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.201ns
+    Source Clock Delay      (SCD):    5.202ns
     Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -889,34 +443,34 @@ Slack (VIOLATED) :        -0.251ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.617     5.201    button_cond_gen_0[10].button_cond/clk_IBUF_BUFG
-    SLICE_X59Y25         FDRE                                         r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/C
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y25         FDRE (Prop_fdre_C_Q)         0.456     5.657 r  button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]/Q
-                         net (fo=2, routed)           0.687     6.344    button_cond_gen_0[10].button_cond/M_ctr_q_reg[4]
-    SLICE_X58Y24         LUT4 (Prop_lut4_I1_O)        0.124     6.468 f  button_cond_gen_0[10].button_cond/M_last_q_i_6__4/O
-                         net (fo=1, routed)           1.242     7.710    button_cond_gen_0[10].button_cond/M_last_q_i_6__4_n_0
-    SLICE_X52Y26         LUT5 (Prop_lut5_I4_O)        0.124     7.834 r  button_cond_gen_0[10].button_cond/M_last_q_i_1__4/O
-                         net (fo=4, routed)           0.733     8.568    button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_3[0]
-    SLICE_X52Y26         LUT6 (Prop_lut6_I2_O)        0.124     8.692 r  button_cond_gen_0[6].button_cond/FSM_onehot_M_game_state_q[17]_i_7/O
-                         net (fo=2, routed)           0.730     9.421    game_sm/M_registers_q_reg[59]_0
-    SLICE_X52Y25         LUT6 (Prop_lut6_I2_O)        0.124     9.545 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
-                         net (fo=32, routed)          1.051    10.596    button_cond_gen_0[14].button_cond/M_game_sm_bsel
-    SLICE_X58Y26         LUT4 (Prop_lut4_I2_O)        0.124    10.720 r  button_cond_gen_0[14].button_cond/out__3_i_5/O
-                         net (fo=13, routed)          0.969    11.689    alu_machine/inverterModule/M_alu_machine_b[14]
-    SLICE_X52Y24         LUT6 (Prop_lut6_I4_O)        0.124    11.813 r  alu_machine/inverterModule/out__3/O
-                         net (fo=1, routed)           0.565    12.379    alu_machine/inverterModule/out__3_n_0
-    SLICE_X51Y24         LUT6 (Prop_lut6_I4_O)        0.124    12.503 r  alu_machine/inverterModule/out__5/O
-                         net (fo=11, routed)          0.210    12.712    game_sm/M_registers_q[96]_i_4_1
-    SLICE_X51Y24         LUT2 (Prop_lut2_I1_O)        0.124    12.836 f  game_sm/M_registers_q[111]_i_20/O
-                         net (fo=16, routed)          0.406    13.242    regfile_machine/M_registers_q_reg[54]_1
-    SLICE_X50Y25         LUT5 (Prop_lut5_I3_O)        0.124    13.366 r  regfile_machine/M_registers_q[54]_i_6/O
-                         net (fo=1, routed)           0.608    13.975    regfile_machine/M_registers_q[54]_i_6_n_0
-    SLICE_X49Y24         LUT6 (Prop_lut6_I5_O)        0.124    14.099 r  regfile_machine/M_registers_q[54]_i_1/O
-                         net (fo=4, routed)           0.534    14.633    game_sm/M_regfile_machine_write_data[1]
-    SLICE_X47Y24         LUT3 (Prop_lut3_I0_O)        0.124    14.757 r  game_sm/M_registers_q[86]_i_1/O
-                         net (fo=2, routed)           0.512    15.269    regfile_machine/M_registers_q_reg[22]_0
-    SLICE_X46Y27         FDRE                                         r  regfile_machine/M_registers_q_reg[86]/D
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.883    10.241    button_cond_gen_0[0].button_cond/M_game_sm_bsel
+    SLICE_X42Y22         LUT3 (Prop_lut3_I1_O)        0.124    10.365 r  button_cond_gen_0[0].button_cond/out_i_1/O
+                         net (fo=13, routed)          0.863    11.228    alu_machine/inverterModule/M_alu_machine_b[0]
+    SLICE_X43Y21         LUT5 (Prop_lut5_I0_O)        0.124    11.352 r  alu_machine/inverterModule/out/O
+                         net (fo=1, routed)           0.797    12.149    alu_machine/inverterModule/out_n_0
+    SLICE_X43Y22         LUT6 (Prop_lut6_I0_O)        0.124    12.273 r  alu_machine/inverterModule/out__5/O
+                         net (fo=11, routed)          0.213    12.486    game_sm/M_registers_q[96]_i_4_1
+    SLICE_X43Y22         LUT2 (Prop_lut2_I1_O)        0.124    12.610 f  game_sm/M_registers_q[111]_i_20/O
+                         net (fo=16, routed)          0.751    13.361    regfile_machine/M_registers_q_reg[54]_1
+    SLICE_X44Y25         LUT5 (Prop_lut5_I1_O)        0.124    13.485 f  regfile_machine/M_registers_q[56]_i_4/O
+                         net (fo=1, routed)           0.484    13.969    regfile_machine/M_registers_q[56]_i_4_n_0
+    SLICE_X44Y25         LUT6 (Prop_lut6_I2_O)        0.124    14.093 r  regfile_machine/M_registers_q[56]_i_1/O
+                         net (fo=4, routed)           0.460    14.552    game_sm/M_regfile_machine_write_data[3]
+    SLICE_X47Y25         LUT3 (Prop_lut3_I1_O)        0.124    14.676 r  game_sm/M_registers_q[72]_i_1/O
+                         net (fo=2, routed)           0.589    15.265    regfile_machine/M_registers_q_reg[8]_0
+    SLICE_X49Y25         FDRE                                         r  regfile_machine/M_registers_q_reg[72]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -925,16 +479,478 @@ Slack (VIOLATED) :        -0.251ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         1.434    14.839    regfile_machine/clk_IBUF_BUFG
-    SLICE_X46Y27         FDRE                                         r  regfile_machine/M_registers_q_reg[86]/C
+                         net (fo=744, routed)         1.434    14.839    regfile_machine/clk_IBUF_BUFG
+    SLICE_X49Y25         FDRE                                         r  regfile_machine/M_registers_q_reg[72]/C
                          clock pessimism              0.259    15.098    
                          clock uncertainty           -0.035    15.063    
-    SLICE_X46Y27         FDRE (Setup_fdre_C_D)       -0.045    15.018    regfile_machine/M_registers_q_reg[86]
+    SLICE_X49Y25         FDRE (Setup_fdre_C_D)       -0.067    14.996    regfile_machine/M_registers_q_reg[72]
   -------------------------------------------------------------------
-                         required time                         15.018    
-                         arrival time                         -15.269    
+                         required time                         14.996    
+                         arrival time                         -15.265    
   -------------------------------------------------------------------
-                         slack                                 -0.251    
+                         slack                                 -0.269    
+
+Slack (VIOLATED) :        -0.258ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            regfile_machine/M_registers_q_reg[102]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        10.048ns  (logic 1.820ns (18.114%)  route 8.228ns (81.886%))
+  Logic Levels:           11  (LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.108ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.835ns = ( 14.835 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.883    10.241    button_cond_gen_0[0].button_cond/M_game_sm_bsel
+    SLICE_X42Y22         LUT3 (Prop_lut3_I1_O)        0.124    10.365 r  button_cond_gen_0[0].button_cond/out_i_1/O
+                         net (fo=13, routed)          0.863    11.228    alu_machine/inverterModule/M_alu_machine_b[0]
+    SLICE_X43Y21         LUT5 (Prop_lut5_I0_O)        0.124    11.352 r  alu_machine/inverterModule/out/O
+                         net (fo=1, routed)           0.797    12.149    alu_machine/inverterModule/out_n_0
+    SLICE_X43Y22         LUT6 (Prop_lut6_I0_O)        0.124    12.273 r  alu_machine/inverterModule/out__5/O
+                         net (fo=11, routed)          0.213    12.486    game_sm/M_registers_q[96]_i_4_1
+    SLICE_X43Y22         LUT2 (Prop_lut2_I1_O)        0.124    12.610 f  game_sm/M_registers_q[111]_i_20/O
+                         net (fo=16, routed)          0.373    12.983    regfile_machine/M_registers_q_reg[54]_1
+    SLICE_X42Y21         LUT5 (Prop_lut5_I3_O)        0.124    13.107 r  regfile_machine/M_registers_q[54]_i_6/O
+                         net (fo=1, routed)           0.610    13.717    regfile_machine/M_registers_q[54]_i_6_n_0
+    SLICE_X46Y21         LUT6 (Prop_lut6_I5_O)        0.124    13.841 r  regfile_machine/M_registers_q[54]_i_1/O
+                         net (fo=4, routed)           0.653    14.495    game_sm/M_regfile_machine_write_data[1]
+    SLICE_X39Y23         LUT3 (Prop_lut3_I2_O)        0.124    14.619 r  game_sm/M_registers_q[102]_i_1/O
+                         net (fo=2, routed)           0.631    15.250    regfile_machine/M_registers_q_reg[102]_1
+    SLICE_X40Y24         FDRE                                         r  regfile_machine/M_registers_q_reg[102]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.430    14.835    regfile_machine/clk_IBUF_BUFG
+    SLICE_X40Y24         FDRE                                         r  regfile_machine/M_registers_q_reg[102]/C
+                         clock pessimism              0.259    15.094    
+                         clock uncertainty           -0.035    15.059    
+    SLICE_X40Y24         FDRE (Setup_fdre_C_D)       -0.067    14.992    regfile_machine/M_registers_q_reg[102]
+  -------------------------------------------------------------------
+                         required time                         14.992    
+                         arrival time                         -15.250    
+  -------------------------------------------------------------------
+                         slack                                 -0.258    
+
+Slack (VIOLATED) :        -0.244ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            regfile_machine/M_registers_q_reg[40]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        10.041ns  (logic 1.820ns (18.126%)  route 8.221ns (81.874%))
+  Logic Levels:           11  (LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.101ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.842ns = ( 14.842 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.883    10.241    button_cond_gen_0[0].button_cond/M_game_sm_bsel
+    SLICE_X42Y22         LUT3 (Prop_lut3_I1_O)        0.124    10.365 r  button_cond_gen_0[0].button_cond/out_i_1/O
+                         net (fo=13, routed)          0.863    11.228    alu_machine/inverterModule/M_alu_machine_b[0]
+    SLICE_X43Y21         LUT5 (Prop_lut5_I0_O)        0.124    11.352 r  alu_machine/inverterModule/out/O
+                         net (fo=1, routed)           0.797    12.149    alu_machine/inverterModule/out_n_0
+    SLICE_X43Y22         LUT6 (Prop_lut6_I0_O)        0.124    12.273 r  alu_machine/inverterModule/out__5/O
+                         net (fo=11, routed)          0.213    12.486    game_sm/M_registers_q[96]_i_4_1
+    SLICE_X43Y22         LUT2 (Prop_lut2_I1_O)        0.124    12.610 f  game_sm/M_registers_q[111]_i_20/O
+                         net (fo=16, routed)          0.751    13.361    regfile_machine/M_registers_q_reg[54]_1
+    SLICE_X44Y25         LUT5 (Prop_lut5_I1_O)        0.124    13.485 f  regfile_machine/M_registers_q[56]_i_4/O
+                         net (fo=1, routed)           0.484    13.969    regfile_machine/M_registers_q[56]_i_4_n_0
+    SLICE_X44Y25         LUT6 (Prop_lut6_I2_O)        0.124    14.093 r  regfile_machine/M_registers_q[56]_i_1/O
+                         net (fo=4, routed)           0.540    14.632    game_sm/M_regfile_machine_write_data[3]
+    SLICE_X49Y25         LUT3 (Prop_lut3_I2_O)        0.124    14.756 r  game_sm/M_registers_q[104]_i_1/O
+                         net (fo=2, routed)           0.487    15.243    regfile_machine/M_registers_q_reg[104]_1
+    SLICE_X48Y27         FDRE                                         r  regfile_machine/M_registers_q_reg[40]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.437    14.842    regfile_machine/clk_IBUF_BUFG
+    SLICE_X48Y27         FDRE                                         r  regfile_machine/M_registers_q_reg[40]/C
+                         clock pessimism              0.259    15.101    
+                         clock uncertainty           -0.035    15.066    
+    SLICE_X48Y27         FDRE (Setup_fdre_C_D)       -0.067    14.999    regfile_machine/M_registers_q_reg[40]
+  -------------------------------------------------------------------
+                         required time                         14.999    
+                         arrival time                         -15.243    
+  -------------------------------------------------------------------
+                         slack                                 -0.244    
+
+Slack (VIOLATED) :        -0.244ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            regfile_machine/M_registers_q_reg[80]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        10.026ns  (logic 2.698ns (26.911%)  route 7.328ns (73.089%))
+  Logic Levels:           13  (CARRY4=2 LUT3=1 LUT4=3 LUT5=1 LUT6=6)
+  Clock Path Skew:        -0.102ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.841ns = ( 14.841 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.636     9.994    button_cond_gen_0[2].button_cond/M_game_sm_bsel
+    SLICE_X43Y20         LUT4 (Prop_lut4_I2_O)        0.124    10.118 r  button_cond_gen_0[2].button_cond/out_i_3/O
+                         net (fo=13, routed)          0.815    10.933    button_cond_gen_0[2].button_cond/M_alu_machine_b[0]
+    SLICE_X42Y22         LUT3 (Prop_lut3_I0_O)        0.124    11.057 r  button_cond_gen_0[2].button_cond/M_registers_q[98]_i_12/O
+                         net (fo=1, routed)           0.000    11.057    regfile_machine/S[2]
+    SLICE_X42Y22         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.437 r  regfile_machine/M_registers_q_reg[98]_i_9/CO[3]
+                         net (fo=1, routed)           0.000    11.437    regfile_machine/M_registers_q_reg[98]_i_9_n_0
+    SLICE_X42Y23         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    11.752 f  regfile_machine/M_registers_q_reg[101]_i_7/O[3]
+                         net (fo=2, routed)           0.630    12.382    game_sm/M_registers_q_reg[55][3]
+    SLICE_X39Y23         LUT4 (Prop_lut4_I3_O)        0.307    12.689 f  game_sm/M_registers_q[96]_i_13/O
+                         net (fo=1, routed)           0.594    13.283    game_sm/M_registers_q[96]_i_13_n_0
+    SLICE_X41Y24         LUT6 (Prop_lut6_I5_O)        0.124    13.407 f  game_sm/M_registers_q[96]_i_11/O
+                         net (fo=1, routed)           0.264    13.672    game_sm/M_registers_q[96]_i_11_n_0
+    SLICE_X41Y24         LUT6 (Prop_lut6_I5_O)        0.124    13.796 r  game_sm/M_registers_q[96]_i_7/O
+                         net (fo=1, routed)           0.502    14.298    game_sm/M_registers_q[96]_i_7_n_0
+    SLICE_X43Y17         LUT6 (Prop_lut6_I0_O)        0.124    14.422 r  game_sm/M_registers_q[96]_i_4/O
+                         net (fo=4, routed)           0.346    14.767    game_sm/FSM_onehot_M_game_state_q_reg[9]_1
+    SLICE_X42Y19         LUT5 (Prop_lut5_I2_O)        0.124    14.891 r  game_sm/M_registers_q[80]_i_1/O
+                         net (fo=2, routed)           0.337    15.228    regfile_machine/M_registers_q_reg[16]_4
+    SLICE_X40Y19         FDRE                                         r  regfile_machine/M_registers_q_reg[80]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.436    14.841    regfile_machine/clk_IBUF_BUFG
+    SLICE_X40Y19         FDRE                                         r  regfile_machine/M_registers_q_reg[80]/C
+                         clock pessimism              0.259    15.100    
+                         clock uncertainty           -0.035    15.065    
+    SLICE_X40Y19         FDRE (Setup_fdre_C_D)       -0.081    14.984    regfile_machine/M_registers_q_reg[80]
+  -------------------------------------------------------------------
+                         required time                         14.984    
+                         arrival time                         -15.228    
+  -------------------------------------------------------------------
+                         slack                                 -0.244    
+
+Slack (VIOLATED) :        -0.236ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            regfile_machine/M_registers_q_reg[16]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        10.033ns  (logic 2.698ns (26.892%)  route 7.335ns (73.108%))
+  Logic Levels:           13  (CARRY4=2 LUT3=1 LUT4=3 LUT5=1 LUT6=6)
+  Clock Path Skew:        -0.101ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.842ns = ( 14.842 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.636     9.994    button_cond_gen_0[2].button_cond/M_game_sm_bsel
+    SLICE_X43Y20         LUT4 (Prop_lut4_I2_O)        0.124    10.118 r  button_cond_gen_0[2].button_cond/out_i_3/O
+                         net (fo=13, routed)          0.815    10.933    button_cond_gen_0[2].button_cond/M_alu_machine_b[0]
+    SLICE_X42Y22         LUT3 (Prop_lut3_I0_O)        0.124    11.057 r  button_cond_gen_0[2].button_cond/M_registers_q[98]_i_12/O
+                         net (fo=1, routed)           0.000    11.057    regfile_machine/S[2]
+    SLICE_X42Y22         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.437 r  regfile_machine/M_registers_q_reg[98]_i_9/CO[3]
+                         net (fo=1, routed)           0.000    11.437    regfile_machine/M_registers_q_reg[98]_i_9_n_0
+    SLICE_X42Y23         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    11.752 f  regfile_machine/M_registers_q_reg[101]_i_7/O[3]
+                         net (fo=2, routed)           0.630    12.382    game_sm/M_registers_q_reg[55][3]
+    SLICE_X39Y23         LUT4 (Prop_lut4_I3_O)        0.307    12.689 f  game_sm/M_registers_q[96]_i_13/O
+                         net (fo=1, routed)           0.594    13.283    game_sm/M_registers_q[96]_i_13_n_0
+    SLICE_X41Y24         LUT6 (Prop_lut6_I5_O)        0.124    13.407 f  game_sm/M_registers_q[96]_i_11/O
+                         net (fo=1, routed)           0.264    13.672    game_sm/M_registers_q[96]_i_11_n_0
+    SLICE_X41Y24         LUT6 (Prop_lut6_I5_O)        0.124    13.796 r  game_sm/M_registers_q[96]_i_7/O
+                         net (fo=1, routed)           0.502    14.298    game_sm/M_registers_q[96]_i_7_n_0
+    SLICE_X43Y17         LUT6 (Prop_lut6_I0_O)        0.124    14.422 r  game_sm/M_registers_q[96]_i_4/O
+                         net (fo=4, routed)           0.346    14.767    game_sm/FSM_onehot_M_game_state_q_reg[9]_1
+    SLICE_X42Y19         LUT5 (Prop_lut5_I2_O)        0.124    14.891 r  game_sm/M_registers_q[80]_i_1/O
+                         net (fo=2, routed)           0.344    15.235    regfile_machine/M_registers_q_reg[16]_4
+    SLICE_X43Y18         FDRE                                         r  regfile_machine/M_registers_q_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.437    14.842    regfile_machine/clk_IBUF_BUFG
+    SLICE_X43Y18         FDRE                                         r  regfile_machine/M_registers_q_reg[16]/C
+                         clock pessimism              0.259    15.101    
+                         clock uncertainty           -0.035    15.066    
+    SLICE_X43Y18         FDRE (Setup_fdre_C_D)       -0.067    14.999    regfile_machine/M_registers_q_reg[16]
+  -------------------------------------------------------------------
+                         required time                         14.999    
+                         arrival time                         -15.235    
+  -------------------------------------------------------------------
+                         slack                                 -0.236    
+
+Slack (VIOLATED) :        -0.225ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            regfile_machine/M_registers_q_reg[88]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        10.074ns  (logic 1.820ns (18.067%)  route 8.254ns (81.933%))
+  Logic Levels:           11  (LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.103ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.840ns = ( 14.840 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.883    10.241    button_cond_gen_0[0].button_cond/M_game_sm_bsel
+    SLICE_X42Y22         LUT3 (Prop_lut3_I1_O)        0.124    10.365 r  button_cond_gen_0[0].button_cond/out_i_1/O
+                         net (fo=13, routed)          0.863    11.228    alu_machine/inverterModule/M_alu_machine_b[0]
+    SLICE_X43Y21         LUT5 (Prop_lut5_I0_O)        0.124    11.352 r  alu_machine/inverterModule/out/O
+                         net (fo=1, routed)           0.797    12.149    alu_machine/inverterModule/out_n_0
+    SLICE_X43Y22         LUT6 (Prop_lut6_I0_O)        0.124    12.273 r  alu_machine/inverterModule/out__5/O
+                         net (fo=11, routed)          0.213    12.486    game_sm/M_registers_q[96]_i_4_1
+    SLICE_X43Y22         LUT2 (Prop_lut2_I1_O)        0.124    12.610 f  game_sm/M_registers_q[111]_i_20/O
+                         net (fo=16, routed)          0.751    13.361    regfile_machine/M_registers_q_reg[54]_1
+    SLICE_X44Y25         LUT5 (Prop_lut5_I1_O)        0.124    13.485 f  regfile_machine/M_registers_q[56]_i_4/O
+                         net (fo=1, routed)           0.484    13.969    regfile_machine/M_registers_q[56]_i_4_n_0
+    SLICE_X44Y25         LUT6 (Prop_lut6_I2_O)        0.124    14.093 r  regfile_machine/M_registers_q[56]_i_1/O
+                         net (fo=4, routed)           0.683    14.776    game_sm/M_regfile_machine_write_data[3]
+    SLICE_X49Y25         LUT3 (Prop_lut3_I0_O)        0.124    14.900 r  game_sm/M_registers_q[88]_i_1/O
+                         net (fo=2, routed)           0.376    15.276    regfile_machine/M_registers_q_reg[24]_0
+    SLICE_X50Y24         FDRE                                         r  regfile_machine/M_registers_q_reg[88]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.435    14.840    regfile_machine/clk_IBUF_BUFG
+    SLICE_X50Y24         FDRE                                         r  regfile_machine/M_registers_q_reg[88]/C
+                         clock pessimism              0.259    15.099    
+                         clock uncertainty           -0.035    15.064    
+    SLICE_X50Y24         FDRE (Setup_fdre_C_D)       -0.013    15.051    regfile_machine/M_registers_q_reg[88]
+  -------------------------------------------------------------------
+                         required time                         15.051    
+                         arrival time                         -15.276    
+  -------------------------------------------------------------------
+                         slack                                 -0.225    
+
+Slack (VIOLATED) :        -0.218ns  (required time - arrival time)
+  Source:                 button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            regfile_machine/M_registers_q_reg[24]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        10.040ns  (logic 1.820ns (18.127%)  route 8.220ns (81.873%))
+  Logic Levels:           11  (LUT2=1 LUT3=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.102ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.841ns = ( 14.841 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.202ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.618     5.202    button_cond_gen_0[8].button_cond/clk_IBUF_BUFG
+    SLICE_X62Y24         FDRE                                         r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y24         FDRE (Prop_fdre_C_Q)         0.456     5.658 r  button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]/Q
+                         net (fo=2, routed)           1.079     6.737    button_cond_gen_0[8].button_cond/M_ctr_q_reg[0]
+    SLICE_X57Y21         LUT4 (Prop_lut4_I3_O)        0.124     6.861 f  button_cond_gen_0[8].button_cond/M_last_q_i_5__6/O
+                         net (fo=2, routed)           0.863     7.724    button_cond_gen_0[8].button_cond/M_last_q_i_5__6_n_0
+    SLICE_X54Y20         LUT6 (Prop_lut6_I1_O)        0.124     7.848 r  button_cond_gen_0[8].button_cond/FSM_onehot_M_game_state_q[17]_i_17/O
+                         net (fo=2, routed)           0.596     8.444    button_cond_gen_0[0].button_cond/M_button_detector_out[1]
+    SLICE_X47Y20         LUT6 (Prop_lut6_I5_O)        0.124     8.568 r  button_cond_gen_0[0].button_cond/FSM_onehot_M_game_state_q[17]_i_10/O
+                         net (fo=2, routed)           0.666     9.234    game_sm/M_registers_q_reg[59]_1
+    SLICE_X46Y20         LUT6 (Prop_lut6_I5_O)        0.124     9.358 r  game_sm/FSM_onehot_M_game_state_q[17]_i_3/O
+                         net (fo=32, routed)          0.883    10.241    button_cond_gen_0[0].button_cond/M_game_sm_bsel
+    SLICE_X42Y22         LUT3 (Prop_lut3_I1_O)        0.124    10.365 r  button_cond_gen_0[0].button_cond/out_i_1/O
+                         net (fo=13, routed)          0.863    11.228    alu_machine/inverterModule/M_alu_machine_b[0]
+    SLICE_X43Y21         LUT5 (Prop_lut5_I0_O)        0.124    11.352 r  alu_machine/inverterModule/out/O
+                         net (fo=1, routed)           0.797    12.149    alu_machine/inverterModule/out_n_0
+    SLICE_X43Y22         LUT6 (Prop_lut6_I0_O)        0.124    12.273 r  alu_machine/inverterModule/out__5/O
+                         net (fo=11, routed)          0.213    12.486    game_sm/M_registers_q[96]_i_4_1
+    SLICE_X43Y22         LUT2 (Prop_lut2_I1_O)        0.124    12.610 f  game_sm/M_registers_q[111]_i_20/O
+                         net (fo=16, routed)          0.751    13.361    regfile_machine/M_registers_q_reg[54]_1
+    SLICE_X44Y25         LUT5 (Prop_lut5_I1_O)        0.124    13.485 f  regfile_machine/M_registers_q[56]_i_4/O
+                         net (fo=1, routed)           0.484    13.969    regfile_machine/M_registers_q[56]_i_4_n_0
+    SLICE_X44Y25         LUT6 (Prop_lut6_I2_O)        0.124    14.093 r  regfile_machine/M_registers_q[56]_i_1/O
+                         net (fo=4, routed)           0.683    14.776    game_sm/M_regfile_machine_write_data[3]
+    SLICE_X49Y25         LUT3 (Prop_lut3_I0_O)        0.124    14.900 r  game_sm/M_registers_q[88]_i_1/O
+                         net (fo=2, routed)           0.343    15.243    regfile_machine/M_registers_q_reg[24]_0
+    SLICE_X49Y26         FDRE                                         r  regfile_machine/M_registers_q_reg[24]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         1.436    14.841    regfile_machine/clk_IBUF_BUFG
+    SLICE_X49Y26         FDRE                                         r  regfile_machine/M_registers_q_reg[24]/C
+                         clock pessimism              0.259    15.100    
+                         clock uncertainty           -0.035    15.065    
+    SLICE_X49Y26         FDRE (Setup_fdre_C_D)       -0.040    15.025    regfile_machine/M_registers_q_reg[24]
+  -------------------------------------------------------------------
+                         required time                         15.025    
+                         arrival time                         -15.243    
+  -------------------------------------------------------------------
+                         slack                                 -0.218    
 
 
 
@@ -942,20 +958,20 @@ Slack (VIOLATED) :        -0.251ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.150ns  (arrival time - required time)
-  Source:                 game_sm/FSM_onehot_M_game_state_q_reg[14]/C
+Slack (MET) :             0.159ns  (arrival time - required time)
+  Source:                 led_out/display1/M_bit_ctr_q_reg[3]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            game_sm/FSM_onehot_M_game_state_q_reg[15]/D
+  Destination:            led_out/display1/M_bit_ctr_q_reg[4]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.221ns  (logic 0.141ns (63.734%)  route 0.080ns (36.266%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.017ns
-    Source Clock Delay      (SCD):    1.502ns
-    Clock Pessimism Removal (CPR):    0.515ns
+  Data Path Delay:        0.303ns  (logic 0.189ns (62.306%)  route 0.114ns (37.694%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.020ns
+    Source Clock Delay      (SCD):    1.505ns
+    Clock Pessimism Removal (CPR):    0.502ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -965,12 +981,14 @@ Slack (MET) :             0.150ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.558     1.502    game_sm/clk_IBUF_BUFG
-    SLICE_X55Y30         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[14]/C
+                         net (fo=744, routed)         0.561     1.505    led_out/display1/clk_IBUF_BUFG
+    SLICE_X51Y16         FDRE                                         r  led_out/display1/M_bit_ctr_q_reg[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X55Y30         FDRE (Prop_fdre_C_Q)         0.141     1.643 r  game_sm/FSM_onehot_M_game_state_q_reg[14]/Q
-                         net (fo=10, routed)          0.080     1.723    game_sm/Q[2]
-    SLICE_X55Y30         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[15]/D
+    SLICE_X51Y16         FDRE (Prop_fdre_C_Q)         0.141     1.646 r  led_out/display1/M_bit_ctr_q_reg[3]/Q
+                         net (fo=4, routed)           0.114     1.760    led_out/display1/M_bit_ctr_q[3]
+    SLICE_X50Y16         LUT5 (Prop_lut5_I4_O)        0.048     1.808 r  led_out/display1/M_bit_ctr_q[4]_i_2__0/O
+                         net (fo=1, routed)           0.000     1.808    led_out/display1/M_bit_ctr_q[4]_i_2__0_n_0
+    SLICE_X50Y16         FDRE                                         r  led_out/display1/M_bit_ctr_q_reg[4]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -979,15 +997,15 @@ Slack (MET) :             0.150ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.827     2.017    game_sm/clk_IBUF_BUFG
-    SLICE_X55Y30         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[15]/C
-                         clock pessimism             -0.515     1.502    
-    SLICE_X55Y30         FDRE (Hold_fdre_C_D)         0.071     1.573    game_sm/FSM_onehot_M_game_state_q_reg[15]
+                         net (fo=744, routed)         0.830     2.020    led_out/display1/clk_IBUF_BUFG
+    SLICE_X50Y16         FDRE                                         r  led_out/display1/M_bit_ctr_q_reg[4]/C
+                         clock pessimism             -0.502     1.518    
+    SLICE_X50Y16         FDRE (Hold_fdre_C_D)         0.131     1.649    led_out/display1/M_bit_ctr_q_reg[4]
   -------------------------------------------------------------------
-                         required time                         -1.573    
-                         arrival time                           1.723    
+                         required time                         -1.649    
+                         arrival time                           1.808    
   -------------------------------------------------------------------
-                         slack                                  0.150    
+                         slack                                  0.159    
 
 Slack (MET) :             0.159ns  (arrival time - required time)
   Source:                 led_out/display3/M_bit_ctr_q_reg[3]/C
@@ -997,60 +1015,11 @@ Slack (MET) :             0.159ns  (arrival time - required time)
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.303ns  (logic 0.189ns (62.306%)  route 0.114ns (37.694%))
-  Logic Levels:           1  (LUT5=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.021ns
-    Source Clock Delay      (SCD):    1.506ns
-    Clock Pessimism Removal (CPR):    0.502ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.634     0.918    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.562     1.506    led_out/display3/clk_IBUF_BUFG
-    SLICE_X51Y34         FDRE                                         r  led_out/display3/M_bit_ctr_q_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X51Y34         FDRE (Prop_fdre_C_Q)         0.141     1.647 r  led_out/display3/M_bit_ctr_q_reg[3]/Q
-                         net (fo=4, routed)           0.114     1.761    led_out/display3/M_bit_ctr_q[3]
-    SLICE_X50Y34         LUT5 (Prop_lut5_I4_O)        0.048     1.809 r  led_out/display3/M_bit_ctr_q[4]_i_2__2/O
-                         net (fo=1, routed)           0.000     1.809    led_out/display3/M_bit_ctr_q[4]_i_2__2_n_0
-    SLICE_X50Y34         FDRE                                         r  led_out/display3/M_bit_ctr_q_reg[4]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.689     1.161    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.831     2.021    led_out/display3/clk_IBUF_BUFG
-    SLICE_X50Y34         FDRE                                         r  led_out/display3/M_bit_ctr_q_reg[4]/C
-                         clock pessimism             -0.502     1.519    
-    SLICE_X50Y34         FDRE (Hold_fdre_C_D)         0.131     1.650    led_out/display3/M_bit_ctr_q_reg[4]
-  -------------------------------------------------------------------
-                         required time                         -1.650    
-                         arrival time                           1.809    
-  -------------------------------------------------------------------
-                         slack                                  0.159    
-
-Slack (MET) :             0.159ns  (arrival time - required time)
-  Source:                 led_out/display2/M_bit_ctr_q_reg[3]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            led_out/display2/M_bit_ctr_q_reg[4]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
   Data Path Delay:        0.303ns  (logic 0.189ns (62.293%)  route 0.114ns (37.707%))
   Logic Levels:           1  (LUT5=1)
   Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.049ns
-    Source Clock Delay      (SCD):    1.534ns
+    Destination Clock Delay (DCD):    2.019ns
+    Source Clock Delay      (SCD):    1.504ns
     Clock Pessimism Removal (CPR):    0.502ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1061,14 +1030,14 @@ Slack (MET) :             0.159ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.590     1.534    led_out/display2/clk_IBUF_BUFG
-    SLICE_X61Y35         FDRE                                         r  led_out/display2/M_bit_ctr_q_reg[3]/C
+                         net (fo=744, routed)         0.560     1.504    led_out/display3/clk_IBUF_BUFG
+    SLICE_X55Y32         FDRE                                         r  led_out/display3/M_bit_ctr_q_reg[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X61Y35         FDRE (Prop_fdre_C_Q)         0.141     1.675 r  led_out/display2/M_bit_ctr_q_reg[3]/Q
-                         net (fo=4, routed)           0.114     1.789    led_out/display2/M_bit_ctr_q[3]
-    SLICE_X60Y35         LUT5 (Prop_lut5_I4_O)        0.048     1.837 r  led_out/display2/M_bit_ctr_q[4]_i_2__1/O
-                         net (fo=1, routed)           0.000     1.837    led_out/display2/M_bit_ctr_q[4]_i_2__1_n_0
-    SLICE_X60Y35         FDRE                                         r  led_out/display2/M_bit_ctr_q_reg[4]/D
+    SLICE_X55Y32         FDRE (Prop_fdre_C_Q)         0.141     1.645 r  led_out/display3/M_bit_ctr_q_reg[3]/Q
+                         net (fo=4, routed)           0.114     1.759    led_out/display3/M_bit_ctr_q[3]
+    SLICE_X54Y32         LUT5 (Prop_lut5_I4_O)        0.048     1.807 r  led_out/display3/M_bit_ctr_q[4]_i_2__2/O
+                         net (fo=1, routed)           0.000     1.807    led_out/display3/M_bit_ctr_q[4]_i_2__2_n_0
+    SLICE_X54Y32         FDRE                                         r  led_out/display3/M_bit_ctr_q_reg[4]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1077,30 +1046,30 @@ Slack (MET) :             0.159ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.859     2.049    led_out/display2/clk_IBUF_BUFG
-    SLICE_X60Y35         FDRE                                         r  led_out/display2/M_bit_ctr_q_reg[4]/C
-                         clock pessimism             -0.502     1.547    
-    SLICE_X60Y35         FDRE (Hold_fdre_C_D)         0.131     1.678    led_out/display2/M_bit_ctr_q_reg[4]
+                         net (fo=744, routed)         0.829     2.019    led_out/display3/clk_IBUF_BUFG
+    SLICE_X54Y32         FDRE                                         r  led_out/display3/M_bit_ctr_q_reg[4]/C
+                         clock pessimism             -0.502     1.517    
+    SLICE_X54Y32         FDRE (Hold_fdre_C_D)         0.131     1.648    led_out/display3/M_bit_ctr_q_reg[4]
   -------------------------------------------------------------------
-                         required time                         -1.678    
-                         arrival time                           1.837    
+                         required time                         -1.648    
+                         arrival time                           1.807    
   -------------------------------------------------------------------
                          slack                                  0.159    
 
-Slack (MET) :             0.211ns  (arrival time - required time)
-  Source:                 game_sm/FSM_onehot_M_game_state_q_reg[12]/C
+Slack (MET) :             0.189ns  (arrival time - required time)
+  Source:                 led_out/display1/M_ctr_q_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            game_sm/FSM_onehot_M_game_state_q_reg[14]/D
+  Destination:            led_out/display1/M_ctr_q_reg[3]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.316ns  (logic 0.209ns (66.048%)  route 0.107ns (33.952%))
-  Logic Levels:           1  (LUT2=1)
+  Data Path Delay:        0.309ns  (logic 0.189ns (61.148%)  route 0.120ns (38.852%))
+  Logic Levels:           1  (LUT5=1)
   Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.017ns
-    Source Clock Delay      (SCD):    1.502ns
-    Clock Pessimism Removal (CPR):    0.502ns
+    Destination Clock Delay (DCD):    2.020ns
+    Source Clock Delay      (SCD):    1.506ns
+    Clock Pessimism Removal (CPR):    0.501ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1110,14 +1079,14 @@ Slack (MET) :             0.211ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.558     1.502    game_sm/clk_IBUF_BUFG
-    SLICE_X54Y30         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[12]/C
+                         net (fo=744, routed)         0.562     1.506    led_out/display1/clk_IBUF_BUFG
+    SLICE_X48Y15         FDRE                                         r  led_out/display1/M_ctr_q_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y30         FDRE (Prop_fdre_C_Q)         0.164     1.666 r  game_sm/FSM_onehot_M_game_state_q_reg[12]/Q
-                         net (fo=3, routed)           0.107     1.773    game_sm/FSM_onehot_M_game_state_q_reg_n_0_[12]
-    SLICE_X55Y30         LUT2 (Prop_lut2_I0_O)        0.045     1.818 r  game_sm/FSM_onehot_M_game_state_q[14]_i_1/O
-                         net (fo=1, routed)           0.000     1.818    game_sm/FSM_onehot_M_game_state_q[14]_i_1_n_0
-    SLICE_X55Y30         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[14]/D
+    SLICE_X48Y15         FDRE (Prop_fdre_C_Q)         0.141     1.647 r  led_out/display1/M_ctr_q_reg[0]/Q
+                         net (fo=7, routed)           0.120     1.767    led_out/display1/M_ctr_q[0]
+    SLICE_X49Y15         LUT5 (Prop_lut5_I2_O)        0.048     1.815 r  led_out/display1/M_ctr_q[3]_i_1__1/O
+                         net (fo=1, routed)           0.000     1.815    led_out/display1/M_ctr_q[3]_i_1__1_n_0
+    SLICE_X49Y15         FDRE                                         r  led_out/display1/M_ctr_q_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1126,30 +1095,30 @@ Slack (MET) :             0.211ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.827     2.017    game_sm/clk_IBUF_BUFG
-    SLICE_X55Y30         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[14]/C
-                         clock pessimism             -0.502     1.515    
-    SLICE_X55Y30         FDRE (Hold_fdre_C_D)         0.092     1.607    game_sm/FSM_onehot_M_game_state_q_reg[14]
+                         net (fo=744, routed)         0.830     2.020    led_out/display1/clk_IBUF_BUFG
+    SLICE_X49Y15         FDRE                                         r  led_out/display1/M_ctr_q_reg[3]/C
+                         clock pessimism             -0.501     1.519    
+    SLICE_X49Y15         FDRE (Hold_fdre_C_D)         0.107     1.626    led_out/display1/M_ctr_q_reg[3]
   -------------------------------------------------------------------
-                         required time                         -1.607    
-                         arrival time                           1.818    
+                         required time                         -1.626    
+                         arrival time                           1.815    
   -------------------------------------------------------------------
-                         slack                                  0.211    
+                         slack                                  0.189    
 
-Slack (MET) :             0.212ns  (arrival time - required time)
-  Source:                 game_sm/FSM_onehot_M_game_state_q_reg[10]/C
+Slack (MET) :             0.194ns  (arrival time - required time)
+  Source:                 game_sm/FSM_onehot_M_game_state_q_reg[4]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            game_sm/FSM_onehot_M_game_state_q_reg[1]/D
+  Destination:            game_sm/FSM_onehot_M_game_state_q_reg[5]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.333ns  (logic 0.246ns (73.853%)  route 0.087ns (26.147%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.018ns
-    Source Clock Delay      (SCD):    1.503ns
-    Clock Pessimism Removal (CPR):    0.515ns
+  Data Path Delay:        0.277ns  (logic 0.141ns (50.841%)  route 0.136ns (49.159%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.014ns
+    Source Clock Delay      (SCD):    1.500ns
+    Clock Pessimism Removal (CPR):    0.501ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1159,14 +1128,12 @@ Slack (MET) :             0.212ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.559     1.503    game_sm/clk_IBUF_BUFG
-    SLICE_X54Y31         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[10]/C
+                         net (fo=744, routed)         0.556     1.500    game_sm/clk_IBUF_BUFG
+    SLICE_X51Y28         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[4]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y31         FDRE (Prop_fdre_C_Q)         0.148     1.651 r  game_sm/FSM_onehot_M_game_state_q_reg[10]/Q
-                         net (fo=3, routed)           0.087     1.738    game_sm/FSM_onehot_M_game_state_q_reg_n_0_[10]
-    SLICE_X54Y31         LUT6 (Prop_lut6_I1_O)        0.098     1.836 r  game_sm/FSM_onehot_M_game_state_q[1]_i_1/O
-                         net (fo=1, routed)           0.000     1.836    game_sm/FSM_onehot_M_game_state_q[1]_i_1_n_0
-    SLICE_X54Y31         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[1]/D
+    SLICE_X51Y28         FDRE (Prop_fdre_C_Q)         0.141     1.641 r  game_sm/FSM_onehot_M_game_state_q_reg[4]/Q
+                         net (fo=4, routed)           0.136     1.777    game_sm/FSM_onehot_M_game_state_q_reg_n_0_[4]
+    SLICE_X51Y27         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[5]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1175,15 +1142,64 @@ Slack (MET) :             0.212ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.828     2.018    game_sm/clk_IBUF_BUFG
-    SLICE_X54Y31         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[1]/C
-                         clock pessimism             -0.515     1.503    
-    SLICE_X54Y31         FDRE (Hold_fdre_C_D)         0.121     1.624    game_sm/FSM_onehot_M_game_state_q_reg[1]
+                         net (fo=744, routed)         0.824     2.014    game_sm/clk_IBUF_BUFG
+    SLICE_X51Y27         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[5]/C
+                         clock pessimism             -0.501     1.513    
+    SLICE_X51Y27         FDRE (Hold_fdre_C_D)         0.070     1.583    game_sm/FSM_onehot_M_game_state_q_reg[5]
   -------------------------------------------------------------------
-                         required time                         -1.624    
-                         arrival time                           1.836    
+                         required time                         -1.583    
+                         arrival time                           1.777    
   -------------------------------------------------------------------
-                         slack                                  0.212    
+                         slack                                  0.194    
+
+Slack (MET) :             0.202ns  (arrival time - required time)
+  Source:                 led_out/display1/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            led_out/display1/M_ctr_q_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        0.306ns  (logic 0.186ns (60.767%)  route 0.120ns (39.233%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.020ns
+    Source Clock Delay      (SCD):    1.506ns
+    Clock Pessimism Removal (CPR):    0.501ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.918    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         0.562     1.506    led_out/display1/clk_IBUF_BUFG
+    SLICE_X48Y15         FDRE                                         r  led_out/display1/M_ctr_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X48Y15         FDRE (Prop_fdre_C_Q)         0.141     1.647 r  led_out/display1/M_ctr_q_reg[0]/Q
+                         net (fo=7, routed)           0.120     1.767    led_out/display1/M_ctr_q[0]
+    SLICE_X49Y15         LUT4 (Prop_lut4_I2_O)        0.045     1.812 r  led_out/display1/M_ctr_q[2]_i_1__1/O
+                         net (fo=1, routed)           0.000     1.812    led_out/display1/M_ctr_q[2]_i_1__1_n_0
+    SLICE_X49Y15         FDRE                                         r  led_out/display1/M_ctr_q_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.161    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         0.830     2.020    led_out/display1/clk_IBUF_BUFG
+    SLICE_X49Y15         FDRE                                         r  led_out/display1/M_ctr_q_reg[2]/C
+                         clock pessimism             -0.501     1.519    
+    SLICE_X49Y15         FDRE (Hold_fdre_C_D)         0.091     1.610    led_out/display1/M_ctr_q_reg[2]
+  -------------------------------------------------------------------
+                         required time                         -1.610    
+                         arrival time                           1.812    
+  -------------------------------------------------------------------
+                         slack                                  0.202    
 
 Slack (MET) :             0.215ns  (arrival time - required time)
   Source:                 game_sm/FSM_onehot_M_game_state_q_reg[10]/C
@@ -1193,11 +1209,11 @@ Slack (MET) :             0.215ns  (arrival time - required time)
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.335ns  (logic 0.246ns (73.413%)  route 0.089ns (26.587%))
+  Data Path Delay:        0.335ns  (logic 0.246ns (73.395%)  route 0.089ns (26.605%))
   Logic Levels:           1  (LUT2=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.018ns
-    Source Clock Delay      (SCD):    1.503ns
+    Destination Clock Delay (DCD):    2.015ns
+    Source Clock Delay      (SCD):    1.500ns
     Clock Pessimism Removal (CPR):    0.515ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1208,14 +1224,14 @@ Slack (MET) :             0.215ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.559     1.503    game_sm/clk_IBUF_BUFG
-    SLICE_X54Y31         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[10]/C
+                         net (fo=744, routed)         0.556     1.500    game_sm/clk_IBUF_BUFG
+    SLICE_X50Y28         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[10]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y31         FDRE (Prop_fdre_C_Q)         0.148     1.651 r  game_sm/FSM_onehot_M_game_state_q_reg[10]/Q
-                         net (fo=3, routed)           0.089     1.740    game_sm/FSM_onehot_M_game_state_q_reg_n_0_[10]
-    SLICE_X54Y31         LUT2 (Prop_lut2_I0_O)        0.098     1.838 r  game_sm/FSM_onehot_M_game_state_q[11]_i_1/O
-                         net (fo=1, routed)           0.000     1.838    game_sm/FSM_onehot_M_game_state_q[11]_i_1_n_0
-    SLICE_X54Y31         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[11]/D
+    SLICE_X50Y28         FDRE (Prop_fdre_C_Q)         0.148     1.648 r  game_sm/FSM_onehot_M_game_state_q_reg[10]/Q
+                         net (fo=3, routed)           0.089     1.737    game_sm/FSM_onehot_M_game_state_q_reg_n_0_[10]
+    SLICE_X50Y28         LUT2 (Prop_lut2_I0_O)        0.098     1.835 r  game_sm/FSM_onehot_M_game_state_q[11]_i_1/O
+                         net (fo=1, routed)           0.000     1.835    game_sm/FSM_onehot_M_game_state_q[11]_i_1_n_0
+    SLICE_X50Y28         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[11]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1224,30 +1240,30 @@ Slack (MET) :             0.215ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.828     2.018    game_sm/clk_IBUF_BUFG
-    SLICE_X54Y31         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[11]/C
-                         clock pessimism             -0.515     1.503    
-    SLICE_X54Y31         FDRE (Hold_fdre_C_D)         0.120     1.623    game_sm/FSM_onehot_M_game_state_q_reg[11]
+                         net (fo=744, routed)         0.825     2.015    game_sm/clk_IBUF_BUFG
+    SLICE_X50Y28         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[11]/C
+                         clock pessimism             -0.515     1.500    
+    SLICE_X50Y28         FDRE (Hold_fdre_C_D)         0.120     1.620    game_sm/FSM_onehot_M_game_state_q_reg[11]
   -------------------------------------------------------------------
-                         required time                         -1.623    
-                         arrival time                           1.838    
+                         required time                         -1.620    
+                         arrival time                           1.835    
   -------------------------------------------------------------------
                          slack                                  0.215    
 
-Slack (MET) :             0.238ns  (arrival time - required time)
-  Source:                 button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[0]/C
+Slack (MET) :             0.227ns  (arrival time - required time)
+  Source:                 game_sm/FSM_onehot_M_game_state_q_reg[17]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[1]/D
+  Destination:            game_sm/FSM_onehot_M_game_state_q_reg[1]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.299ns  (logic 0.141ns (47.141%)  route 0.158ns (52.859%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.048ns
-    Source Clock Delay      (SCD):    1.533ns
-    Clock Pessimism Removal (CPR):    0.515ns
+  Data Path Delay:        0.361ns  (logic 0.186ns (51.589%)  route 0.175ns (48.411%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.014ns
+    Source Clock Delay      (SCD):    1.500ns
+    Clock Pessimism Removal (CPR):    0.501ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1257,12 +1273,14 @@ Slack (MET) :             0.238ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.589     1.533    button_cond_gen_0[12].button_cond/sync/clk_IBUF_BUFG
-    SLICE_X65Y32         FDRE                                         r  button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[0]/C
+                         net (fo=744, routed)         0.556     1.500    game_sm/clk_IBUF_BUFG
+    SLICE_X51Y27         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[17]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X65Y32         FDRE (Prop_fdre_C_Q)         0.141     1.674 r  button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[0]/Q
-                         net (fo=1, routed)           0.158     1.832    button_cond_gen_0[12].button_cond/sync/M_pipe_d__11[1]
-    SLICE_X65Y32         FDRE                                         r  button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[1]/D
+    SLICE_X51Y27         FDRE (Prop_fdre_C_Q)         0.141     1.641 r  game_sm/FSM_onehot_M_game_state_q_reg[17]/Q
+                         net (fo=5, routed)           0.175     1.815    game_sm/FSM_onehot_M_game_state_q_reg_n_0_[17]
+    SLICE_X50Y27         LUT6 (Prop_lut6_I4_O)        0.045     1.860 r  game_sm/FSM_onehot_M_game_state_q[1]_i_1/O
+                         net (fo=1, routed)           0.000     1.860    game_sm/FSM_onehot_M_game_state_q[1]_i_1_n_0
+    SLICE_X50Y27         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1271,30 +1289,77 @@ Slack (MET) :             0.238ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.858     2.048    button_cond_gen_0[12].button_cond/sync/clk_IBUF_BUFG
-    SLICE_X65Y32         FDRE                                         r  button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[1]/C
-                         clock pessimism             -0.515     1.533    
-    SLICE_X65Y32         FDRE (Hold_fdre_C_D)         0.061     1.594    button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[1]
+                         net (fo=744, routed)         0.824     2.014    game_sm/clk_IBUF_BUFG
+    SLICE_X50Y27         FDRE                                         r  game_sm/FSM_onehot_M_game_state_q_reg[1]/C
+                         clock pessimism             -0.501     1.513    
+    SLICE_X50Y27         FDRE (Hold_fdre_C_D)         0.121     1.634    game_sm/FSM_onehot_M_game_state_q_reg[1]
   -------------------------------------------------------------------
-                         required time                         -1.594    
-                         arrival time                           1.832    
+                         required time                         -1.634    
+                         arrival time                           1.860    
   -------------------------------------------------------------------
-                         slack                                  0.238    
+                         slack                                  0.227    
 
-Slack (MET) :             0.238ns  (arrival time - required time)
-  Source:                 button_cond_gen_0[15].button_cond/sync/M_pipe_q_reg[0]/C
+Slack (MET) :             0.230ns  (arrival time - required time)
+  Source:                 button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            button_cond_gen_0[15].button_cond/sync/M_pipe_q_reg[1]/D
+  Destination:            button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[1]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.299ns  (logic 0.141ns (47.141%)  route 0.158ns (52.859%))
+  Data Path Delay:        0.247ns  (logic 0.128ns (51.736%)  route 0.119ns (48.264%))
   Logic Levels:           0  
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.023ns
+    Destination Clock Delay (DCD):    2.046ns
+    Source Clock Delay      (SCD):    1.532ns
+    Clock Pessimism Removal (CPR):    0.514ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.918    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         0.588     1.532    button_cond_gen_0[14].button_cond/sync/clk_IBUF_BUFG
+    SLICE_X59Y17         FDRE                                         r  button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X59Y17         FDRE (Prop_fdre_C_Q)         0.128     1.660 r  button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[0]/Q
+                         net (fo=1, routed)           0.119     1.779    button_cond_gen_0[14].button_cond/sync/M_pipe_d__13[1]
+    SLICE_X59Y17         FDRE                                         r  button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.161    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
+                         net (fo=744, routed)         0.856     2.046    button_cond_gen_0[14].button_cond/sync/clk_IBUF_BUFG
+    SLICE_X59Y17         FDRE                                         r  button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[1]/C
+                         clock pessimism             -0.514     1.532    
+    SLICE_X59Y17         FDRE (Hold_fdre_C_D)         0.017     1.549    button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[1]
+  -------------------------------------------------------------------
+                         required time                         -1.549    
+                         arrival time                           1.779    
+  -------------------------------------------------------------------
+                         slack                                  0.230    
+
+Slack (MET) :             0.234ns  (arrival time - required time)
+  Source:                 led_out/display0/M_ctr_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            led_out/display0/M_ctr_q_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        0.369ns  (logic 0.209ns (56.618%)  route 0.160ns (43.382%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.015ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.021ns
     Source Clock Delay      (SCD):    1.507ns
-    Clock Pessimism Removal (CPR):    0.516ns
+    Clock Pessimism Removal (CPR):    0.499ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1304,12 +1369,14 @@ Slack (MET) :             0.238ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.563     1.507    button_cond_gen_0[15].button_cond/sync/clk_IBUF_BUFG
-    SLICE_X55Y12         FDRE                                         r  button_cond_gen_0[15].button_cond/sync/M_pipe_q_reg[0]/C
+                         net (fo=744, routed)         0.563     1.507    led_out/display0/clk_IBUF_BUFG
+    SLICE_X56Y16         FDRE                                         r  led_out/display0/M_ctr_q_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X55Y12         FDRE (Prop_fdre_C_Q)         0.141     1.648 r  button_cond_gen_0[15].button_cond/sync/M_pipe_q_reg[0]/Q
-                         net (fo=1, routed)           0.158     1.806    button_cond_gen_0[15].button_cond/sync/M_pipe_d__14[1]
-    SLICE_X55Y12         FDRE                                         r  button_cond_gen_0[15].button_cond/sync/M_pipe_q_reg[1]/D
+    SLICE_X56Y16         FDRE (Prop_fdre_C_Q)         0.164     1.671 r  led_out/display0/M_ctr_q_reg[0]/Q
+                         net (fo=7, routed)           0.160     1.831    led_out/display0/M_ctr_q[0]
+    SLICE_X56Y15         LUT6 (Prop_lut6_I3_O)        0.045     1.876 r  led_out/display0/M_ctr_q[4]_i_1__0/O
+                         net (fo=1, routed)           0.000     1.876    led_out/display0/M_ctr_q[4]_i_1__0_n_0
+    SLICE_X56Y15         FDRE                                         r  led_out/display0/M_ctr_q_reg[4]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1318,30 +1385,30 @@ Slack (MET) :             0.238ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.833     2.023    button_cond_gen_0[15].button_cond/sync/clk_IBUF_BUFG
-    SLICE_X55Y12         FDRE                                         r  button_cond_gen_0[15].button_cond/sync/M_pipe_q_reg[1]/C
-                         clock pessimism             -0.516     1.507    
-    SLICE_X55Y12         FDRE (Hold_fdre_C_D)         0.061     1.568    button_cond_gen_0[15].button_cond/sync/M_pipe_q_reg[1]
+                         net (fo=744, routed)         0.831     2.021    led_out/display0/clk_IBUF_BUFG
+    SLICE_X56Y15         FDRE                                         r  led_out/display0/M_ctr_q_reg[4]/C
+                         clock pessimism             -0.499     1.522    
+    SLICE_X56Y15         FDRE (Hold_fdre_C_D)         0.120     1.642    led_out/display0/M_ctr_q_reg[4]
   -------------------------------------------------------------------
-                         required time                         -1.568    
-                         arrival time                           1.806    
+                         required time                         -1.642    
+                         arrival time                           1.876    
   -------------------------------------------------------------------
-                         slack                                  0.238    
+                         slack                                  0.234    
 
-Slack (MET) :             0.238ns  (arrival time - required time)
-  Source:                 button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[0]/C
+Slack (MET) :             0.237ns  (arrival time - required time)
+  Source:                 button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[1]/D
+  Destination:            button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[1]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.299ns  (logic 0.141ns (47.141%)  route 0.158ns (52.859%))
+  Data Path Delay:        0.327ns  (logic 0.164ns (50.137%)  route 0.163ns (49.863%))
   Logic Levels:           0  
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.022ns
-    Source Clock Delay      (SCD):    1.506ns
-    Clock Pessimism Removal (CPR):    0.516ns
+    Destination Clock Delay (DCD):    2.045ns
+    Source Clock Delay      (SCD):    1.531ns
+    Clock Pessimism Removal (CPR):    0.514ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1351,61 +1418,12 @@ Slack (MET) :             0.238ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.562     1.506    button_cond_gen_0[2].button_cond/sync/clk_IBUF_BUFG
-    SLICE_X55Y13         FDRE                                         r  button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[0]/C
+                         net (fo=744, routed)         0.587     1.531    button_cond_gen_0[13].button_cond/sync/clk_IBUF_BUFG
+    SLICE_X60Y18         FDRE                                         r  button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X55Y13         FDRE (Prop_fdre_C_Q)         0.141     1.647 r  button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[0]/Q
-                         net (fo=1, routed)           0.158     1.805    button_cond_gen_0[2].button_cond/sync/M_pipe_d__1[1]
-    SLICE_X55Y13         FDRE                                         r  button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[1]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.689     1.161    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.832     2.022    button_cond_gen_0[2].button_cond/sync/clk_IBUF_BUFG
-    SLICE_X55Y13         FDRE                                         r  button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[1]/C
-                         clock pessimism             -0.516     1.506    
-    SLICE_X55Y13         FDRE (Hold_fdre_C_D)         0.061     1.567    button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[1]
-  -------------------------------------------------------------------
-                         required time                         -1.567    
-                         arrival time                           1.805    
-  -------------------------------------------------------------------
-                         slack                                  0.238    
-
-Slack (MET) :             0.243ns  (arrival time - required time)
-  Source:                 led_out/display0/M_ctr_q_reg[5]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            led_out/display0/M_ctr_q_reg[6]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.350ns  (logic 0.183ns (52.285%)  route 0.167ns (47.715%))
-  Logic Levels:           1  (LUT4=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.025ns
-    Source Clock Delay      (SCD):    1.509ns
-    Clock Pessimism Removal (CPR):    0.516ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.634     0.918    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.565     1.509    led_out/display0/clk_IBUF_BUFG
-    SLICE_X49Y9          FDRE                                         r  led_out/display0/M_ctr_q_reg[5]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X49Y9          FDRE (Prop_fdre_C_Q)         0.141     1.650 r  led_out/display0/M_ctr_q_reg[5]/Q
-                         net (fo=4, routed)           0.167     1.817    led_out/display0/M_ctr_q[5]
-    SLICE_X49Y9          LUT4 (Prop_lut4_I1_O)        0.042     1.859 r  led_out/display0/M_ctr_q[6]_i_1__0/O
-                         net (fo=1, routed)           0.000     1.859    led_out/display0/M_ctr_q[6]_i_1__0_n_0
-    SLICE_X49Y9          FDRE                                         r  led_out/display0/M_ctr_q_reg[6]/D
+    SLICE_X60Y18         FDRE (Prop_fdre_C_Q)         0.164     1.695 r  button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[0]/Q
+                         net (fo=1, routed)           0.163     1.858    button_cond_gen_0[13].button_cond/sync/M_pipe_d__12[1]
+    SLICE_X60Y18         FDRE                                         r  button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1414,15 +1432,15 @@ Slack (MET) :             0.243ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=718, routed)         0.835     2.025    led_out/display0/clk_IBUF_BUFG
-    SLICE_X49Y9          FDRE                                         r  led_out/display0/M_ctr_q_reg[6]/C
-                         clock pessimism             -0.516     1.509    
-    SLICE_X49Y9          FDRE (Hold_fdre_C_D)         0.107     1.616    led_out/display0/M_ctr_q_reg[6]
+                         net (fo=744, routed)         0.855     2.045    button_cond_gen_0[13].button_cond/sync/clk_IBUF_BUFG
+    SLICE_X60Y18         FDRE                                         r  button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[1]/C
+                         clock pessimism             -0.514     1.531    
+    SLICE_X60Y18         FDRE (Hold_fdre_C_D)         0.090     1.621    button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[1]
   -------------------------------------------------------------------
-                         required time                         -1.616    
-                         arrival time                           1.859    
+                         required time                         -1.621    
+                         arrival time                           1.858    
   -------------------------------------------------------------------
-                         slack                                  0.243    
+                         slack                                  0.237    
 
 
 
@@ -1437,35 +1455,35 @@ Sources:            { clk }
 
 Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
 Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y0  clk_IBUF_BUFG_inst/I
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X59Y25   button_cond_gen_0[10].button_cond/M_ctr_q_reg[5]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X59Y25   button_cond_gen_0[10].button_cond/M_ctr_q_reg[6]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X59Y25   button_cond_gen_0[10].button_cond/M_ctr_q_reg[7]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X59Y26   button_cond_gen_0[10].button_cond/M_ctr_q_reg[8]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X59Y26   button_cond_gen_0[10].button_cond/M_ctr_q_reg[9]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X65Y22   button_cond_gen_0[12].button_cond/M_ctr_q_reg[5]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X65Y22   button_cond_gen_0[12].button_cond/M_ctr_q_reg[6]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X65Y22   button_cond_gen_0[12].button_cond/M_ctr_q_reg[7]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X65Y23   button_cond_gen_0[12].button_cond/M_ctr_q_reg[8]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X55Y23   button_cond_gen_0[3].button_cond/M_ctr_q_reg[9]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X57Y25   button_cond_gen_0[7].button_cond/M_ctr_q_reg[5]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X57Y25   button_cond_gen_0[7].button_cond/M_ctr_q_reg[6]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X57Y25   button_cond_gen_0[7].button_cond/M_ctr_q_reg[7]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X57Y26   button_cond_gen_0[7].button_cond/M_ctr_q_reg[8]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X57Y26   button_cond_gen_0[7].button_cond/M_ctr_q_reg[9]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X47Y28   regfile_machine/M_registers_q_reg[57]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X47Y28   regfile_machine/M_registers_q_reg[58]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X49Y23   regfile_machine/M_registers_q_reg[65]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X49Y23   regfile_machine/M_registers_q_reg[66]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X59Y25   button_cond_gen_0[10].button_cond/M_ctr_q_reg[5]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X59Y25   button_cond_gen_0[10].button_cond/M_ctr_q_reg[6]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X59Y25   button_cond_gen_0[10].button_cond/M_ctr_q_reg[7]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X59Y26   button_cond_gen_0[10].button_cond/M_ctr_q_reg[8]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X59Y26   button_cond_gen_0[10].button_cond/M_ctr_q_reg[9]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X65Y22   button_cond_gen_0[12].button_cond/M_ctr_q_reg[5]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X65Y22   button_cond_gen_0[12].button_cond/M_ctr_q_reg[6]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X65Y22   button_cond_gen_0[12].button_cond/M_ctr_q_reg[7]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X65Y23   button_cond_gen_0[12].button_cond/M_ctr_q_reg[8]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X65Y23   button_cond_gen_0[12].button_cond/M_ctr_q_reg[9]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X48Y21   button_cond_gen_0[10].button_cond/M_ctr_q_reg[5]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X48Y21   button_cond_gen_0[10].button_cond/M_ctr_q_reg[6]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X48Y21   button_cond_gen_0[10].button_cond/M_ctr_q_reg[7]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X48Y22   button_cond_gen_0[10].button_cond/M_ctr_q_reg[8]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X49Y23   button_cond_gen_0[10].button_cond/M_ctr_q_reg[9]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X58Y18   button_cond_gen_0[12].button_cond/M_ctr_q_reg[6]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X58Y18   button_cond_gen_0[12].button_cond/M_ctr_q_reg[7]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X58Y19   button_cond_gen_0[12].button_cond/M_ctr_q_reg[8]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X58Y19   button_cond_gen_0[12].button_cond/M_ctr_q_reg[9]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X48Y22   button_cond_gen_0[10].button_cond/M_ctr_q_reg[8]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X49Y23   button_cond_gen_0[10].button_cond/M_ctr_q_reg[9]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X51Y23   button_cond_gen_0[14].button_cond/M_ctr_q_reg[7]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X53Y23   button_cond_gen_0[14].button_cond/M_ctr_q_reg[8]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X45Y22   button_cond_gen_0[6].button_cond/M_ctr_q_reg[10]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X47Y21   button_detector_gen_0[0].button_detector/M_last_q_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X45Y27   regfile_machine/M_registers_q_reg[78]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X36Y19   regfile_machine/M_registers_q_reg[81]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X37Y18   regfile_machine/M_registers_q_reg[82]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X54Y23   button_cond_gen_0[11].button_cond/M_ctr_q_reg[10]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X62Y33   button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[0]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X59Y17   button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[0]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X59Y17   button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[1]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X53Y20   button_cond_gen_0[1].button_cond/M_ctr_q_reg[9]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X52Y20   button_cond_gen_0[2].button_cond/M_ctr_q_reg[0]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X54Y21   button_cond_gen_0[3].button_cond/sync/M_pipe_q_reg[0]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X54Y21   button_cond_gen_0[3].button_cond/sync/M_pipe_q_reg[1]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X64Y33   button_cond_gen_0[5].button_cond/sync/M_pipe_q_reg[0]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X64Y26   button_cond_gen_0[5].button_cond/sync/M_pipe_q_reg[1]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X45Y22   button_cond_gen_0[6].button_cond/M_ctr_q_reg[10]/C
 
 
 

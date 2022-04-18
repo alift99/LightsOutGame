@@ -1,0 +1,12 @@
+module alternator (
+    input clk,  // clock
+    output out
+  ) {
+
+  dff bit(.clk(clk));
+  
+  always {
+    bit.d = ~bit.q;
+    out = bit.q; 
+  }
+}
