@@ -11,7 +11,7 @@ module initial_board_states_9 (
   
   
   
-  localparam BOARD_STATES = 64'hb08ef969b1204bef;
+  localparam BOARD_STATES = 96'hd3cbc9f30ea84befc9f3be35;
   
   always @* begin
     out = BOARD_STATES[(state_index)*16+15-:16];

@@ -86,7 +86,7 @@ module game_fsm_6 (
           end
         end
         if (reset_btn_pressed) begin
-          if (initial_board_index == 2'h3) begin
+          if (initial_board_index == 3'h5) begin
             M_game_state_d = RESET_INITIAL_BOARD_STATE_INDEX_game_state;
           end else begin
             M_game_state_d = INCREMENT_INITIAL_BOARD_STATE_INDEX_game_state;

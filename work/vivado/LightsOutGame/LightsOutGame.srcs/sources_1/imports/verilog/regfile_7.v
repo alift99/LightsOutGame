@@ -49,7 +49,7 @@ module regfile_7 (
     if (read_address_2 == 4'h9) begin
       read_data_2 = 16'hffff;
     end
-    if (write_address != 4'h9 && write_address != 4'h8 && write_address != 3'h7 && write_enable) begin
+    if (write_enable) begin
       M_registers_d[(write_address)*16+15-:16] = write_data;
     end
     board_state = M_registers_q[0+15-:16];

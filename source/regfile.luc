@@ -27,7 +27,7 @@ module regfile (
     read_data_1 = registers.q[read_address_1];
     read_data_2 = registers.q[read_address_2];
    
-    // output "locked" values of R7, R8, R9 
+    // output constant values for R7, R8, R9 
     if (read_address_1 == 7) read_data_1 = 16b0;
     if (read_address_1 == 8) read_data_1 = 1;
     if (read_address_1 == 9) read_data_1 = b1111111111111111;
@@ -35,8 +35,7 @@ module regfile (
     if (read_address_2 == 8) read_data_2 = 1;
     if (read_address_2 == 9) read_data_2 = b1111111111111111;
     
-    // check if write_en and its not R7, R8, or R9 (we are locking these registers to contain specific constants
-    if (write_address != 9 && write_address != 8 && write_address != 7 && write_enable){
+    if (write_enable){
         registers.d[write_address] = write_data;
     }
     
