@@ -85,7 +85,7 @@ module game_fsm (
         }
         if (reset_btn_pressed)
          {
-          if (initial_board_index == 3)
+          if (initial_board_index == 5)
           {
             game_state.d = game_state.RESET_INITIAL_BOARD_STATE_INDEX;
           }
