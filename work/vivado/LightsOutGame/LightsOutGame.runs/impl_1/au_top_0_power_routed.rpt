@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Fri Apr 15 13:34:36 2022
+| Date             : Mon Apr 18 13:02:19 2022
 | Host             : LAPTOP-MQNOE1QL running 64-bit major release  (build 9200)
 | Command          : report_power -file au_top_0_power_routed.rpt -pb au_top_0_power_summary_routed.pb -rpx au_top_0_power_routed.rpx
 | Design           : au_top_0
@@ -53,14 +53,14 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.004 |        3 |       --- |             --- |
-| Slice Logic    |     0.001 |     1406 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      405 |     20800 |            1.95 |
-|   CARRY4       |    <0.001 |      111 |      8150 |            1.36 |
-|   Register     |    <0.001 |      652 |     41600 |            1.57 |
-|   Others       |     0.000 |      131 |       --- |             --- |
-|   BUFG         |     0.000 |        1 |        32 |            3.13 |
-| Signals        |     0.002 |     1116 |       --- |             --- |
-| I/O            |     0.013 |       38 |       170 |           22.35 |
+| Slice Logic    |     0.001 |     1693 |       --- |             --- |
+|   LUT as Logic |     0.001 |      622 |     20800 |            2.99 |
+|   CARRY4       |    <0.001 |      119 |      8150 |            1.46 |
+|   Register     |    <0.001 |      718 |     41600 |            1.73 |
+|   F7/F8 Muxes  |    <0.001 |        4 |     32600 |            0.01 |
+|   Others       |     0.000 |      127 |       --- |             --- |
+| Signals        |     0.002 |     1461 |       --- |             --- |
+| I/O            |     0.011 |       38 |       170 |           22.35 |
 | Static Power   |     0.072 |          |           |                 |
 | Total          |     0.091 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
@@ -72,9 +72,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.016 |       0.007 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.018 |       0.008 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.004 |       0.003 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -138,11 +138,12 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-----------+-----------+
-| Name      | Power (W) |
-+-----------+-----------+
-| au_top_0  |     0.019 |
-|   led_out |     0.001 |
-+-----------+-----------+
++-------------------+-----------+
+| Name              | Power (W) |
++-------------------+-----------+
+| au_top_0          |     0.019 |
+|   led_out         |     0.001 |
+|   regfile_machine |     0.001 |
++-------------------+-----------+
 
 

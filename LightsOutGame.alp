@@ -3,25 +3,30 @@
   <files>
     <component>edge_detector.luc</component>
     <src>alu.luc</src>
-    <src>color_adapter.luc</src>
+    <src>compare.luc</src>
     <src>display_encoder.luc</src>
-    <src>multi_dec_ctr.luc</src>
-    <src>multi_seven_seg.luc</src>
-    <src>display.luc</src>
-    <src>move_counter.luc</src>
-    <component>counter.luc</component>
-    <component>decoder.luc</component>
+    <src>regfile.luc</src>
     <component>encoder.luc</component>
     <src>difficulty_level_control.luc</src>
     <component>reset_conditioner.luc</component>
     <src>decimal_counter.luc</src>
+    <src>game_fsm.luc</src>
+    <src>seven_seg.luc</src>
+    <src>state_inverter.luc</src>
+    <component>button_conditioner.luc</component>
+    <src>adder.luc</src>
+    <src>boolean.luc</src>
+    <src>color_adapter.luc</src>
+    <src>multi_seven_seg.luc</src>
+    <src>display.luc</src>
+    <src>move_counter.luc</src>
+    <component>counter.luc</component>
+    <src>mux2.luc</src>
+    <component>decoder.luc</component>
     <src>initial_board_states.luc</src>
     <src top="true">au_top.luc</src>
     <component>pipeline.luc</component>
-    <src>seven_seg.luc</src>
     <src>led_out.luc</src>
-    <src>state_inverter.luc</src>
-    <component>button_conditioner.luc</component>
     <constraint>io.acf</constraint>
     <constraint lib="true">au.xdc</constraint>
     <constraint>alchitry.acf</constraint>

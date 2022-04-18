@@ -36,15 +36,16 @@ module au_top (
   edge_detector diff_btn_detector(#RISE(1), #FALL(0), .clk(clk));
   button_conditioner diff_btn_cond(.clk(clk));
   
-  difficulty_level_control diff_control(.clk(clk), .rst(rst));
-  
+  game_fsm game_sm(.clk(clk), .rst(rst));
+  regfile regfile_machine(.clk(clk));
   alu alu_machine;
-  initial_board_states initial_states(.clk(clk), .rst(rst));
+  
+  initial_board_states initial_states;
   move_counter move_counter_module(.clk(clk), .rst(rst));  
   led_out led_out (.clk(clk), .rst(rst));
   
-  dff board_state[16](#INIT(b0011011111111111), .clk(clk), .rst(rst));
-  fsm game_state(.clk(clk), .rst(rst)) = {IN_GAME, GAME_OVER};
+  mux2 asel_mux;
+  mux2 bsel_mux;
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
@@ -64,92 +65,138 @@ module au_top (
     diff_btn_cond.in = difficulty_button;
     diff_btn_detector.in = diff_btn_cond.out;
     
-    initial_states.update_state = 0;
+    initial_states.state_index = regfile_machine.initial_board_state_index;
     
-    move_counter_module.inc = 0;
-    move_counter_module.reset_counter = 0;
+    //regfile_machine.write_enable = 0;
+    //regfile_machine.read_address_1 = 0;
+    //regfile_machine.read_address_2 = 0;
+    //regfile_machine.write_address = 0;
+    //regfile_machine.write_data = 0;
     
-    diff_control.update_difficulty = 0;
-    diff_control.update_move = 0;
-    diff_control.reset_counter = 0;
+    //alu_machine.a = 16b0;
+    //alu_machine.b = 16b0;
+    //alu_machine.alufn = 6b0;    
+   
+    //asel_mux.a = 16b0;
+    //asel_mux.b = 16b0;
+    //asel_mux.sel = 0;
     
-    move_counter_module.difficulty = diff_control.difficulty;
-       
-    case(game_state.q)
-    {
-      game_state.IN_GAME:
-        // io_led[2][7] = 0; // For debugging game_state
-        if(button_detector.out != 16b0)
-        {
-          // update move count
-          move_counter_module.inc = 1;
-          
-          // update difficulty counter
-          diff_control.update_move = 1;
-          
-          // get new state using ALU  
-          alu_machine.button_pressed = button_detector.out;
-          alu_machine.state = board_state.q;
-          board_state.d = alu_machine.out;
-          
-          // change to GAME_OVER state if board is solved
-          if(alu_machine.game_over)
-          {
-            game_state.d = game_state.GAME_OVER;
-          }
-        }
-        else
-        {
-          alu_machine.button_pressed = 16b0;
-          alu_machine.state = board_state.q;
-        }
+    //bsel_mux.a = 16b0;
+    //bsel_mux.b = 16b0;
+    //bsel_mux.sel = 0;
         
-        if (reset_btn_detector.out)
-        {
-          initial_states.update_state = 1;
-          board_state.d = initial_states.out;
-          move_counter_module.reset_counter = 1;
-          diff_control.reset_counter = 1;
-        }
-        
-        if (diff_btn_detector.out)
-        {
-          diff_control.update_difficulty = 1;
-        }
-      game_state.GAME_OVER:
-        // io_led[2][7] = 1; // For debugging game_state
-        
-        if (reset_btn_detector.out)
-        {
-          game_state.d = game_state.IN_GAME;
-          initial_states.update_state = 1;
-          board_state.d = initial_states.out;
-          // Reset move counter
-          move_counter_module.reset_counter = 1;
-          diff_control.reset_counter = 1;
-        }
-    }
+    //if (button_detector.out != 16b0)
+    //{
+    //  regfile_machine.write_enable = 1;
+    //  regfile_machine.read_address_1 = 0;
+    // regfile_machine.read_address_2 = 0;
+    //  regfile_machine.write_address = 0;
       
-    // Debugging board state on io led strip
-    if (diff_control.hidden_turns == 0 | game_state.q == game_state.GAME_OVER)
+    //  asel_mux.a = regfile_machine.read_data_1;
+    //  asel_mux.b = initial_states.out;
+    //  asel_mux.sel = 0;
+      
+    //  bsel_mux.a = regfile_machine.read_data_2;
+    //  bsel_mux.b = button_detector.out;
+    //  bsel_mux.sel = 1;
+      
+    //  alu_machine.a = asel_mux.out;
+    //  alu_machine.b = bsel_mux.out;
+    //  alu_machine.alufn = b100000;
+    //  regfile_machine.write_data = alu_machine.out;
+    //}
+    
+    //if (reset_btn_detector.out)
+    //{
+    //  regfile_machine.write_enable = 1;
+    //  regfile_machine.read_address_1 = 0;
+    //  regfile_machine.read_address_2 = 7;
+    //  regfile_machine.write_address = 0;
+      
+    //  asel_mux.a = regfile_machine.read_data_1;
+    //  asel_mux.b = initial_states.out;
+    //  asel_mux.sel = 1;
+      
+    //  bsel_mux.a = regfile_machine.read_data_2;
+    //  bsel_mux.b = button_detector.out;
+    //  bsel_mux.sel = 0;
+      
+    //  alu_machine.a = asel_mux.out;
+    //  alu_machine.b = bsel_mux.out;
+    //  alu_machine.alufn = 6b0;
+    //  regfile_machine.write_data = alu_machine.out;
+    //}
+    
+    //if (diff_btn_detector.out)
+    //{
+    //  regfile_machine.write_enable = 1;
+    //  regfile_machine.read_address_1 = 4;
+    //  regfile_machine.read_address_2 = 8;
+    //  regfile_machine.write_address = 4;
+      
+    //  asel_mux.a = regfile_machine.read_data_1;
+    //  asel_mux.b = initial_states.out;
+    //  asel_mux.sel = 0;
+      
+    //  bsel_mux.a = regfile_machine.read_data_2;
+    //  bsel_mux.b = button_detector.out;
+    //  bsel_mux.sel = 0;
+      
+    //  alu_machine.a = asel_mux.out;
+    //  alu_machine.b = bsel_mux.out;
+    //  alu_machine.alufn = 6b0;
+    //  regfile_machine.write_data = alu_machine.out;
+    //} 
+          
+    // Pass input into fsm
+    game_sm.button_pressed = button_detector.out;
+    game_sm.reset_btn_pressed = reset_btn_detector.out;
+    game_sm.difficulty_btn_pressed = diff_btn_detector.out;
+    
+    game_sm.initial_board_index = regfile_machine.initial_board_state_index;
+    game_sm.move_count_1 = regfile_machine.move_count_1;
+    game_sm.difficulty_level = regfile_machine.difficulty_level;
+    game_sm.hidden_turns_left = regfile_machine.hidden_turns_left;
+    game_sm.game_over = regfile_machine.game_over;
+    
+    regfile_machine.write_enable = game_sm.we;
+    regfile_machine.read_address_1 = game_sm.ra;
+    regfile_machine.read_address_2 = game_sm.rb;
+    regfile_machine.write_address = game_sm.rc;
+    
+    asel_mux.a = regfile_machine.read_data_1;
+    asel_mux.b = initial_states.out;
+    asel_mux.sel = game_sm.asel;
+    
+    bsel_mux.a = regfile_machine.read_data_2;
+    bsel_mux.b = button_detector.out;
+    bsel_mux.sel = game_sm.bsel;
+    
+    alu_machine.a = asel_mux.out;
+    alu_machine.b = bsel_mux.out;
+    alu_machine.alufn = game_sm.alufn;
+    
+    regfile_machine.write_data = alu_machine.out;
+    
+    // Decide whether board state should be displayed or not
+    if (regfile_machine.hidden_turns_left == 0 | regfile_machine.game_over)
     {
       led_out.power_on = 1;
-      // io_led[0][7:0] = board_state.q[7:0];
-      // io_led[1][7:0] = board_state.q[15:8];
     }
     else
     {
       led_out.power_on = 0;
-      // io_led[0][7:0] = 8b0;
-      // io_led[1][7:0] = 8b0;  
-      // io_led[2][7:0] = 8b0;  
     }
     
-    led_out.board_state = board_state.q;
+    led_out.board_state = regfile_machine.board_state;
     led_strip[0] = led_out.out0;
     led_strip[1] = led_out.out1;
     led_strip[2] = led_out.out2;
     led_strip[3] = led_out.out3;
+    
+    move_counter_module.move_counter_1 = regfile_machine.move_count_1;
+    move_counter_module.move_counter_2 = regfile_machine.move_count_2;
+    move_counter_module.difficulty = regfile_machine.difficulty_level + 1;
     
     io_seg = move_counter_module.seg_out;
     io_sel = move_counter_module.sel_out;      

@@ -1,0 +1,52 @@
+module regfile (
+    input clk,  // clock
+    input read_address_1[4],
+    input read_address_2[4],
+    output read_data_1[16], //** outputs 16bits data instead of original 32 bits cuz beta cpu
+    output read_data_2[16], //** outputs 16bits data instead of original 32 bits cuz beta cpu
+    input write_address[4],
+    input write_data[16], //** take 16bits input data instead of 32 bits cuz beta cpu
+    input write_enable,
+    // Values constantly needed to be displayed are made "public"
+    output board_state[16],
+    output initial_board_state_index[16],
+    output move_count_1[16],
+    output move_count_2[16],
+    output difficulty_level[16],
+    output hidden_turns_left[16],
+    output game_over[16]
+  ) 
+{
+  
+  dff registers[10][16](#INIT(10x{{16b0}}), .clk(clk)); //**there are 10 registers in use, each of 16bit
+  
+  always 
+  {
+    
+    //always read 
+    read_data_1 = registers.q[read_address_1];
+    read_data_2 = registers.q[read_address_2];
+   
+    // output "locked" values of R7, R8, R9 
+    if (read_address_1 == 7) read_data_1 = 16b0;
+    if (read_address_1 == 8) read_data_1 = 1;
+    if (read_address_1 == 9) read_data_1 = b1111111111111111;
+    if (read_address_2 == 7) read_data_2 = 16b0;
+    if (read_address_2 == 8) read_data_2 = 1;
+    if (read_address_2 == 9) read_data_2 = b1111111111111111;
+    
+    // check if write_en and its not R7, R8, or R9 (we are locking these registers to contain specific constants
+    if (write_address != 9 && write_address != 8 && write_address != 7 && write_enable){
+        registers.d[write_address] = write_data;
+    }
+    
+    board_state = registers.q[0];
+    initial_board_state_index = registers.q[1];
+    move_count_1 = registers.q[2];
+    move_count_2 = registers.q[3];
+    difficulty_level = registers.q[4];
+    hidden_turns_left = registers.q[5];
+    game_over = registers.q[6];
+    
+  }
+}

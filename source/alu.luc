@@ -1,32 +1,67 @@
 module alu (
-  input state[16],
-  input button_pressed[16],
+  input a[16],
+  input b[16],
+  input alufn[6],
   output out[16],
-  output game_over
-  // output led_data[4][12] 
+  output zvn[3]
 )
 {
 
-  state_inverter inverter_module;
-  // display_encoder d_encoder_module;  
-  
-  sig new_state[16];
+  adder adderModule;
+  boolean booleanModule;
+  compare compareModule;
+  state_inverter inverterModule;
+
+  sig z;
+  sig v;
+  sig n;
+  sig tempOut[16];
 
   always 
   {
-    // Invert previous state
-    inverter_module.state = state;
-    inverter_module.button_pressed = button_pressed;
-    new_state = inverter_module.out;
-    // Check for victory
-    game_over = &new_state;
-    // Output new_state to au_top
-    out = new_state;
-    // Output encoded representation of state to au_top
-    // d_encoder_module.state = new_state; 
-    // led_data[0] = d_encoder_module.strip0;
-    // led_data[1] = d_encoder_module.strip1;   
-    // led_data[2] = d_encoder_module.strip2;
-    // led_data[3] = d_encoder_module.strip3;s  
+	    //passes in alufn signal, a and b into adder
+    	adderModule.alufn = alufn;
+  	  adderModule.a = a;
+  	  adderModule.b = b;
+  
+  	  //stores output of adder to 3 variables: z, v and n. 
+  	  z = adderModule.z;
+  	  v = adderModule.v;
+  	  n = adderModule.n;
+  
+    	//outputs z,v and n
+    	zvn[0] = z;
+    	zvn[1] = v;
+    	zvn[2] = n;  
+  	
+    	//similarly, passing in the values for compare and boolean
+    	compareModule.alufn = alufn;
+    	compareModule.z = z;
+    	compareModule.v = v;
+    	compareModule.n = n;
+    		
+    	booleanModule.alufn = alufn;
+    	booleanModule.a = a;
+    	booleanModule.b = b; 
+    
+    inverterModule.state = a;
+    inverterModule.button_pressed = b;
+    
+    	case(alufn[5:4])
+    {		
+		    b00: 
+        tempOut = adderModule.out;
+		    b01: 
+        tempOut = booleanModule.out;
+		    b10: 
+        tempOut = inverterModule.out;
+		    b11: 
+        tempOut = compareModule.out;
+		    default: 
+        tempOut = 16b0;		
+		  }
+    
+     out = tempOut;
+    
 	  }
 }

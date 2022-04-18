@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri Apr 15 13:34:09 2022
+| Date         : Mon Apr 18 13:01:43 2022
 | Host         : LAPTOP-MQNOE1QL running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
 | Design       : au_top_0
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    41 |
-|    Minimum number of control sets                        |    41 |
+| Total control sets                                       |    45 |
+|    Minimum number of control sets                        |    45 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   132 |
+| Unused register locations in slices containing registers |   130 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    41 |
+| Total control sets |    45 |
 | >= 0 to < 4        |     0 |
-| >= 4 to < 6        |    11 |
+| >= 4 to < 6        |     9 |
 | >= 6 to < 8        |     4 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     4 |
 | >= 14 to < 16      |     0 |
-| >= 16              |    22 |
+| >= 16              |    28 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,62 +58,66 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              88 |           43 |
+| No           | No                    | No                     |              54 |           23 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              64 |           21 |
-| Yes          | No                    | No                     |               0 |            0 |
+| No           | Yes                   | No                     |              58 |           20 |
+| Yes          | No                    | No                     |             112 |           73 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             500 |          135 |
+| Yes          | Yes                   | No                     |             494 |          138 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------+---------------------------------------------------------+----------------------------------------------------------+------------------+----------------+--------------+
-|     Clock Signal     |                      Enable Signal                      |                     Set/Reset Signal                     | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------------+---------------------------------------------------------+----------------------------------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG       | led_out/display2/M_pixel_ctr_q[3]_i_1__1_n_0            | reset_cond/Q[0]                                          |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG       |                                                         | reset_cond/M_reset_cond_in                               |                3 |              4 |         1.33 |
-|  clk_IBUF_BUFG       | led_out/display1/M_pixel_ctr_q[3]_i_1__2_n_0            | reset_cond/Q[0]                                          |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG       | led_out/display0/M_pixel_ctr_q[3]_i_1_n_0               | reset_cond/Q[0]                                          |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG       | led_out/display3/M_pixel_ctr_q[3]_i_1__0_n_0            | reset_cond/Q[0]                                          |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG       | button_detector_gen_0[4].button_detector/E[0]           | reset_btn_cond/SR[0]                                     |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG       | reset_btn_cond/M_game_state_q_reg[0]                    | reset_cond/M_stage_q_reg[3]_0[0]                         |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG       | led_out/display0/M_bit_ctr_q[4]_i_1_n_0                 | reset_cond/Q[0]                                          |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG       | led_out/display1/M_bit_ctr_q[4]_i_1__0_n_0              | reset_cond/Q[0]                                          |                2 |              5 |         2.50 |
-|  clk_IBUF_BUFG       | led_out/display2/M_bit_ctr_q[4]_i_1__1_n_0              | reset_cond/Q[0]                                          |                2 |              5 |         2.50 |
-|  clk_IBUF_BUFG       | led_out/display3/M_bit_ctr_q[4]_i_1__2_n_0              | reset_cond/Q[0]                                          |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG       | led_out/display1/M_state_d                              | reset_cond/Q[0]                                          |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG       | led_out/display0/M_state_d                              | reset_cond/Q[0]                                          |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG       | led_out/display2/M_state_d                              | reset_cond/Q[0]                                          |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG       | led_out/display3/M_state_d                              | reset_cond/Q[0]                                          |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG       | led_out/display1/M_rst_ctr_q[0]_i_2__0_n_0              | led_out/display1/M_rst_ctr_q[0]_i_1__0_n_0               |                4 |             13 |         3.25 |
-|  clk_IBUF_BUFG       | led_out/display0/M_rst_ctr_q[0]_i_2_n_0                 | led_out/display0/M_rst_ctr_q[0]_i_1_n_0                  |                4 |             13 |         3.25 |
-|  clk_IBUF_BUFG       | led_out/display2/M_rst_ctr_q[0]_i_2__1_n_0              | led_out/display2/M_rst_ctr_q[0]_i_1__1_n_0               |                4 |             13 |         3.25 |
-|  clk_IBUF_BUFG       | led_out/display3/M_rst_ctr_q[0]_i_2__2_n_0              | led_out/display3/M_rst_ctr_q[0]_i_1__2_n_0               |                4 |             13 |         3.25 |
-|  clk_IBUF_BUFG       | reset_btn_cond/E[0]                                     | reset_cond/Q[0]                                          |                5 |             16 |         3.20 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[4].button_cond/M_ctr_q[0]_i_2__10_n_0 | button_cond_gen_0[4].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[11].button_cond/M_ctr_q[0]_i_2__3_n_0 | button_cond_gen_0[11].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[5].button_cond/M_ctr_q[0]_i_2__9_n_0  | button_cond_gen_0[5].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[6].button_cond/M_ctr_q[0]_i_2__8_n_0  | button_cond_gen_0[6].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[7].button_cond/M_ctr_q[0]_i_2__7_n_0  | button_cond_gen_0[7].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[8].button_cond/M_ctr_q[0]_i_2__6_n_0  | button_cond_gen_0[8].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[9].button_cond/M_ctr_q[0]_i_2__5_n_0  | button_cond_gen_0[9].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[12].button_cond/M_ctr_q[0]_i_2__2_n_0 | button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[13].button_cond/M_ctr_q[0]_i_2__1_n_0 | button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | diff_btn_cond/M_ctr_q_reg[12]_0                         | diff_btn_cond/sync/M_pipe_q_reg[1]_0                     |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | reset_btn_cond/M_ctr_q_reg[12]_0                        | reset_btn_cond/sync/M_pipe_q_reg[1]_0                    |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[0].button_cond/M_ctr_q[0]_i_2__14_n_0 | button_cond_gen_0[0].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[10].button_cond/M_ctr_q[0]_i_2__4_n_0 | button_cond_gen_0[10].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[14].button_cond/M_ctr_q[0]_i_2__0_n_0 | button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[15].button_cond/sel                   | button_cond_gen_0[15].button_cond/sync/clear             |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[1].button_cond/M_ctr_q[0]_i_2__13_n_0 | button_cond_gen_0[1].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[2].button_cond/M_ctr_q[0]_i_2__12_n_0 | button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG       | button_cond_gen_0[3].button_cond/M_ctr_q[0]_i_2__11_n_0 | button_cond_gen_0[3].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
-| ~M_game_state_q_BUFG |                                                         |                                                          |               17 |             32 |         1.88 |
-|  clk_IBUF_BUFG       |                                                         |                                                          |               26 |             56 |         2.15 |
-|  clk_IBUF_BUFG       |                                                         | reset_cond/Q[0]                                          |               18 |             60 |         3.33 |
-+----------------------+---------------------------------------------------------+----------------------------------------------------------+------------------+----------------+--------------+
++----------------+---------------------------------------------------------+----------------------------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |                      Enable Signal                      |                     Set/Reset Signal                     | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+---------------------------------------------------------+----------------------------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | led_out/display0/M_pixel_ctr_q[3]_i_1_n_0               | reset_cond/Q[0]                                          |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG |                                                         | reset_cond/M_reset_cond_in                               |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | led_out/display1/M_pixel_ctr_q[3]_i_1__0_n_0            | reset_cond/Q[0]                                          |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | led_out/display3/M_pixel_ctr_q[3]_i_1__2_n_0            | reset_cond/Q[0]                                          |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | led_out/display2/M_pixel_ctr_q[3]_i_1__1_n_0            | reset_cond/Q[0]                                          |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | led_out/display0/M_bit_ctr_q[4]_i_1_n_0                 | reset_cond/Q[0]                                          |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | led_out/display1/M_bit_ctr_q[4]_i_1__0_n_0              | reset_cond/Q[0]                                          |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | led_out/display3/M_bit_ctr_q[4]_i_1__2_n_0              | reset_cond/Q[0]                                          |                2 |              5 |         2.50 |
+|  clk_IBUF_BUFG | led_out/display2/M_bit_ctr_q[4]_i_1__1_n_0              | reset_cond/Q[0]                                          |                2 |              5 |         2.50 |
+|  clk_IBUF_BUFG | led_out/display0/M_state_d                              | reset_cond/Q[0]                                          |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG | led_out/display1/M_state_d                              | reset_cond/Q[0]                                          |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG | led_out/display2/M_state_d                              | reset_cond/Q[0]                                          |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG | led_out/display3/M_state_d                              | reset_cond/Q[0]                                          |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG | led_out/display3/M_rst_ctr_q[0]_i_2__2_n_0              | led_out/display3/M_rst_ctr_q[0]_i_1__2_n_0               |                4 |             13 |         3.25 |
+|  clk_IBUF_BUFG | led_out/display2/M_rst_ctr_q[0]_i_2__1_n_0              | led_out/display2/M_rst_ctr_q[0]_i_1__1_n_0               |                4 |             13 |         3.25 |
+|  clk_IBUF_BUFG | led_out/display0/M_rst_ctr_q[0]_i_2_n_0                 | led_out/display0/M_rst_ctr_q[0]_i_1_n_0                  |                4 |             13 |         3.25 |
+|  clk_IBUF_BUFG | led_out/display1/M_rst_ctr_q[0]_i_2__0_n_0              | led_out/display1/M_rst_ctr_q[0]_i_1__0_n_0               |                4 |             13 |         3.25 |
+|  clk_IBUF_BUFG | game_sm/FSM_onehot_M_game_state_q_reg[9]_18             |                                                          |                9 |             16 |         1.78 |
+|  clk_IBUF_BUFG | game_sm/FSM_onehot_M_game_state_q_reg[9]_19             |                                                          |                9 |             16 |         1.78 |
+|  clk_IBUF_BUFG | game_sm/FSM_onehot_M_game_state_q_reg[9]_20             |                                                          |               10 |             16 |         1.60 |
+|  clk_IBUF_BUFG | game_sm/FSM_onehot_M_game_state_q_reg[9]_21             |                                                          |               12 |             16 |         1.33 |
+|  clk_IBUF_BUFG | game_sm/FSM_onehot_M_game_state_q_reg[9]_22             |                                                          |               12 |             16 |         1.33 |
+|  clk_IBUF_BUFG | game_sm/FSM_onehot_M_game_state_q_reg[9]_17             |                                                          |               12 |             16 |         1.33 |
+|  clk_IBUF_BUFG | game_sm/FSM_onehot_M_game_state_q_reg[9]_23             |                                                          |                9 |             16 |         1.78 |
+|  clk_IBUF_BUFG | game_sm/FSM_onehot_M_game_state_q[17]_i_1_n_0           | reset_cond/Q[0]                                          |                5 |             18 |         3.60 |
+|  clk_IBUF_BUFG | reset_btn_cond/M_ctr_q[0]_i_2__15_n_0                   | reset_btn_cond/sync/M_pipe_q_reg[1]_0                    |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[14].button_cond/M_ctr_q[0]_i_2__0_n_0 | button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[15].button_cond/sel                   | button_cond_gen_0[15].button_cond/sync/clear             |                7 |             20 |         2.86 |
+|  clk_IBUF_BUFG | button_cond_gen_0[1].button_cond/M_ctr_q[0]_i_2__13_n_0 | button_cond_gen_0[1].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[2].button_cond/M_ctr_q[0]_i_2__12_n_0 | button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[3].button_cond/M_ctr_q[0]_i_2__11_n_0 | button_cond_gen_0[3].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[4].button_cond/M_ctr_q[0]_i_2__10_n_0 | button_cond_gen_0[4].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[5].button_cond/M_ctr_q[0]_i_2__9_n_0  | button_cond_gen_0[5].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[6].button_cond/M_ctr_q[0]_i_2__8_n_0  | button_cond_gen_0[6].button_cond/sync/M_pipe_q_reg[1]_0  |                8 |             20 |         2.50 |
+|  clk_IBUF_BUFG | button_cond_gen_0[7].button_cond/M_ctr_q[0]_i_2__7_n_0  | button_cond_gen_0[7].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[9].button_cond/M_ctr_q[0]_i_2__5_n_0  | button_cond_gen_0[9].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[12].button_cond/M_ctr_q[0]_i_2__2_n_0 | button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[13].button_cond/M_ctr_q[0]_i_2__1_n_0 | button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[1]_0 |                7 |             20 |         2.86 |
+|  clk_IBUF_BUFG | button_cond_gen_0[0].button_cond/M_ctr_q[0]_i_2__14_n_0 | button_cond_gen_0[0].button_cond/sync/M_pipe_q_reg[1]_0  |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG | button_cond_gen_0[8].button_cond/M_ctr_q[0]_i_2__6_n_0  | button_cond_gen_0[8].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[11].button_cond/M_ctr_q[0]_i_2__3_n_0 | button_cond_gen_0[11].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | diff_btn_cond/M_ctr_q[0]_i_2__16_n_0                    | diff_btn_cond/sync/M_pipe_q_reg[1]_0                     |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG | button_cond_gen_0[10].button_cond/M_ctr_q[0]_i_2__4_n_0 | button_cond_gen_0[10].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG |                                                         |                                                          |               23 |             54 |         2.35 |
+|  clk_IBUF_BUFG |                                                         | reset_cond/Q[0]                                          |               18 |             54 |         3.00 |
++----------------+---------------------------------------------------------+----------------------------------------------------------+------------------+----------------+--------------+
 
 

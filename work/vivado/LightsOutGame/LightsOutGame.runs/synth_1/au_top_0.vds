@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri Apr 15 13:32:32 2022
-# Process ID: 11816
+# Start of session at: Mon Apr 18 12:59:53 2022
+# Process ID: 8008
 # Current directory: D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.runs/synth_1
 # Command line: vivado.exe -log au_top_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source au_top_0.tcl
 # Log file: D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.runs/synth_1/au_top_0.vds
@@ -17,13 +17,11 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 15348
+INFO: [Synth 8-7075] Helper process launched with PID 1180
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'au_top_0' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/au_top_0.v:7]
-	Parameter IN_GAME_game_state bound to: 1'b0 
-	Parameter GAME_OVER_game_state bound to: 1'b1 
 INFO: [Synth 8-6157] synthesizing module 'edge_detector_2' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/edge_detector_2.v:12]
 	Parameter RISE bound to: 1'b1 
 	Parameter FALL bound to: 1'b0 
@@ -32,72 +30,98 @@ INFO: [Synth 8-6157] synthesizing module 'button_conditioner_3' [D:/Alchitry Pro
 	Parameter CLK_FREQ bound to: 26'b10111110101111000010000000 
 	Parameter MIN_DELAY bound to: 5'b10100 
 	Parameter NUM_SYNC bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'pipeline_9' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_9.v:11]
+INFO: [Synth 8-6157] synthesizing module 'pipeline_11' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_11.v:11]
 	Parameter DEPTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'pipeline_9' (2#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_9.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'pipeline_11' (2#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/pipeline_11.v:11]
 INFO: [Synth 8-6155] done synthesizing module 'button_conditioner_3' (3#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/button_conditioner_3.v:13]
 INFO: [Synth 8-6157] synthesizing module 'reset_conditioner_1' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
 	Parameter STAGES bound to: 3'b100 
 INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner_1' (4#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
-INFO: [Synth 8-6157] synthesizing module 'difficulty_level_control_4' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/difficulty_level_control_4.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'difficulty_level_control_4' (5#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/difficulty_level_control_4.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_5' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_5.v:7]
-INFO: [Synth 8-6157] synthesizing module 'state_inverter_10' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/state_inverter_10.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'state_inverter_10' (6#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/state_inverter_10.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_5' (7#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_5.v:7]
-INFO: [Synth 8-6157] synthesizing module 'initial_board_states_6' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/initial_board_states_6.v:7]
+INFO: [Synth 8-6157] synthesizing module 'game_fsm_4' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/game_fsm_4.v:7]
+	Parameter INITIALIZE_BOARD_STATE_game_state bound to: 5'b00000 
+	Parameter AWAIT_INPUT_game_state bound to: 5'b00001 
+	Parameter INCREMENT_MOVE_COUNT_1_game_state bound to: 5'b00010 
+	Parameter SET_MOVE_COUNT_1_TO_ZERO_game_state bound to: 5'b00011 
+	Parameter INCREMENT_MOVE_COUNT_2_game_state bound to: 5'b00100 
+	Parameter ASSIGN_HIDDEN_TURNS_game_state bound to: 5'b00101 
+	Parameter DECREMENT_HIDDEN_TURNS_game_state bound to: 5'b00110 
+	Parameter CHECK_BOARD_game_state bound to: 5'b00111 
+	Parameter CHECK_FOR_GAME_OVER_game_state bound to: 5'b01000 
+	Parameter RESET_DIFFICULTY_game_state bound to: 5'b01001 
+	Parameter INCREMENT_DIFFICULTY_game_state bound to: 5'b01010 
+	Parameter RESET_INITIAL_BOARD_STATE_INDEX_game_state bound to: 5'b01011 
+	Parameter INCREMENT_INITIAL_BOARD_STATE_INDEX_game_state bound to: 5'b01100 
+	Parameter ASSIGN_NEW_BOARD_STATE_game_state bound to: 5'b01101 
+	Parameter RESET_MOVE_COUNT_1_game_state bound to: 5'b01110 
+	Parameter RESET_MOVE_COUNT_2_game_state bound to: 5'b01111 
+	Parameter SET_HIDDEN_TURNS_TO_ZERO_game_state bound to: 5'b10000 
+	Parameter GAME_OVER_game_state bound to: 5'b10001 
+INFO: [Synth 8-155] case statement is not full and has no default [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/game_fsm_4.v:62]
+INFO: [Synth 8-6155] done synthesizing module 'game_fsm_4' (5#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/game_fsm_4.v:7]
+INFO: [Synth 8-6157] synthesizing module 'regfile_5' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/regfile_5.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'regfile_5' (6#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/regfile_5.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_6' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_6.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adder_12' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/adder_12.v:7]
+INFO: [Synth 8-226] default block is never used [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/adder_12.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'adder_12' (7#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/adder_12.v:7]
+INFO: [Synth 8-6157] synthesizing module 'boolean_13' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/boolean_13.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'boolean_13' (8#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/boolean_13.v:7]
+INFO: [Synth 8-6157] synthesizing module 'compare_14' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/compare_14.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'compare_14' (9#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/compare_14.v:7]
+INFO: [Synth 8-6157] synthesizing module 'state_inverter_15' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/state_inverter_15.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'state_inverter_15' (10#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/state_inverter_15.v:7]
+INFO: [Synth 8-226] default block is never used [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_6.v:95]
+INFO: [Synth 8-6155] done synthesizing module 'alu_6' (11#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/alu_6.v:7]
+INFO: [Synth 8-6157] synthesizing module 'initial_board_states_7' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/initial_board_states_7.v:7]
 	Parameter BOARD_STATES bound to: 64'b1011000010001110111110010110100110110001001000000100101111101111 
-INFO: [Synth 8-6155] done synthesizing module 'initial_board_states_6' (8#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/initial_board_states_6.v:7]
-INFO: [Synth 8-6157] synthesizing module 'move_counter_7' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/move_counter_7.v:7]
-INFO: [Synth 8-6157] synthesizing module 'multi_seven_seg_11' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_seven_seg_11.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'initial_board_states_7' (12#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/initial_board_states_7.v:7]
+INFO: [Synth 8-6157] synthesizing module 'move_counter_8' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/move_counter_8.v:7]
+INFO: [Synth 8-6157] synthesizing module 'multi_seven_seg_16' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_seven_seg_16.v:12]
 	Parameter DIGITS bound to: 3'b100 
 	Parameter DIV bound to: 5'b10000 
 	Parameter DIGIT_BITS bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'counter_16' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_16.v:14]
+INFO: [Synth 8-6157] synthesizing module 'counter_20' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_20.v:14]
 	Parameter SIZE bound to: 2'b10 
 	Parameter DIV bound to: 5'b10000 
 	Parameter TOP bound to: 4'b0011 
 	Parameter UP bound to: 1'b1 
 	Parameter MAX_VALUE bound to: 20'b00111111111111111111 
-INFO: [Synth 8-6155] done synthesizing module 'counter_16' (9#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_16.v:14]
-INFO: [Synth 8-6157] synthesizing module 'seven_seg_17' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/seven_seg_17.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'seven_seg_17' (10#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/seven_seg_17.v:7]
-INFO: [Synth 8-6157] synthesizing module 'decoder_18' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decoder_18.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'counter_20' (13#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/counter_20.v:14]
+INFO: [Synth 8-6157] synthesizing module 'seven_seg_21' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/seven_seg_21.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'seven_seg_21' (14#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/seven_seg_21.v:7]
+INFO: [Synth 8-6157] synthesizing module 'decoder_22' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decoder_22.v:11]
 	Parameter WIDTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'decoder_18' (11#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decoder_18.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'multi_seven_seg_11' (12#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_seven_seg_11.v:12]
-INFO: [Synth 8-6157] synthesizing module 'multi_dec_ctr_12' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_dec_ctr_12.v:11]
-	Parameter DIGITS bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'decimal_counter_19' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decimal_counter_19.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'decimal_counter_19' (13#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decimal_counter_19.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'multi_dec_ctr_12' (14#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_dec_ctr_12.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'move_counter_7' (15#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/move_counter_7.v:7]
-INFO: [Synth 8-6157] synthesizing module 'led_out_8' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/led_out_8.v:7]
-INFO: [Synth 8-6157] synthesizing module 'display_encoder_13' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_13.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'display_encoder_13' (16#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_13.v:7]
-INFO: [Synth 8-6157] synthesizing module 'color_adapter_14' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/color_adapter_14.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'decoder_22' (15#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/decoder_22.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'multi_seven_seg_16' (16#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/multi_seven_seg_16.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'move_counter_8' (17#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/move_counter_8.v:7]
+INFO: [Synth 8-6157] synthesizing module 'led_out_9' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/led_out_9.v:7]
+INFO: [Synth 8-6157] synthesizing module 'display_encoder_17' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_17.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'display_encoder_17' (18#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_encoder_17.v:7]
+INFO: [Synth 8-6157] synthesizing module 'color_adapter_18' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/color_adapter_18.v:7]
 	Parameter EMPTY bound to: 288'b000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000 
-INFO: [Synth 8-6155] done synthesizing module 'color_adapter_14' (17#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/color_adapter_14.v:7]
-INFO: [Synth 8-6157] synthesizing module 'display_15' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_15.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'color_adapter_18' (19#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/color_adapter_18.v:7]
+INFO: [Synth 8-6157] synthesizing module 'display_19' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_19.v:11]
 	Parameter PIXEL_COUNT bound to: 4'b1100 
 	Parameter SEND_PIXEL_state bound to: 1'b0 
 	Parameter RESET_state bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'display_15' (18#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_15.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'led_out_8' (19#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/led_out_8.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'au_top_0' (20#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/au_top_0.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'display_19' (20#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/display_19.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'led_out_9' (21#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/led_out_9.v:7]
+INFO: [Synth 8-6157] synthesizing module 'mux2_10' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/mux2_10.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'mux2_10' (22#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/mux2_10.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'au_top_0' (23#1) [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/au_top_0.v:7]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.078 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.083 . Memory (MB): peak = 999.367 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -114,31 +138,53 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/au_top_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 999.367 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'M_alu_machine_state_reg' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/au_top_0.v:112]
-WARNING: [Synth 8-327] inferring latch for variable 'M_alu_machine_button_pressed_reg' [D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.srcs/sources_1/imports/verilog/au_top_0.v:113]
+INFO: [Synth 8-802] inferred FSM for state register 'M_game_state_q_reg' in module 'game_fsm_4'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+INITIALIZE_BOARD_STATE_game_state |               000000000000000001 |                            00000
+  AWAIT_INPUT_game_state |               000000000000000010 |                            00001
+RESET_DIFFICULTY_game_state |               000000000000000100 |                            01001
+INCREMENT_DIFFICULTY_game_state |               000000000000001000 |                            01010
+SET_MOVE_COUNT_1_TO_ZERO_game_state |               000000000000010000 |                            00011
+INCREMENT_MOVE_COUNT_2_game_state |               000000000000100000 |                            00100
+INCREMENT_MOVE_COUNT_1_game_state |               000000000001000000 |                            00010
+ASSIGN_HIDDEN_TURNS_game_state |               000000000010000000 |                            00101
+DECREMENT_HIDDEN_TURNS_game_state |               000000000100000000 |                            00110
+  CHECK_BOARD_game_state |               000000001000000000 |                            00111
+CHECK_FOR_GAME_OVER_game_state |               000000010000000000 |                            01000
+    GAME_OVER_game_state |               000000100000000000 |                            10001
+RESET_INITIAL_BOARD_STATE_INDEX_game_state |               000001000000000000 |                            01011
+INCREMENT_INITIAL_BOARD_STATE_INDEX_game_state |               000010000000000000 |                            01100
+ASSIGN_NEW_BOARD_STATE_game_state |               000100000000000000 |                            01101
+RESET_MOVE_COUNT_1_game_state |               001000000000000000 |                            01110
+RESET_MOVE_COUNT_2_game_state |               010000000000000000 |                            01111
+SET_HIDDEN_TURNS_TO_ZERO_game_state |               100000000000000000 |                            10000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'M_game_state_q_reg' using encoding 'one-hot' in module 'game_fsm_4'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -146,29 +192,39 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input   18 Bit       Adders := 1     
+	   3 Input   16 Bit       Adders := 1     
+	   2 Input   16 Bit       Adders := 1     
 	   2 Input    7 Bit       Adders := 4     
 	   2 Input    5 Bit       Adders := 4     
-	   2 Input    4 Bit       Adders := 6     
-	   2 Input    2 Bit       Adders := 3     
+	   2 Input    4 Bit       Adders := 4     
++---XORs : 
+	   2 Input     16 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 2     
 +---Registers : 
 	              288 Bit    Registers := 4     
+	              160 Bit    Registers := 1     
 	               18 Bit    Registers := 1     
-	               16 Bit    Registers := 1     
 	                7 Bit    Registers := 4     
 	                5 Bit    Registers := 4     
-	                4 Bit    Registers := 7     
-	                2 Bit    Registers := 21    
-	                1 Bit    Registers := 23    
+	                4 Bit    Registers := 5     
+	                2 Bit    Registers := 18    
+	                1 Bit    Registers := 22    
 +---Muxes : 
+	   2 Input  160 Bit        Muxes := 1     
 	   3 Input   24 Bit        Muxes := 48    
-	   2 Input   18 Bit        Muxes := 1     
-	   2 Input   16 Bit        Muxes := 5     
-	   2 Input    7 Bit        Muxes := 4     
+	  18 Input   18 Bit        Muxes := 1     
+	   2 Input   18 Bit        Muxes := 10    
+	  19 Input   16 Bit        Muxes := 2     
+	   2 Input   16 Bit        Muxes := 4     
+	   4 Input   16 Bit        Muxes := 3     
+	   2 Input    7 Bit        Muxes := 5     
+	  18 Input    6 Bit        Muxes := 1     
 	   2 Input    5 Bit        Muxes := 4     
-	   4 Input    4 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 6     
-	   2 Input    2 Bit        Muxes := 4     
-	   2 Input    1 Bit        Muxes := 72    
+	  18 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 4     
+	  18 Input    3 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 62    
+	  18 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -185,25 +241,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1000.602 ; gain = 0.000
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1040.535 ; gain = 39.934
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 999.367 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -221,37 +277,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1007.555 ; gain = 8.188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1007.555 ; gain = 8.188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1007.555 ; gain = 8.188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1007.555 ; gain = 8.188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1007.555 ; gain = 8.188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1007.555 ; gain = 8.188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -267,41 +323,40 @@ Report Cell Usage:
 +------+-------+------+
 |      |Cell   |Count |
 +------+-------+------+
-|1     |BUFG   |     2|
-|2     |CARRY4 |   111|
+|1     |BUFG   |     1|
+|2     |CARRY4 |   119|
 |3     |LUT1   |    70|
-|4     |LUT2   |    50|
-|5     |LUT3   |    47|
-|6     |LUT4   |   173|
-|7     |LUT5   |    68|
-|8     |LUT6   |   104|
-|9     |FDRE   |   583|
-|10    |FDSE   |    37|
-|11    |LD     |    32|
+|4     |LUT2   |   106|
+|5     |LUT3   |    81|
+|6     |LUT4   |   166|
+|7     |LUT5   |   140|
+|8     |LUT6   |   165|
+|9     |MUXF7  |     4|
+|10    |FDRE   |   693|
+|11    |FDSE   |    25|
 |12    |IBUF   |    21|
 |13    |OBUF   |    17|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1007.555 ; gain = 8.188
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:39 . Memory (MB): peak = 1041.574 ; gain = 40.973
-Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1041.574 ; gain = 40.973
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:33 . Memory (MB): peak = 1007.555 ; gain = 8.188
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1007.555 ; gain = 8.188
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 1053.477 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 143 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1019.562 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 123 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 1 inverter(s) to 32 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1053.477 ; gain = 0.000
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1019.562 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 32 instances were transformed.
-  LD => LDCE (inverted pins: G): 32 instances
+No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-56 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+67 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:50 . Memory (MB): peak = 1053.477 ; gain = 52.875
+synth_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 1019.562 ; gain = 20.195
 INFO: [Common 17-1381] The checkpoint 'D:/Alchitry Projects/LightsOutGame/work/vivado/LightsOutGame/LightsOutGame.runs/synth_1/au_top_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file au_top_0_utilization_synth.rpt -pb au_top_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Apr 15 13:33:25 2022...
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 18 13:00:39 2022...

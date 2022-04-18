@@ -1,23 +1,20 @@
 module move_counter (
     input clk,  // clock
     input rst,  // reset
-    input inc,
-    input reset_counter,
-    input difficulty[4],
+    input move_counter_1[16],
+    input move_counter_2[16],
+    input difficulty[16],
     output seg_out[7],
     output sel_out[4]
 ) 
 {
   
   multi_seven_seg seg(.clk(clk), .rst(rst)); 
-  multi_dec_ctr dec_ctr(.clk(clk), .rst(rst));
 
   always 
   {
-    dec_ctr.inc = inc;
-    dec_ctr.reset_counter = reset_counter;
-    seg.values[0] = dec_ctr.digits[1]; // Swap order because 7-seg display is upside down
-    seg.values[1] = dec_ctr.digits[0];
+    seg.values[0] = move_counter_2; // Swap order because 7-seg display is upside down
+    seg.values[1] = move_counter_1;
     seg.values[2] = 10; // Won't be displayed 
     seg.values[3] = difficulty;
     

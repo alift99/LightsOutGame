@@ -1,0 +1,20 @@
+module mux2 (
+    input a[16],
+    input b[16],
+    input sel,
+    output out[16]
+  ) 
+{
+
+  always 
+  {
+    if (~sel)
+    {
+      out = a;
+    }
+    else
+    {
+      out = b;
+    }
+  }
+}

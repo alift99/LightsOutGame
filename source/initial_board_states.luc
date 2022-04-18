@@ -1,7 +1,5 @@
 module initial_board_states (
-    input clk,
-    input rst,
-    input update_state,
+    input state_index[16],
     output out[16]
 ) 
 {
@@ -12,23 +10,8 @@ module initial_board_states (
     b0100101111101111
   };
   
-  dff counter[2](.clk(clk), .rst(rst));
-  
   always 
   {
-    out = 16b0;
-    if(update_state)
-    {
-      if(counter.q == b11)
-      {
-        out = BOARD_STATES[counter.q];
-        counter.d = b00;
-      }
-      else
-      {
-        out = BOARD_STATES[counter.q];
-        counter.d = counter.q + 1;
-      }    
-    }
+    out = BOARD_STATES[state_index];
   }
 }

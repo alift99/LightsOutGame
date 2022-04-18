@@ -1,0 +1,271 @@
+module game_fsm (
+    input clk,  // clock
+    input rst,  // reset
+    // External input
+    input button_pressed[16],
+    input reset_btn_pressed,
+    input difficulty_btn_pressed,
+    // Control signals
+    output we,
+    output ra[4],
+    output rb[4],
+    output rc[4],
+    output asel,
+    output bsel,
+    output alufn[6],
+    // Necessary data from registers
+    input initial_board_index[16],
+    input move_count_1[16],
+    input difficulty_level[16],
+    input hidden_turns_left[16],
+    input game_over[16]
+  ) 
+{
+  
+  fsm game_state(.clk(clk), .rst(rst)) = 
+  {
+    INITIALIZE_BOARD_STATE,
+    AWAIT_INPUT,
+    INCREMENT_MOVE_COUNT_1,
+    SET_MOVE_COUNT_1_TO_ZERO,
+    INCREMENT_MOVE_COUNT_2,
+    ASSIGN_HIDDEN_TURNS,
+    DECREMENT_HIDDEN_TURNS,
+    CHECK_BOARD,
+    CHECK_FOR_GAME_OVER,
+    RESET_DIFFICULTY,
+    INCREMENT_DIFFICULTY,
+    RESET_INITIAL_BOARD_STATE_INDEX,
+    INCREMENT_INITIAL_BOARD_STATE_INDEX,
+    ASSIGN_NEW_BOARD_STATE,
+    RESET_MOVE_COUNT_1,
+    RESET_MOVE_COUNT_2,
+    SET_HIDDEN_TURNS_TO_ZERO,
+    GAME_OVER
+  };
+
+  always {
+    we = 0;
+    ra = 0;
+    rb = 0;
+    rc = 0;
+    asel = 0;
+    bsel = 0;
+    alufn = 6b0;
+     
+    case(game_state.q)
+    {
+      game_state.INITIALIZE_BOARD_STATE:
+        we = 1;
+        ra = 0; // Doesnt actually go into alu
+        rb = 7; 
+        rc = 0;
+        asel = 1; // Passes INITIAL_BOARD_STATES[initial_board_index] into A of alu
+        bsel = 0;
+        alufn = 6b0;
+        game_state.d = game_state.AWAIT_INPUT;
+      game_state.AWAIT_INPUT:
+        if (button_pressed != 16b0)
+        {
+          we = 1;
+          ra = 0;
+          rb = 0; // not actually going into ALU
+          rc = 0;
+          asel = 0;
+          bsel = 1; // BSEL takes in button_pressed instead of rb
+          alufn = b100000;
+          if (move_count_1 == 9)
+          {
+            game_state.d = game_state.SET_MOVE_COUNT_1_TO_ZERO;
+          }
+          else
+          {
+            game_state.d = game_state.INCREMENT_MOVE_COUNT_1;
+          }
+        }
+        if (reset_btn_pressed)
+         {
+          if (initial_board_index == 3)
+          {
+            game_state.d = game_state.RESET_INITIAL_BOARD_STATE_INDEX;
+          }
+          else
+          {
+            game_state.d = game_state.INCREMENT_INITIAL_BOARD_STATE_INDEX;
+          }
+        }
+        if (difficulty_btn_pressed)
+        {
+          if (difficulty_level == 2)
+          {
+            game_state.d = game_state.RESET_DIFFICULTY;
+          }
+          else
+          {
+            game_state.d = game_state.INCREMENT_DIFFICULTY;
+          }
+        }
+      game_state.INCREMENT_MOVE_COUNT_1:
+        we = 1;
+        ra = 2;
+        rb = 8;
+        rc = 2;
+        asel = 0;
+        bsel = 0;
+        alufn = 6b0;
+        if (hidden_turns_left == 0)
+        {
+          game_state.d = game_state.ASSIGN_HIDDEN_TURNS;
+        }
+        else
+        {
+          game_state.d = game_state.DECREMENT_HIDDEN_TURNS;
+        }    
+      game_state.SET_MOVE_COUNT_1_TO_ZERO: 
+        we = 1;
+        ra = 2;
+        rb = 7;
+        rc = 2;
+        asel = 0;
+        bsel = 0;
+        alufn = b110101; // Compare less than
+        game_state.d = game_state.INCREMENT_MOVE_COUNT_2;
+      game_state.INCREMENT_MOVE_COUNT_2:  
+        we = 1;
+        ra = 3;
+        rb = 8;
+        rc = 3;
+        asel = 0;
+        bsel = 0;
+        alufn = 6b0;
+        if (hidden_turns_left == 0)
+        {
+          game_state.d = game_state.ASSIGN_HIDDEN_TURNS;
+        }
+        else
+        {
+          game_state.d = game_state.DECREMENT_HIDDEN_TURNS;
+        }   
+      game_state.ASSIGN_HIDDEN_TURNS:
+        we = 1;
+        ra = 4;
+        rb = 7;
+        rc = 5;  
+        asel = 0;
+        bsel = 0;
+        alufn = 6b0;
+        game_state.d = game_state.CHECK_BOARD;
+      game_state.DECREMENT_HIDDEN_TURNS:  
+        we = 1;
+        ra = 5;
+        rb = 8;
+        rc = 5;
+        asel = 0;
+        bsel = 0;
+        alufn = b000001;
+        game_state.d = game_state.CHECK_BOARD;
+      game_state.CHECK_BOARD:
+        we = 1;
+        ra = 0;
+        rb = 9;
+        rc = 6;
+        asel = 0;
+        bsel = 0;
+        alufn = b110011; // Compare-Equal to 
+        game_state.d = game_state.CHECK_FOR_GAME_OVER;
+      game_state.CHECK_FOR_GAME_OVER:
+        if (game_over)
+        {
+          game_state.d = game_state.GAME_OVER;
+        }
+        else
+        {
+          game_state.d = game_state.AWAIT_INPUT;
+        }      
+      game_state.RESET_DIFFICULTY:
+        we = 1;
+        ra = 4;
+        rb = 7;
+        rc = 4;
+        asel = 0;
+        bsel = 0;
+        alufn = b110101; // Compare less than
+        game_state.d = game_state.AWAIT_INPUT;
+      game_state.INCREMENT_DIFFICULTY:       
+        we = 1;
+        ra = 4;
+        rb = 8;
+        rc = 4;
+        asel = 0;
+        bsel = 0;
+        alufn = 6b0;
+        game_state.d = game_state.AWAIT_INPUT;
+      game_state.INCREMENT_INITIAL_BOARD_STATE_INDEX:
+        we = 1;
+        ra = 1;
+        rb = 8;
+        rc = 1;
+        asel = 0;
+        bsel = 0;
+        alufn = 6b0;
+        game_state.d = game_state.ASSIGN_NEW_BOARD_STATE;
+      game_state.RESET_INITIAL_BOARD_STATE_INDEX:
+        we = 1;
+        ra = 1;
+        rb = 7;    
+        rc = 1;
+        asel = 0;
+        bsel = 0;
+        alufn = b110101; // Compare less than
+        game_state.d = game_state.ASSIGN_NEW_BOARD_STATE;
+      game_state.ASSIGN_NEW_BOARD_STATE:
+        we = 1;
+        ra = 0; // Doesnt actually go into alu
+        rb = 7; 
+        rc = 0;
+        asel = 1; // Passes INITIAL_BOARD_STATES[initial_board_index] into A of alu
+        bsel = 0;
+        alufn = 6b0;
+        game_state.d = game_state.RESET_MOVE_COUNT_1;
+      game_state.RESET_MOVE_COUNT_1:
+        we = 1;
+        ra = 2;
+        rb = 7;    
+        rc = 2;
+        asel = 0;
+        bsel = 0;
+        alufn = b110101;
+        game_state.d = game_state.RESET_MOVE_COUNT_2;
+      game_state.RESET_MOVE_COUNT_2:
+        we = 1;
+        ra = 3;
+        rb = 7;
+        rc = 3;
+        asel = 0;
+        bsel = 0;
+        alufn = b110101;
+        game_state.d = game_state.SET_HIDDEN_TURNS_TO_ZERO;
+      game_state.SET_HIDDEN_TURNS_TO_ZERO:
+        we = 1;
+        ra = 5;
+        rb = 7;
+        rc = 5;
+        asel = 0;
+        bsel = 0;
+        alufn = b110101;
+        game_state.d = game_state.AWAIT_INPUT; 
+      game_state.GAME_OVER:
+        if (reset_btn_pressed)
+        {
+          if (initial_board_index == b11)
+          {
+            game_state.d = game_state.RESET_INITIAL_BOARD_STATE_INDEX;
+          }
+          else
+          {
+            game_state.d = game_state.INCREMENT_INITIAL_BOARD_STATE_INDEX;
+          }
+        }    
+    }   
+  }
+}
