@@ -112,7 +112,7 @@ module au_top (
     }
     
     // Flashing lights after game_over
-    if (regfile_machine.game_over)
+    if (regfile_machine.board_state == b1111111111111111)
     {
       led_out.power_on = alt_bit.out;
     }

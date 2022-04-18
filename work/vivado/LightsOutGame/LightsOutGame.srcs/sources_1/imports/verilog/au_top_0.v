@@ -283,7 +283,7 @@ module au_top_0 (
     end else begin
       M_led_out_power_on = 1'h0;
     end
-    if (M_regfile_machine_game_over) begin
+    if (M_regfile_machine_board_state == 16'hffff) begin
       M_led_out_power_on = M_alt_bit_out;
     end
     M_led_out_board_state = M_regfile_machine_board_state;
