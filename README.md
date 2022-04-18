@@ -16,8 +16,6 @@ References:
 
 https://alchitry.com/io-element
 
-https://github.com/Tzeusy/8bitALUgame/tree/master/8bitALU/source
-
 https://natalieagus.github.io/50002/fpga/
 
 https://www.hackster.io/pixigreen/apa102-rgb-led-fpga-video-controller-471c29
